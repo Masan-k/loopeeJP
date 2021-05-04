@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="Cache-Control" content="no-store" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>loopeeTOKYO</title>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <style>
+      #main-container{
+        width: 100vw;
+        /* background-color: lightskyblue; */
+      }
+    </style>
+  </head>
+  
+  <body>
+
+    <input type="button" value="MAP(10,10)" onclick="drawMap(10,10)">
+    <input type="button" value="MARK(10,10)" onclick="drawMark(10,10)">
+    <input type="button" value="MAP(115,90)" onclick="drawMap(115,90)">
+    <input type="button" value="MARK(115,90)" onclick="drawMark(115,90)">
+    <div id="main-container"></div>
+    <div id="sub-container"></div>
+    <script>
+      
+      const MAP_WIDTH = 239;
+      const MAP_HEIGHT = 179;
+      const CAMERA_WIDTH = MAP_WIDTH/2;
+      const CAMERA_HEIGHT = MAP_HEIGHT/2;
+      let m_cameraX;
+      let m_cameraY;
+
+      function drawMap(pointX,pointY){
+        _drawMapZoom(pointX,pointY);
+        _drawMapAll(pointX,pointY);
+        
+        function _drawMapAll(x,y){
+          fetch('img/map_tokyo.svg')
+            .then(response => response.text())
+            .then(svg => {
+
+              document.getElementById('sub-container').innerHTML = svg;
+
+              // SVG要素を取得
+              const svgElement = document.getElementById('sub-container').querySelector('svg');
+
+              // viewBoxを設定してトリミング（x, y, width, height）
+              svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
+              svgElement.setAttribute('width', `50%`);
+              svgElement.setAttribute('height', `50%`);
+              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+
+              const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+              // 属性を設定
+              rect.setAttribute('x', m_cameraX);
+              rect.setAttribute('y', m_cameraY);
+              rect.setAttribute('width', CAMERA_WIDTH);
+              rect.setAttribute('height', CAMERA_HEIGHT);
+              rect.setAttribute('fill', 'none');
+              rect.setAttribute('stroke', 'red');
+              rect.setAttribute('stroke-width', '0.5');
+
+              svgElement.appendChild(rect);
+            });
+        }
+
+        function _drawMapZoom(x,y){
+          fetch('img/map_tokyo.svg')
+            .then(response => response.text())
+            .then(svg => {
+              const mainContainer = document.getElementById('main-container');
+              mainContainer.innerHTML = svg;
+              const svgElement =  mainContainer.querySelector('svg');
+              const viewBox = svgElement.getAttribute('viewBox');
+
+              if (viewBox) {
+                const [x, y, width, height] = viewBox.split(' ').map(Number);
+                console.log(`viewBox - 幅: ${width}, 高さ: ${height}`);
+              } else {
+                console.log('viewBox属性がありません');
+              }
+
+              if(x <= CAMERA_WIDTH/2){
+                m_cameraX = 0;
+              }else if(MAP_WIDTH - CAMERA_WIDTH/2 < x){
+                m_cameraX = MAP_WIDTH - CAMERA_WIDTH;
+              }else{
+                m_cameraX = pointX-CAMERA_WIDTH/2;
+              }
+
+              if(y <= CAMERA_HEIGHT/2){
+                m_cameraY = 0;
+              }else if(MAP_HEIGHT - CAMERA_HEIGHT/2 < y){
+                m_cameraY = MAP_HEIGHT - CAMERA_HEIGHT;
+              }else{
+                m_cameraY = pointY-CAMERA_HEIGHT/2;
+              } 
+      
+              // viewBoxを設定してトリミング（x, y, width, height）
+              svgElement.setAttribute('viewBox', `${m_cameraX} ${m_cameraY} ${CAMERA_WIDTH} ${CAMERA_HEIGHT}`);
+              svgElement.setAttribute('width', '100%');
+              svgElement.setAttribute('height', '100%');
+              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+            });
+        }
+
+      }
+      
+      function drawMark(x,y){
+        const mainElement = document.getElementById('main-container').querySelector('svg');
+        const subElement = document.getElementById('sub-container').querySelector('svg');
+        
+        _drawMark(mainElement);
+        _drawMark(subElement,2);
+
+        function _drawMark(ele,zoomLevel = 1){
+          if (ele) {
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', y);
+          circle.setAttribute('r', 4*zoomLevel);
+          circle.setAttribute('stroke-width', 0.2*zoomLevel);
+          // circle.setAttribute('stroke-dasharray', '0.5, 0.5')
+          circle.setAttribute('fill', 'none');
+          circle.setAttribute('stroke', 'red');
+
+          const circleSmall = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circleSmall.setAttribute('cx', x);
+          circleSmall.setAttribute('cy', y);
+          circleSmall.setAttribute('r', 1*zoomLevel);
+          circleSmall.setAttribute('fill', 'red');
+
+          ele.appendChild(circle);
+          ele.appendChild(circleSmall);
+          } else {
+            console.error('SVGが読み込まれていません');
+          }
+        }
+      }
+
+    </script>   
+  </body>
+
+</html>

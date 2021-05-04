@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>move blankmap</title>
+    <style>
+        img {
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1.マップの全表示</li>
+        <img src="map_chiba.svg" alt="画像サンプル"  style="display:none;">
+        <li>2.マップの表示位置をCSSで変更</li>
+        <img src="map_chiba.svg" alt="画像サンプル" style ="display:none; position: relative;top: 10px; left: 15px;">
+        <li>3.マップの表示位置をJSで変更</li>
+        <div id="svg-container"  style="display:none;"></div>
+        <script>
+            // SVGファイルを取得して表示
+            fetch('map_chiba.svg')
+                .then(response => response.text())
+                .then(svg => {
+                    document.getElementById('svg-container').innerHTML = svg;
+                    
+                    //参考：変更できなかったコード...style transformが必要
+                    //svgElement.setAttribute('x', '200'); // 右に50px
+                    //svgElement.setAttribute('y', '200'); // 下に30px
+                    const svgElement = document.getElementById('svg-container').querySelector('svg');
+
+                    // SVG全体を移動する
+                    svgElement.setAttribute('style', 'transform: translate(20px, 30px);');
+                });
+        </script>   
+        <li>4.200,200 地点を中央に表示(JS)NG</li>
+        <div id="svg-container2">
+            <img  id="svgImage" src="map_chiba.svg" alt="画像サンプル">
+        </div>
+        <script>
+            const svg = document.getElementById('svgImage');
+            const rect = svg.getBoundingClientRect(); // 表示領域のサイズ
+            // console.log('幅:', rect.width, 'px');
+            // console.log('高さ:', rect.height, 'px');
+  
+            const img = document.getElementById("svgImage");
+            img.style.display = 'none';
+            let trgX = 100;
+            let trgY = 100;
+            let imgWidth = 446;
+            let imgHeight = 570;
+            // console.log("img.offsetWidth:" + img.offsetWidth);
+            // console.log("img.offsetHeight:" + img.offsetHeight);
+            center = [img.offsetWidth/2, img.offsetHeight/2];
+            let pointX = imgWidth/2 - trgX;
+            let pointY = imgHeight/2 - trgY;
+
+            // SVGファイルを取得して表示
+            fetch('map_chiba.svg')
+                .then(response => response.text())
+                .then(svg => {
+                    document.getElementById('svg-container2').innerHTML = svg;
+                    
+                    // 参考：変更できなかったコード...style transformが必要
+                    // svgElement.setAttribute('x', '200'); // 右に50px
+                    // svgElement.setAttribute('y', '200'); // 下に30px
+
+                    const svgElement = document.getElementById('svg-container2').querySelector('svg');
+                    svgElement.setAttribute('style', 'transform: translate(' + pointX + 'px, '+ pointY +'px);');
+                    //※画面サイズが変わり中央に表示できないためいったん非表示
+                    svgElement.setAttribute('style', 'display:none;');
+                });
+        </script>
+        <li>5.マップをトリミングして表示(viewpoint:右辺幅100px,下辺高さ100px）</li>
+        <div id="svg-container-trim" style="display:none;"></div>
+        <script>
+            // 外部SVGを取得
+            fetch('map_chiba.svg')
+                .then(response => response.text())
+                .then(svg => {
+                document.getElementById('svg-container-trim').innerHTML = svg;
+
+                // SVG要素を取得
+                const svgElement = document.getElementById('svg-container-trim').querySelector('svg');
+
+                // viewBoxを設定してトリミング（x, y, width, height）
+                // let startX = imgWidth - 200;
+                // let startY = imgHeight;
+                svgElement.setAttribute('viewBox', '0 0 346 470'); // 左上50,50から幅100,高さ100を表示
+                svgElement.setAttribute('preserveAspectRatio', 'none'); // 拡大を防止
+                //拡大防止が効かないため直接指定
+                svgElement.setAttribute('width', '346'); // 固定幅
+                svgElement.setAttribute('height', '470'); // 固定高さ
+            });
+        </script>
+        <li>6.トリミングしたマップを移動して表示かつ横スクロールさせない</li>
+        <div id="svg-container-trim-trans"></div>
+        <script>
+            fetch('map_chiba.svg')            
+                .then(response => response.text())
+                .then(svg => {
+                    const container = document.getElementById('svg-container-trim-trans');
+                    container.innerHTML = svg;
+                    const svgElement = container.querySelector('svg');
+
+                    // viewBoxを適切に設定
+                    svgElement.setAttribute('viewBox', '0 0 346 470');
+
+
+                    // 横幅いっぱいに設定し、アスペクト比を維持
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = 'auto';
+
+                    // マージンで移動（横スクロールを防止）
+                    svgElement.style.marginLeft = '100px';
+                    svgElement.style.marginTop = '100px';
+
+                    // 横スクロールを防ぐためのCSS設定
+                    container.style.overflowX = 'hidden'; // 横スクロールを無効化
+                    container.style.position = 'relative'; // 必要なら位置調
+                });
+        </script>
+</ul>
+    
+</body>
+</html

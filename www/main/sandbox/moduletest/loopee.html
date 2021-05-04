@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="Cache-Control" content="no-store" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>loopeeTokyo</title>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <style>
+      #main-container{
+        width: 100vw;
+        /* background-color: lightskyblue; */
+      }
+    </style>
+
+  </head>
+  
+  <body>
+    <label id="gameStatus">gameStatus</label><br>
+    <label id="questionCode">questionCode</label><br>
+    <label id="hint">hint</label><br>
+    <input type="text" id="inputTarget" placeholder="targetCode"><br>
+    <input type="button" value="OK" onclick="clickOk()">
+    <div id="main-container"></div>
+    <div id="sub-container"></div>
+    <script>
+      let m_json = null;
+      let m_readyCount = 0;
+      let m_targetCode = "1";
+      let m_mode = 'veryEasy'
+
+      let m_questionCode;
+      let m_answer;
+      let m_pos;
+      let m_kana;
+
+      const requestURL = './contents.json'; //CROSSエラーコード
+      let request = new XMLHttpRequest(); 
+      setParameter();
+      request.open('GET', requestURL);
+      request.responseType = 'json';
+      request.send();
+      request.onload = function (){
+        m_json = request.response;
+        let intervalId = setInterval(firstStart => {
+          let dot = '';
+          if(m_readyCount < 0){
+            clearInterval(intervalId);
+            main();
+            return;
+          }
+          for(let i=0;i<m_readyCount;i++){
+            dot += '.';
+          }
+          document.getElementById('gameStatus').textContent = 'Ready' + dot;
+          m_readyCount = m_readyCount - 1;
+        },1000);
+      }
+      function setParameter(){
+        let param = location.search.split('&');
+        if(param.length === 2){
+          m_mode = param[0].split('=')[1];
+          m_targetCode = param[1].split('=')[1];
+        }else{
+          console.log('no param');
+        }
+      }
+      function setQuestion(){
+        let workQuestionCode = [];
+        let workAnswer = [];
+        let workPos = [];
+        let workKana = [];
+        let randomQuestionCode = [];
+        let randomAnswer = [];
+        let randomPos = [];
+        let randomKana = [];
+
+        function getRandom(min, max) {
+          let range = max - min + 1;
+          let random = Math.floor(Math.random() * range);
+          return random + min;
+        };
+
+        for(let rec of m_json){
+          if(rec.group === m_targetCode || m_targetCode ==='all'){
+            workQuestionCode.push(rec.code);
+            workAnswer.push(rec.name);
+            workPos.push(rec.pos);
+            workKana.push(rec.kana);
+          }
+        }
+        if(m_mode === 'veryEasy'){
+          randomQuestionCode = workQuestionCode;
+          randomAnswer = workAnswer;
+          randomPos = workPos;
+          randomKana = workKana;
+
+        }else{
+          workLength = workQuestionCode.length;
+          console.log("workLength:" + workLength)
+          while(randomQuestionCode.length < workLength){
+            for(let i in workQuestionCode){
+              let trgIndex = getRandom(0 ,workQuestionCode.length - i - 1);
+              randomQuestionCode.push(workQuestionCode[trgIndex]);
+              randomAnswer.push(workAnswer[trgIndex]);
+              randomPos.push(workPos[trgIndex]);
+              randomKana.push(workKana[trgIndex]);
+
+              workQuestionCode.splice(trgIndex, 1);
+              workAnswer.splice(trgIndex, 1);
+              workPos.splice(trgIndex, 1);
+              workKana.splice(trgIndex, 1);
+            }
+          }
+        }
+
+        if(m_mode === 'veryEasy' || m_mode === 'easy'){
+          m_questionCode = workQuestionCode.slice();
+          m_answer = workAnswer.slice();
+          m_pos = workPos.slice();
+          m_kana = workKana.slice();
+         
+          for (let index in randomAnswer) {
+            if(randomKana[index].length > 0){
+              document.getElementById("hint").textContent += randomAnswer[index] + "(" + randomKana[index] +")/";
+            }else{
+              document.getElementById("hint").textContent += randomAnswer[index] + "/";
+            }
+          } 
+
+        }else{
+          m_questionCode = randomQuestionCode;
+          m_answer = randomAnswer;
+          m_pos = randomPos;
+        } 
+      }
+      let clickCount=0;
+      function main(){
+        setQuestion();
+        document.getElementById("questionCode").textContent = m_questionCode[clickCount];
+        drawSvg(m_pos[clickCount][0],m_pos[clickCount][1]);
+        clickCount += 1;
+       }
+      function clickOk(){
+        document.getElementById("questionCode").textContent = m_questionCode[clickCount];
+        drawSvg(m_pos[clickCount][0],m_pos[clickCount][1]);
+        clickCount += 1;
+      }
+
+      const MAP_WIDTH = 239;
+      const MAP_HEIGHT = 179;
+      const CAMERA_WIDTH = MAP_WIDTH/2;
+      const CAMERA_HEIGHT = MAP_HEIGHT/2;
+      let m_cameraX;
+      let m_cameraY;
+      let m_observer;
+
+      setObserver();
+      function setObserver(){
+        const mainContainer = document.getElementById('main-container');
+        const subContainer = document.getElementById('sub-container');
+        m_observer = new MutationObserver((mutationsList) => {
+          for(const mutation of mutationsList){
+            if(mutation.type === "childList"){
+              const addedNodes = Array.from(mutation.addedNodes);
+              addedNodes.forEach((node) => {
+                if(node.nodeName === "svg"){
+                  if(addedNodes[0].parentElement.childNodes[0].parentNode.id === 'main-container'){
+                    clearMark(mainContainer);
+                    drawMark(m_observer.pointX,m_observer.pointY,mainContainer);
+                    
+                  }else if(addedNodes[0].parentElement.childNodes[0].parentNode.id === 'sub-container'){
+                    clearMark(subContainer);
+                    drawMark(m_observer.pointX,m_observer.pointY,subContainer,4);
+                  }
+                }
+              });
+            }
+          }
+        })
+        m_observer.observe(mainContainer, {childList:true});
+        m_observer.observe(subContainer, {childList:true});
+
+        m_observer.setPointX = function (x) {this.pointX = x;};
+        m_observer.setPointY = function (y) {this.pointY = y;};
+
+      }
+      function drawSvg(x,y){
+        // -----------------------------------------------------------------------
+        // svgを追加されたタイミングでマークをクリア・描画するため、
+        // observerでマークを描画するため、書き込む座標をsetPointで事前に設定する
+        // -----------------------------------------------------------------------
+        m_observer.setPointX(x);
+        m_observer.setPointY(y);
+        drawMap(x,y);
+      }
+
+      function clearMark(container){
+        if(container.querySelector("svg")){
+          const marks = container.querySelector("svg").querySelectorAll('.mark'); 
+          marks.forEach(marks => marks.remove());
+        }
+      }
+        
+      function drawMark(x,y,ele,zoomLevel = 1){
+        let svgEle = ele.querySelector('svg');
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 4*zoomLevel);
+        circle.setAttribute('stroke-width', 0.2*zoomLevel);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', 'red');
+        circle.classList.add('mark');
+
+        const circleSmall = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circleSmall.setAttribute('cx', x);
+        circleSmall.setAttribute('cy', y);
+        circleSmall.setAttribute('r', 1*zoomLevel);
+        circleSmall.setAttribute('fill', 'red');
+        circleSmall.classList.add('mark');
+
+        svgEle.appendChild(circle);
+        svgEle.appendChild(circleSmall);
+      }
+
+      function drawMap(pointX,pointY){
+        const mainContainer = document.getElementById('main-container');
+        const subContainer = document.getElementById('sub-container');
+        const SVG_MAP_FILE_PATH = 'img/map_tokyo.svg'
+        _drawMapZoom(pointX,pointY);
+        _drawMapAll(pointX,pointY);
+
+        function _drawMapAll(x,y){
+          fetch(SVG_MAP_FILE_PATH)
+            .then(response => response.text())
+            .then(svg => {
+
+              document.getElementById('sub-container').innerHTML = svg;
+              const svgElement = document.getElementById('sub-container').querySelector('svg');
+              // viewBoxを設定してトリミング（x, y, width, height）
+              svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
+              svgElement.setAttribute('width', `50%`);
+              svgElement.setAttribute('height', `50%`);
+              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+
+              // 属性を設定
+              const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+              rect.setAttribute('x', m_cameraX);
+              rect.setAttribute('y', m_cameraY);
+              rect.setAttribute('width', CAMERA_WIDTH);
+              rect.setAttribute('height', CAMERA_HEIGHT);
+              rect.setAttribute('fill', 'none');
+              rect.setAttribute('stroke', 'red');
+              rect.setAttribute('stroke-width', '0.5');
+
+              svgElement.appendChild(rect);
+            });
+        }
+        function _drawMapZoom(x,y){
+          fetch(SVG_MAP_FILE_PATH)
+            .then(response => response.text())
+            .then(svg => {
+              const mainContainer = document.getElementById('main-container');
+              mainContainer.innerHTML = svg;
+              const svgElement =  mainContainer.querySelector('svg');
+              const viewBox = svgElement.getAttribute('viewBox');
+
+              if (viewBox) {
+                const [x, y, width, height] = viewBox.split(' ').map(Number);
+                //console.log(`viewBox - 幅: ${width}, 高さ: ${height}`);
+              } else {
+                console.log('viewBox属性がありません');
+              }
+
+              if(x <= CAMERA_WIDTH/2){
+                m_cameraX = 0;
+              }else if(MAP_WIDTH - CAMERA_WIDTH/2 < x){
+                m_cameraX = MAP_WIDTH - CAMERA_WIDTH;
+              }else{
+                m_cameraX = pointX-CAMERA_WIDTH/2;
+              }
+
+              if(y <= CAMERA_HEIGHT/2){
+                m_cameraY = 0;
+              }else if(MAP_HEIGHT - CAMERA_HEIGHT/2 < y){
+                m_cameraY = MAP_HEIGHT - CAMERA_HEIGHT;
+              }else{
+                m_cameraY = pointY-CAMERA_HEIGHT/2;
+              } 
+      
+              // viewBoxを設定してトリミング（x, y, width, height）
+              svgElement.setAttribute('viewBox', `${m_cameraX} ${m_cameraY} ${CAMERA_WIDTH} ${CAMERA_HEIGHT}`);
+              svgElement.setAttribute('width', '100%');
+              svgElement.setAttribute('height', '100%');
+              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+            });
+        }
+      }
+    </script>
+  </body>
+
+</html>

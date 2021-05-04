@@ -1,0 +1,125 @@
+article, aside, dialog, figure, footer, header,
+hgroup, menu, nav, section { display: block; }
+
+html{
+  background-color: #FFFFFF;
+  color: #000;
+}
+body{
+  margin: 20px auto;
+  padding: 10px;
+  width:800px;
+}
+input[type="radio"]:hover + label:hover{
+  background-color: #007bff;
+  color:#FFF;
+  transition: background-color 0.5s ease;
+}
+input[type="radio"]:checked + label {
+  background-color: #007bff;
+  color: #e8e6e3;
+}
+#target-container{
+  margin-top:20px;
+}
+#fixed{
+  margin: 0 auto;
+  position: fixed; 
+  bottom: 0px;
+  width: 800px;
+  /*padding:5px;*/
+  border-top:3px solid;
+  border-color:#7A756D;
+  text-align:center;
+}
+.navi-container{
+  margin: 0 auto;
+  width:90%;
+  /*text-align:center;*/
+  border-bottom:3px solid;
+  border-color:#7A756D;
+  font-size:2rem;
+  padding-bottom:15px;
+ }
+.navi-table-row{
+  width:30%;
+  /*background:#00F;*/
+  text-align:center;
+}
+.fixed-table-row{
+  text-align: center;
+  width:23%;
+}
+.fixed-table-row-mode{
+  font-size: 1.5rem;
+  color:#000;
+ 
+}
+
+.fixed-table-row-hint{
+  /* width: 33%; */
+  font-size: 1.5rem;
+  color:#7A756D;
+  /*background:#00F;*/
+  /*text-align:center;*/
+}
+
+.select-button-outline{
+  display: inline-block;
+
+  margin:10px;
+  padding:10px;
+  width:90%;
+
+  border: 2px solid #0056b3;
+  border-radius: 2rem;
+
+  background-color: transparent;
+  color:#0056b3;
+  font-size: 2.5rem; 
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.play-button{
+  border-radius: 2rem;
+  font-size: 3rem; 
+
+  border:none;
+  background: #712CF9;
+  color: #FFF;
+  
+  width: 90%;
+  padding: 10px;
+  margin: 5px;
+}
+.radio-none{
+   display: none;
+}
+.labelRank{
+  font-size:2rem;
+}
+
+.select-mode-button{
+  display:block; /* labelのwidthを設定するために必要*/
+  padding-top:15px;
+  padding-bottom:15px;
+  width:100%;
+  height:100%;
+
+  line-height:2.5em;
+
+  border-radius: 1rem;
+  font-size: 2rem; 
+  border: 1.5px solid #FFF;
+}
+
+
+.rank-table-row{
+  width:15%;
+  text-align:center;
+  border:dashed 1px;
+}
+
+

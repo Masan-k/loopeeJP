@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5S8WBQQKX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N5S8WBQQKX');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="Cache-Control" content="no-store" />
+    <title>loopeeCHIBA</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+
+  <body>
+    <h1 style="text-align: center;font-size: 4rem;">loopeeCHIBA</h1>
+    <table class='navi-container'>
+      <tr>
+        <td class='navi-table-row'>SCORE:<a id='lblScore'>aaa</a></td>
+        <td class='navi-table-row'>TIME:<a id='lblTime'>bbb</a></td>
+        <td class='navi-table-row'><button type="button" id="btnPlay" class='play-button'>PLAY</button></td>
+      </tr>
+    </table>
+
+    <div id='target-container'>
+      <table style="width: 100%;">
+        <tr><!-- 合計25 8,8,9-->
+         <td>
+            <input type="radio" name="rdoTrg" value="1" id="rdo1" class="radio-none">
+            <label class="select-button-outline" id='lblButton1' for="rdo1">KATSUSHIKA</label>
+          </td>
+          <td class='rank-table-row'>
+            <label id='lblRank1' class='labelRank'>-</label>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="2" id="rdo2" class="radio-none">
+            <label  class="select-button-outline" id='lblButton2' for="rdo2">H-KATSUSHIKA</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank2' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="3" id="rdo3" class="radio-none">
+            <label  class="select-button-outline" id='lblButton3' for="rdo3">INBA</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank3' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="4" id="rdo4" class="radio-none">
+            <label  class="select-button-outline" id='lblButton4' for="rdo4">KATORI-KAISOU</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank4' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="5" id="rdo5" class="radio-none">
+            <label  class="select-button-outline" id='lblButton5' for="rdo5">SANBU</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank5' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="6" id="rdo6" class="radio-none">
+            <label  class="select-button-outline" id='lblButton6' for="rdo6">CHOSEI</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank6' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="7" id="rdo7" class="radio-none">
+            <label  class="select-button-outline" id='lblButton7' for="rdo7">ISUMI-AWA-KIMITSU</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRank7' class='labelRank'>-</label></td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="radio" name="rdoTrg" value="all" id="rdoAll" class="radio-none">
+            <label  class="select-button-outline" id='lblAll' for="rdoAll">ALL</label>
+          </td>
+          <td class='rank-table-row'><label id='lblRankAll' class='labelRank'>-</label></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div id='fixed'>
+      <table style="width: 100%;">
+        <tr>
+          <td class='fixed-table-row fixed-table-row-mode'>
+            <input type="radio" name="rdoMode" value="veryEasy" id="rdoVeryEasy" class="clsRdoMode radio-none">
+            <label  class="select-mode-button" id='lblVeryEasy' for='rdoVeryEasy'>VERY EASY</label>
+          </td>
+          <td class='fixed-table-row fixed-table-row-mode'>
+            <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsRdoMode radio-none">
+            <label  class="select-mode-button" id='lblEasy' for='rdoEasy'>EASY</label>
+          </td>
+          <td class='fixed-table-row fixed-table-row-mode'>
+            <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsRdoMode radio-none">
+            <label class="select-mode-button" id='lblNormal' for='rdoNormal'>NORMAL</label>
+         </td>
+          <td class='fixed-table-row fixed-table-row-mode'>
+            <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsRdoMode radio-none">
+            <label class="select-mode-button" id='lblHard' for='rdoHard'>HARD</label>
+          </td>
+        </tr>
+        <tr>
+          <td class='fixed-table-row-hint'>+MAP +HINT</td>
+          <td class='fixed-table-row-hint'>V_EASY +RANDOM</td>
+          <td class='fixed-table-row-hint'>EASY -HINT</td>
+          <td class='fixed-table-row-hint'>CODE ONLY<br><button type="button" id="btnReset" class='button'>SCORE RESET</button><br></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

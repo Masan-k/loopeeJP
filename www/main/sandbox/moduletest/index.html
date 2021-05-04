@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Sample</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Website</h1>
+    <p>This is a sample HTML5 webpage.</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h2>Home</h2>
+    <p>This is the home section of the webpage.</p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>This section provides information about the website.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div id="main-container"></div>
+    <div id="sub-container"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
+  <script type="module">
+    import * as question from './question.js';
+    import * as svg from './svg.js';
+    const requestURL = './contents.json'; //CROSSエラーコード
+    let request = new XMLHttpRequest();
+    let jsonData;
+
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function (){ 
+      jsonData = request.response 
+      question.setData(jsonData,'veryEasy','1');
+    }
+
+    svg.draw(100,100);
+  </script>
+
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay Images</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #main-container img {
+            position: absolute; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Overlay Images</h1>
+    <div id="main-container">
+        <!-- 背景画像 -->
+        <!-- <img src="sample.svg" alt="Background"> -->
+    </div>
+    <script>
+        // メインコンテナを取得
+        const mainContainer = document.getElementById('main-container');
+        // const overlayContainer = document.getElementById('overlay-container');
+
+        // 背景画像を追加
+        const backgroundImg = document.createElement('img');
+        backgroundImg.src = 'sample.svg'; // 背景画像のパス
+        backgroundImg.style.width = '100%';
+        backgroundImg.style.height = '100%';
+        // backgroundImg.style.objectFit = 'cover';  // 比率を維持して全体表示
+        backgroundImg.style.zIndex = '1'; // Zインデックスを設定
+        mainContainer.appendChild(backgroundImg);
+
+        // オーバーレイ画像を追加
+        const overlayImg = document.createElement('img');
+        overlayImg.src = 'checkmark.webp'; // オーバーレイ画像のパス
+        overlayImg.style.width = '100px'; // オーバーレイ画像の幅
+        overlayImg.style.height = '150px'; // オーバーレイ画像の高さ
+        overlayImg.style.top = '50%';
+        overlayImg.style.left = '50%';
+        overlayImg.style.transform = 'translate(-50%, -50%)'; // 中央に揃える
+        overlayImg.style.zIndex = '2'; // 背景画像の上に表示
+        mainContainer.appendChild(overlayImg);
+
+    </script>
+</body>
+</html>

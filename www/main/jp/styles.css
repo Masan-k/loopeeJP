@@ -1,0 +1,114 @@
+article, aside, dialog, figure, footer, header,
+hgroup, menu, nav, section { display: block; }
+
+html{
+    background-color: #131516;
+    color: #7A756D;
+}
+body{
+  margin: 20px auto;
+  padding: 10px;
+  width:800px;
+}
+
+fieldset{
+  text-align: center;
+  font-size: 2rem;
+  border: 1.5px dashed;
+  padding-top: 30px;
+  padding-bottom: 300px; /*fixedのheigntと同じ */
+}
+
+.trgButton{
+  display:block; /* labelのwidthを設定するために必要*/
+  border-radius: 2rem;
+  font-size: 3.5rem; 
+  border: 1.5px solid #FFF;
+  color: #FFF;
+  background: #000;
+  width: 95%;
+  margin: 5px;
+  
+ padding-top:15px;
+ padding-bottom:15px;
+
+}
+
+#btnPlay{
+  border-radius: 2rem;
+  font-size: 3rem; 
+
+  border: 1.5px solid #31A9F3;
+  background: #131516;
+  color: #31A9F3;
+  
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+.labelRank{
+  text-align: center;
+  line-height: 70px;
+  width: 80px;
+  height: 50px;
+}
+
+#btnPlay:hover {
+  background: #152832;
+}
+
+.clsRdoMode,.clsRdoTrg{
+ display:none;
+}
+.clsTdMode{
+ padding: 5px;
+ width: 33%;
+ text-align: center;
+}
+.clsTdRank{
+ padding: 5px;
+ width: 20%;
+ text-align: center;
+ border-top: 1px dashed;
+ border-left: 1px dashed;
+ border-right: 1px dashed;
+}
+#idTdAllRank{
+ border-bottom: 1px dashed;
+}
+
+.clsTdTarget{
+ width: 80%;
+ text-align: center;
+}
+
+.clsLblMode{
+ display:block; /* labelのwidthを設定するために必要*/
+ padding-top:15px;
+ padding-bottom:15px;
+ width:100%;
+ height:100%;
+
+ border-radius: 1rem;
+ font-size: 3rem; 
+ border: 1.5px solid #FFF;
+}
+
+#lblVeryEasy{
+ font-size:1.5em ; 
+ line-height:3em;
+}
+
+#fixed{
+ margin: 0 auto;
+ position: fixed; 
+ bottom: 0px;
+ width: 800px;
+ /*padding:5px;*/
+ background-color: #131516;
+ border-top:3px solid;
+ border-color:#7A756D;
+ text-align:center;
+}

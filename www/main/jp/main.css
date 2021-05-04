@@ -1,0 +1,71 @@
+
+html{
+  background-color: #131516;
+  color: #7A756D;
+}
+body{
+  overflow-x: hidden; /* 横スクロールバーを非表示 */
+  overflow-y: auto;   /* 縦スクロールは維持 */
+ 
+  margin: 0; /* 余計な余白を削除 */
+  padding: 0;
+  width: 100%;
+  line-height: 1.5rem;
+  text-align: center;
+}
+.top-button{
+  margin-top:10px;
+  width: 95%;
+  border-radius: 2rem;
+  font-size: 1.5rem; 
+  border: 1.5px solid #31A9F3;
+  background: #131516;
+  color: #31A9F3;
+  padding:5px;
+  pointer-events: auto; /* ボタンをクリック可能にする */
+}
+.top-button:hover {
+  background: #152832;
+}
+
+.custom-label{
+  position:relative;
+  width: 70%;
+  border: 1px solid;
+  z-index:10;
+  font-size: 1.5rem;
+}
+.custom-input{
+  position:relative;
+  font:2rem Meiryo;
+  text-align:center;
+  z-index:10;
+  background:#555;
+  color:white;
+  opacity:80%;
+
+  width: 100%;
+
+  box-sizing: border-box; /* パディングを含む幅調整 */
+  pointer-events: auto; /* ボタンをクリック可能にする */
+}
+#lblResult{
+  font-size:3rem;
+  color: #888;
+  line-height:3rem;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+.custom-info{
+  font-size:1em;
+} 
+
+#svgMarker {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute; /* 必要に応じて変更 */
+}
+

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>SVG画像の操作</h1>
+    <ol>
+        
+        <li>色の変更</li>
+        <div id="svg-container"></div>
+        <button id="changeColorGreen">緑に変更</button>
+        <script>
+            // 外部SVGファイルのパス
+            const svgPath = 'sample.svg';
+
+            // SVGを取得してDOMに挿入
+            fetch(svgPath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('SVGファイルの読み込みに失敗しました');
+                    }
+                    return response.text(); // テキスト形式でSVGを取得
+                })
+                .then(svgText => {
+                    // SVGをHTMLに挿入
+                    const container = document.getElementById('svg-container');
+                    container.innerHTML = svgText;
+
+                    // 必要に応じて編集可能
+                    const svgElement = container.querySelector('svg');
+                    if (svgElement) {
+                        const circle = svgElement.querySelector('circle'); // 例: <circle>要素を選択
+                        if (circle) {
+                            circle.setAttribute('fill', 'blue'); // 初期値を設定
+                        }
+                    }
+                })
+                .catch(error => console.error(error));
+
+            // 色を変更するボタンのイベントリスナー
+            document.getElementById('changeColorGreen').addEventListener('click', () => {
+                const circle = document.querySelector('#svg-container circle'); // 動的に挿入された<circle>を取得
+                if (circle) {
+                    circle.setAttribute('fill', 'green');
+                }
+            });
+        </script>
+
+        <li>スクエアの追加・削除（単一・id指定）</li>
+        <div id="container-addrect"></div>
+        <button id="btnAddRect">図形の描画</button>
+        <button id="btnClearAdd">クリア</button><br>
+        <script>
+            const svgPath2= 'sample2.svg';
+            fetch(svgPath2)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('SVGファイルの読み込みに失敗しました');
+                    }
+                    return response.text(); // テキスト形式でSVGを取得
+                })
+                .then(svgText => {
+                    const containerAdd = document.getElementById('container-addrect');
+                    containerAdd.innerHTML = svgText; // SVGをHTMLに挿入
+
+                    // ここでSVG編集の準備
+                    const svgElementAdd = containerAdd.querySelector('svg');
+                    if (!svgElementAdd) {
+                        throw new Error('SVG要素が見つかりません');
+                    }
+
+                    // // スクエアを追加するボタンのイベント
+                    document.getElementById('btnAddRect').addEventListener('click', () => {
+                        
+                        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect'); // <rect>を作成
+                        rect.setAttribute('x', '30'); // X座標
+                        rect.setAttribute('y', '30'); // Y座標
+                        rect.setAttribute('width', '30'); // 幅
+                        rect.setAttribute('height', '30'); // 高さ
+                        rect.setAttribute('fill', 'blue'); // 塗りつぶしの色
+                        rect.setAttribute('id', 'mySquare'); // 削除用にIDを設定
+                        svgElementAdd.appendChild(rect); // SVGに追加
+                    });
+
+                    document.getElementById('btnClearAdd').addEventListener('click', () => {
+                        const rect = document.getElementById('mySquare');
+                        if (rect) {
+                            rect.remove(); // 要素を削除
+                        } else {
+                            alert('スクエアが見つかりません');
+                        }
+                    });
+                    
+                })
+                .catch(error => console.error(error));
+        </script>
+
+        <li>複数図形の追加・削除（class指定)</li>
+        <div id="containerAdd2"></div>
+        <button id="btnAdd2">図形の描画</button>
+        <button id="btnClearAdd2">クリア</button><br>
+        <script>
+            const svgPath3= 'sample2.svg';
+            fetch(svgPath3)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('SVGファイルの読み込みに失敗しました');
+                    }
+                    return response.text(); // テキスト形式でSVGを取得
+                })
+                .then(svgText => {
+                    const containerClass = document.getElementById('containerAdd2');
+                    containerClass.innerHTML = svgText; // SVGをHTMLに挿入
+
+                    // ここでSVG編集の準備
+                    const svgElementClass = containerClass.querySelector('svg');
+                    if (!svgElementClass) {
+                        throw new Error('SVG要素が見つかりません');
+                    }
+
+                    // // スクエアを追加するボタンのイベント
+                    document.getElementById('btnAdd2').addEventListener('click', () => {
+                        
+                        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect'); // <rect>を作成
+                        rect.setAttribute('x', '30'); // X座標
+                        rect.setAttribute('y', '30'); // Y座標
+                        rect.setAttribute('width', '30'); // 幅
+                        rect.setAttribute('height', '30'); // 高さ
+                        rect.setAttribute('fill', 'blue'); // 塗りつぶしの色
+                        rect.classList.add('myClass'); // 削除用にIDを設定
+                        svgElementClass.appendChild(rect); // SVGに追加
+
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); // <rect>を作成
+                        circle.setAttribute('cx', Math.random() * 100); // ランダムなX座標
+                        circle.setAttribute('cy', Math.random() * 100); // ランダムなY座標
+                        circle.setAttribute('r', '10'); // 半径
+                        circle.setAttribute('fill', 'black'); // 塗りつぶし色
+                        circle.classList.add('myClass'); // クラスを追加
+                        svgElementClass.appendChild(circle);
+
+
+                    });
+
+                    document.getElementById('btnClearAdd2').addEventListener('click', () => {
+                        const squares = svgElementClass.querySelectorAll('.myClass'); // クラス'square'を持つ全要素を取得
+                        squares.forEach(square => square.remove()); // すべて削除
+                    });
+                    
+                })
+                .catch(error => console.error(error));
+        </script>
+    </ol>
+</body> 
+</html>

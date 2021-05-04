@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5S8WBQQKX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N5S8WBQQKX');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="Cache-Control" content="no-store" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>loopeeJP</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div id="mapContainer" style="position: relative;pointer-events:none;">
+      <img id='imgMap' src="img/map.svg" alt="blankmap" style="position:absolute;top:0;left:0;right:0;margin:auto;z-index:-999;width:100%;">
+      <div id="mapBackGroundContainer" style="opacity:0.8;" z-index="999">
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 50%;"><button type="button" id="btnMenu" class='top-button'>BACK</button></td>
+            <td style="width: 50%;"><button type="button" id="btnRetry" class='top-button'>RETRY</button></td>
+          </tr>
+        </table>
+       <table style="width: 100%;">
+          <tr style="height:70px;">
+            <td style="width:15%; font-size:2rem;text-align:left;">Q.</td>
+            <td class="custom-label"><a id='lblQuestion'></a></td>
+            <td style="width:15%;"></td>
+          </tr>
+        </table>
+        <table style="width: 100%;">
+          <tr height="100px;">
+            <td style="width: 15%;font-size: 2rem; text-align:left;">A.</td>
+            <td style="width: 70%;"><input type="text" id="txtInput" maxlength="10" class="custom-input"></td>
+            <td style="width: 15%"></td>
+          </tr>
+        </table>
+        <!--  width="570px" height="755px"  -->
+       <progress id="prgTime" tabindex="-1" style="width:90%; height:30px;"></progress><br>
+      </div>
+    </div>
+    <div id="subContainer" style='position: relative;height:50px;'>
+      <a id='lblHint' style='float:left;width:50%;' class="custom-info"></a>
+    </div>
+    <a id='lblResult'>&nbsp</a>
+
+    <div id='bottomFixed' style='width:100%;position:fixed; bottom:10px;'>
+      <table style="width: 100%;margin-left:0;text-align:left;line-height: 1.5;letter-spacing: 2px;">
+        <tr><td style="width: 20%;"><a id='lblScore' class="custom-info"></a></td></tr>
+        <tr><td style="width: 20%;"><a id='lblCount' class="custom-info"></a></td></tr>
+        <tr><td style="width: 20%;"><a id='lblTime' class="custom-info"></a></td></tr>
+      </table>
+    </div>
+  </body>
+</html>

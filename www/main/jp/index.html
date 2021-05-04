@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5S8WBQQKX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N5S8WBQQKX');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="Cache-Control" content="no-store" />
+    <title>loopeeJP</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <h1 style="text-align: center;font-size: 4rem;">loopeeJP</h1>
+    <fieldset style='padding:10px;'> <!-- paddingがないと下部にスペース余白が入る -->
+      <legend>SELECT DATA</legend>
+      <table style='width:100%;'>
+        <tr>
+          <td style='font-size:2.5rem; width:33%;border-bottom:1px solid;'><a id='lblSelectDataTrg'>Tohoku</a></td>
+          <td style='font-size:2.5rem; width:33%;border-bottom:1px solid;'><a id='lblSelectDataMode'>NORMAL</a></td>
+          <td style='font-size:3.5rem; width:33%;border-bottom:1px solid;'><a id='lblSelectDataRank'>AAA</a></td>
+        </tr>
+        <tr style='font-size:2rem;'>
+          <td>SCORE:<a id='lblScore'</a></td>
+          <td>TIME:<a id='lblTime'</a></td>
+          <td><button type="button" id="btnPlay">PLAY</button></td>
+        </tr>
+      </table>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>TARGET</legend>
+      <div id='target'>
+        <table style="width: 100%;">
+          <tr >
+           <td class='clsTdTarget'>
+            <label  class="trgButton" id='lblTohoku'>
+              <input type="radio" name="rdoTrg" value="0" id="rdoTohoku" class="clsRdoTrg">
+              TOHOKU (02-07)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblTohokuRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblKanto'>
+                <input type="radio" name="rdoTrg" value="1" id="rdoKanto" class="clsRdoTrg">
+                KANTO (08-14)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblKantoRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblChubu'>
+                <input type="radio" name="rdoTrg" value="2" id="rdoChubu" class="clsRdoTrg">
+                CHUBU (15-24)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblChubuRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblKinki'>
+                <input type="radio" name="rdoTrg" value="3" id="rdoKinki" class="clsRdoTrg">
+                KINKI (25-30)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblKansaiRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblShikoku'>
+                <input type="radio" name="rdoTrg" value="4" id="rdoShikoku" class="clsRdoTrg">
+                SHIKOKU (31-39)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblShikokuRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblKyushu'>
+                <input type="radio" name="rdoTrg" value="5" id="rdoKyushu" class="clsRdoTrg">
+                KYUSHU (40-47)
+              </label>
+            </td>
+            <td class='clsTdRank'>
+              <label id='lblKyushuRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='clsTdTarget'>
+              <label  class="trgButton" id='lblAll'>
+                <input type="radio" name="rdoTrg" value="6" id="rdoAll" class="clsRdoTrg">
+                ALL (01-47)
+              </label>
+            </td>
+            <td class='clsTdRank' id='idTdAllRank'>
+              <label id='lblAllRank' class='labelRank'>-</label>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </fieldset> 
+
+    <div id='fixed'>
+      <table style="width: 100%;">
+        <tr>
+          <td class="clsTdMode">
+            <label  class="clsLblMode" id='lblVeryEasy'>
+              <input type="radio" name="rdoMode" value="veryEasy" id="rdoVeryEasy" class="clsRdoMode">VERY EASY
+            </label>
+          </td>
+          <td class="clsTdMode">
+            <label  class="clsLblMode" id='lblEasy'>
+              <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsRdoMode">EASY
+            </label>
+          </td>
+          <td class="clsTdMode" >
+            <label class="clsLblMode" id='lblNormal'>
+              <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsRdoMode">NORMAL
+            </label>
+         </td>
+          <td class="clsTdMode">
+            <label class="clsLblMode" id='lblHard'>
+              <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsRdoMode">HARD
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">+MAP +HINT</td>
+          <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">V_EASY +RANDOM</td>
+          <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">EASY -HINT</td>
+          <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem">
+            <button type="button" id="btnScoreReset" class='button'>SCORE RESET</button><br>
+            <button type="button" id="btnAbout" class='button'>ABOUT</button><br>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
