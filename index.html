@@ -23,20 +23,23 @@
 	    }
 	    
 	    .button{
-	        display       : inline-block;
-		border-radius: 5%;
+	        display: inline-block;
+		border-radius: 8px;
 		font-size: 20pt; 
 		border: 1.5px solid #31A9F3;
 		background: #131516;
 		color: #31A9F3;
 
 		width: 300px;
-
 		padding: 5px;
 		margin: 5px;
 
 	   }
 
+	    input.geosize {
+		transform: scale(2);
+		margin-left:15px;
+	    }
 	    .button:hover {
 		background    : #152832;
 	    }
@@ -62,15 +65,16 @@
         
         <fieldset>
         <legend>MODE</legend>
-	    <input type="radio" name="rdoMode" value="test" id="rdoCode">  PREFECTURE -> PREFECTURE CODE 
+	    <input type="radio" name="rdoMode" value="test" id="rdoCode" class="geosize">  PREFECTURE -> PREFECTURE CODE 
+
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoRural"> RURAL -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="test" id="rdoRural" class="geosize"> PREFECTURE CODE -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoBlank">  BLANK MAP -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="test" id="rdoBlank" class="geosize">  BLANK MAP -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoPrefecture"> PREFECTURE -> OFFICE LOCATION
+	    <input type="radio" name="rdoMode" value="input" id="rdoPrefecture" class="geosize"> PREFECTURE CODE -> OFFICE LOCATION
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoOffie"> OFFICE LOCATION -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="input" id="rdoOffie" class="geosize"> OFFICE LOCATION -> PREFECTURE
         </fieldset> 
         <br>
 	
