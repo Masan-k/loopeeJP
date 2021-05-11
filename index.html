@@ -10,51 +10,58 @@
           article, aside, dialog, figure, footer, header,
           hgroup, menu, nav, section { display: block; }
 
-            body {
-		font-size: 18pt; 
+	html{
+	    font-size: 10px;
+	}
 
-                background-color: #131516;
-		color: #7A756D;
+	h1{
+	    font-size: 4rem;
+	}
+
+        body{
+            background-color: #131516;
+	    color: #7A756D;
 		
-                margin: 20px;
-                padding: 10px;
+            margin: 20px;
+            padding: 10px;
 
-		line-height: 40px;
-	    }
-	    
-	    .button{
-	        display: inline-block;
-		border-radius: 8px;
-		font-size: 20pt; 
-		border: 1.5px solid #31A9F3;
-		background: #131516;
-		color: #31A9F3;
-
-		width: 300px;
-		padding: 5px;
-		margin: 5px;
-
-	   }
-
-	    input.geosize {
-		transform: scale(2.5);
-		margin-left:15px;
-	    }
-	    .button:hover {
-		background    : #152832;
-	    }
-
-            #cvsCarrelation {
-                background-color: #FFF;
-                border: solid 0.1em;
-                border-color: #DDD;
-            }
+	    line-height: 4rem;
+	}
+	  
+	fieldset{
+	    font-size: 1.5rem;
+	    border: 1.5px dashed;
+	}
 	   
-	    #target {
-		height:450px;
+	legend{
+	    font-size: 2.5rem;
+	}
 
-		text-align: left;
-	    }
+	.button{
+	    border-radius: 2rem;
+	    font-size: 3rem; 
+	    border: 1.5px solid #31A9F3;
+	    background: #131516;
+	    color: #31A9F3;
+
+	    width: 300px;
+	    padding: 5px;
+	    margin-left: 2rem;
+	    margin-top: 1.5rem;
+	}
+
+	input.geosize {
+	    transform: scale(2.5);
+	    margin-left: 2rem; 
+	}
+	.button:hover {
+	    background: #152832;
+	}
+
+	#target {
+	    height:520px;
+	    text-align: left;
+	}
 
         </style>
         <script type="text/javascript" src="index.js"></script>
@@ -64,17 +71,17 @@
         <h1>Japanese Geography</h1>
         
         <fieldset>
-        <legend>MODE</legend>
-	    <input type="radio" name="rdoMode" value="test" id="rdoCode" class="geosize">  PREFECTURE -> PREFECTURE CODE 
+	    <legend>MODE</legend>
+	    <input type="radio" name="rdoMode" value="test" id="rdoCode" class="geosize">&nbsp&nbsp REFECTURE -> PREFECTURE CODE 
 
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoRural" class="geosize"> PREFECTURE CODE -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="test" id="rdoRural" class="geosize">&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoBlank" class="geosize">  BLANK MAP -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="test" id="rdoBlank" class="geosize">&nbsp&nbsp BLANK MAP -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoPrefecture" class="geosize"> PREFECTURE CODE -> OFFICE LOCATION
+	    <input type="radio" name="rdoMode" value="input" id="rdoPrefecture" class="geosize">&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoOffie" class="geosize"> OFFICE LOCATION -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="input" id="rdoOffie" class="geosize">&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
         </fieldset> 
         <br>
 	
@@ -98,9 +105,11 @@
 		<button type="button" id="btnRandom" data-index="random,30" class='button'>Random(30)</button>
             </div>
 	</fieldset> 
+        <br>
 
-        <h3>CATCH UP</h3>
-        <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>
-
+	<fieldset>
+	    <legend>CATCH UP</legend>
+	    <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>
+	</fieldset> 
     </body>
 </html>
