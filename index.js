@@ -49,7 +49,7 @@ function getRecord() {
 
 function getRectColor(count){
     if(count === 0){
-        return '#EAECF0';
+        return '#191D21';
     }else if(count <= 2){
         return '#6BF8A3';
     }else if(count <= 4){
@@ -73,13 +73,14 @@ function drawCtxLastYear() {
     const VERTICAL_COUNT = 7;
     const HORIZONTAL_COUNT = 50;
 
-    let canvas = document.getElementById('cvsLastYear');
+    let canvas = document.getElementById('cvsCatchUp');
     let ctx = canvas.getContext('2d'); 
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     //Character drawing
     ctx.lineWidth = '0.3';
+    ctx.strokeStyle = '#7A756D';
     ctx.textBaseline = 'alphabetic';
     ctx.strokeText('Mon', 5, 50.3);
     ctx.strokeText('Wed', 5, 77.3);
@@ -103,6 +104,7 @@ function drawCtxLastYear() {
     ctx.fillStyle = getRectColor(8);
     ctx.fillRect(576, 133, RECT_LENGTH, RECT_LENGTH)
 
+    ctx.fillStyle = '#7A756D';
     ctx.strokeText('More', 595, 130);
 
     //------------------
@@ -179,8 +181,8 @@ window.onload = function () {
     
     var btnStart;
 
-    btnStart = document.getElementById("btnStart");
-    btnStart.addEventListener("click", clickBtnStart, false); 
+    //btnStart = document.getElementById("btnStart");
+    //btnStart.addEventListener("click", clickBtnStart, false); 
 
 
     let requestURL = 'https://masan-k.github.io/Memorization-of-muscles/contents.json';
@@ -191,7 +193,7 @@ window.onload = function () {
     
     request.onload = function () {
         let contentsAll = request.response;
-        init(contentsAll);
+        //init(contentsAll);
     }
 
     drawCtxLastYear();

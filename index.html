@@ -11,8 +11,11 @@
           hgroup, menu, nav, section { display: block; }
 
             body {
+		font-size: 18pt; 
+
                 background-color: #131516;
-		color: #ffffff;
+		color: #7A756D;
+		
 
                 margin: 10px;
                 padding: 10px;
@@ -23,13 +26,16 @@
 	    .button{
 	        display       : inline-block;
 		border-radius: 5%;
-		font-size: 12pt; 
+		font-size: 20pt; 
 		border: 1.5px solid #31A9F3;
 		background: #131516;
 		color: #31A9F3;
 
-		width: 200px;
-		height: 30px
+		width: 300px;
+
+		padding: 5px;
+		margin: 5px;
+
 	   }
 
 	    .button:hover {
@@ -42,6 +48,12 @@
                 border-color: #DDD;
             }
 	   
+	    #target {
+		height:450px;
+
+		text-align: left;
+	    }
+
         </style>
         <script type="text/javascript" src="index.js"></script>
 
@@ -65,6 +77,7 @@
 	
         <fieldset>
         <legend>TARGET</legend>
+	    <div id='target'>
             <input type="button" value="Tohoku" id="btnTohoku" data-index="0" class='button'>
             <br>
             <input type="button" value="Kanto" id="btnKanto" data-index="1" class='button'>
@@ -80,7 +93,8 @@
             <input type="button" value="Kyusyu-Okinawa" id="btnKyusyu" data-index="6" class='button'>
             <br>
             <input type="button" value="Random(30)" id="btnRandom" data-index="random,30" class='button'>
-        </fieldset> 
+            </div>
+	</fieldset> 
 
         <h3>CATCH UP</h3>
         <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>
