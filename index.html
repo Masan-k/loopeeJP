@@ -11,6 +11,8 @@
           hgroup, menu, nav, section { display: block; }
 
 	html{
+	    background-color: #131516;
+	    color: #7A756D;
 	    font-size: 10px;
 	}
 
@@ -19,17 +21,14 @@
 	}
 
         body{
-            background-color: #131516;
-	    color: #7A756D;
-		
             margin: 20px;
             padding: 10px;
 
-	    line-height: 4rem;
+	    line-height: 5rem;
 	}
 	  
 	fieldset{
-	    font-size: 1.5rem;
+	    font-size: 3rem;
 	    border: 1.5px dashed;
 	}
 	   
@@ -72,16 +71,16 @@
         
         <fieldset>
 	    <legend>MODE</legend>
-	    <input type="radio" name="rdoMode" value="test" id="rdoCode" class="geosize">&nbsp&nbsp REFECTURE -> PREFECTURE CODE 
+	    <input type="radio" name="rdoMode" value="code" id="rdoCode" class="geosize">&nbsp&nbsp REFECTURE -> PREFECTURE CODE 
 
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoRural" class="geosize">&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromCode" id="rdoPrefectureFromCode" class="geosize">&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="test" id="rdoBlank" class="geosize">&nbsp&nbsp BLANK MAP -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromMap" id="rdoprefectureFromMap" class="geosize">&nbsp&nbsp BLANK MAP -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoPrefecture" class="geosize">&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
+	    <input type="radio" name="rdoMode" value="officeFromCode" id="rdoOfficeFromCode" class="geosize">&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
 	    <br>
-	    <input type="radio" name="rdoMode" value="input" id="rdoOffie" class="geosize">&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromOffice" id="rdoPrefectureFromOffice" class="geosize">&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
         </fieldset> 
         <br>
 	
@@ -98,11 +97,9 @@
 		<br>
 		<button type="button" id="btnChugoku" data-index="4" class='button'>Chugoku</button>
 		<br>  
-		<button type="button" id="btnShikoku" data-index="5" class='button'>Shikoku</button>
+		<button type="button" id="btnShikoku" data-index="5" class='button'>Shikoku</button> <br> <button type="button" id="btnKyushu" data-index="6" class='button'>Kyushu-Okinawa</button>
 		<br>
-		<button type="button" id="btnKyushu" data-index="6" class='button'>Kyushu-Okinawa</button>
-		<br>
-		<button type="button" id="btnRandom" data-index="random,30" class='button'>Random(30)</button>
+		<button type="button" id="btnRandom" data-index="r30" class='button'>Random(30)</button>
             </div>
 	</fieldset> 
         <br>

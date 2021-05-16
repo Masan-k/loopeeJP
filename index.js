@@ -5,12 +5,11 @@ let eCmbQuestion;
 function clickBtnStart() {
     'use strict';
     
-    //window.location.href = 'muscles.html?id=' + eCmbQuestion.value;
-    window.location.href = 'https://masan-k.github.io/Memorization-of-muscles/muscles.html?id=' + eCmbQuestion.value;
-
-}
+   }
 
 function getRecord() {
+    'use strict';
+
     let dateYmd = [];    
     let record = new Object();
     let date = [];
@@ -48,6 +47,8 @@ function getRecord() {
 
 
 function getRectColor(count){
+    'use strict';
+
     if(count === 0){
         return '#191D21';
     }else if(count <= 2){
@@ -165,8 +166,6 @@ function drawCtxLastYear() {
 function init(contents) {
     'use strict';
 
-　　eCmbQuestion = document.getElementById("cmbQuestion");
-
     for (let key in contents) {
         let option_add = document.createElement("option");
         option_add.value = key;
@@ -176,16 +175,43 @@ function init(contents) {
     
 }
 
+function clickButton() {
+    'use strict';
+    let dataIndex = event.currentTarget.dataset['index'];
+    let eRdoMode = document.getElementsByName("rdoMode");
+    let selectMode;
+
+    for(let i=0;i<eRdoMode.length;i++){
+	if(eRdoMode[i].checked){
+	    selectMode = eRdoMode[i].value
+	}
+    }
+
+    if(selectMode === undefined){
+	alert('Select "Mode".');
+	return;
+    }
+
+    let jumpUrl = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
+    alert('junp url -> ' + jumpUrl);
+    //window.location.href = jumpUrl;
+
+}
+
 window.onload = function () {
     'use strict';
     
-    var btnStart;
+    btnTohoku.addEventListener("click", clickButton, false); 
+    btnKanto.addEventListener("click", clickButton, false);  
+    btnChubu.addEventListener("click", clickButton, false);  
+    btnKansai.addEventListener("click", clickButton, false); 
+    btnChugoku.addEventListener("click", clickButton, false); 
+    btnShikoku.addEventListener("click", clickButton, false); 
+    btnKyushu.addEventListener("click", clickButton, false); 
+    btnRandom.addEventListener("click", clickButton, false); 
 
-    //btnStart = document.getElementById("btnStart");
-    //btnStart.addEventListener("click", clickBtnStart, false); 
 
-
-    let requestURL = 'https://masan-k.github.io/Memorization-of-muscles/contents.json';
+    let requestURL = 'https://masan-k.github.io/japanese-geography/contents.json';
     let request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
