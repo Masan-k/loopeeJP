@@ -39,9 +39,9 @@ function init(){
 }
 
 function main(){
-   
 
-    txtInput.addEventListener('key-up', updateText =>{
+    console.log('call main');
+    txtInput.addEventListener('keyup', updateText =>{
 	lblQuestion.innerText = '[call updateText] input value -> ' + txtInput.value;
     });
 
