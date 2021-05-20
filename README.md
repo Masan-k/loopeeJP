@@ -1,3 +1,3 @@
 # japanese-geography
 
-https://masan-k.github.io/japanese-geography/
+https://masan-k.github.io/japanese-geography/main.html

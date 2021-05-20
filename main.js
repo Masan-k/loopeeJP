@@ -41,15 +41,17 @@ function init(){
 function main(){
    
 
-    txtInput.addEventListener('input', updateText =>{
+    txtInput.addEventListener('key-up', updateText =>{
 	lblQuestion.innerText = '[call updateText] input value -> ' + txtInput.value;
     });
 
+
+    /*
     txtInput.addEventListener('change', updateText =>{
 	alert('call change');
 	//console.log('value -> ' + txtInput.value);
     });
-
+    */
 
     //--------
     //初回のみ
