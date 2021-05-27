@@ -193,14 +193,14 @@ function clickButton() {
     }
 
     let jumpUrl = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
-    alert('junp url -> ' + jumpUrl);
-    //window.location.href = jumpUrl;
+    window.location.href = jumpUrl;
 
 }
 
 window.onload = function () {
     'use strict';
     
+    rdoCode.checked = true;
     btnTohoku.addEventListener("click", clickButton, false); 
     btnKanto.addEventListener("click", clickButton, false);  
     btnChubu.addEventListener("click", clickButton, false);  
@@ -209,18 +209,6 @@ window.onload = function () {
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
     btnRandom.addEventListener("click", clickButton, false); 
-
-
-    let requestURL = 'https://masan-k.github.io/japanese-geography/contents.json';
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    
-    request.onload = function () {
-        let contentsAll = request.response;
-        //init(contentsAll);
-    }
 
     drawCtxLastYear();
 
