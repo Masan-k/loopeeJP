@@ -46,15 +46,16 @@ function getRandom(min, max) {
     return random + min;
 }
 
+let mode = null;
+let dataIndex = null;
+
 function main(){
     'use strict';
     //--------------------
     // SET MODE(GET PRAM)
     //--------------------
     let param = location.search.split('&')
-    let mode = null;
-    let dataIndex = null;
-    if(param.length === 2){
+   if(param.length === 2){
 	mode = param[0].split('=')[1];
 	dataIndex = param[1].split('=')[1];
     }else{
@@ -109,6 +110,9 @@ function main(){
 	}
 
 	startTime = Date.now();
+	let intervalId = setInterval(showTime => {
+	    lblTime.innerText = (Date.now() - startTime)/1000;
+        },16);
 	//console.log('startTime -> ' + startTime);
 	console.log('question -> ' + question);
 	console.log('answer -> ' + answer);
@@ -123,12 +127,26 @@ function main(){
 
 }
 
+function saveScore(){
+    'use strict';
+
+    let nowDate = new Date();
+    let year = nowDate.getFullYear();
+    let month = ('00' + (nowDate.getMonth()+1)).slice(-2);
+    let day = ('00' + nowDate.getDate()).slice(-2);
+    let hour = ('00' + nowDate.getHours()).slice(-2);
+    let minute = ('00' + nowDate.getMinutes()).slice(-2);
+    let second = ('00' + nowDate.getSeconds()).slice(-2);
+
+    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,nowDate - startTime);
+
+}
 function updateAnswer(){
     if(txtInput.value === currentAnswer){
 	setQuestion();
     }
     if(currentAnswer === undefined){
-	console.log('call end');
+	saveScore();
     }
 }
 function setQuestion(){
