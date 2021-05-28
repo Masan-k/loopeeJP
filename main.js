@@ -21,12 +21,7 @@ let jsonFile;
 let gameStatus;
 
 let currentIndex;
-let startTime;
 let readyCount;
-
-function setReady(){
-    gameStatus = 'ready';
-}
 
 function init(){
     prgTime.max = 100;
@@ -40,6 +35,8 @@ function init(){
 
 let question = [];
 let answer = [];
+let questionCount;
+let startTime;
 
 function getRandom(min, max) {
     'use strict';
@@ -50,6 +47,7 @@ function getRandom(min, max) {
 }
 
 function main(){
+    'use strict';
     //--------------------
     // SET MODE(GET PRAM)
     //--------------------
@@ -64,7 +62,6 @@ function main(){
 	return;
     }
 
-    //jsonファイルから選択した地区のコードと都道府県名を取得する
     if(mode === 'code'){
 	let targetRural;
 
@@ -88,7 +85,7 @@ function main(){
 	    alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
 	    return;
 	}
-
+	
 	let workQuestion = [];
 	let workAnswer = [];
 	for(let rec of jsonFile){
@@ -97,12 +94,10 @@ function main(){
 		workAnswer.push(rec.prefectures);
 	    }
 	}
-
-	let copyQuestion = workQuestion.slice();
-	let copyAnswer = workAnswer.slice();
-
+	
 	//shuffle
-	while(question.length < copyQuestion.length){
+	let workLength = workQuestion.length
+	while(question.length < workLength){
 	    for(let i in workQuestion){
 		let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
 		question.push(workQuestion[trgIndex]);
@@ -113,36 +108,38 @@ function main(){
 	    }
 	}
 
-    
+	startTime = Date.now();
+	//console.log('startTime -> ' + startTime);
+	console.log('question -> ' + question);
+	console.log('answer -> ' + answer);
+	questionCount = 0;
+	setQuestion();
+	
     }else{
 
     }
-    	/*
-	console.log('rec.code -> ' + rec.code);
-	console.log('rec.rural -> ' + rec.rural);
-	console.log('rec.prefectures -> ' + rec.prefectures);
-	*/
 	
+    txtInput.addEventListener('keyup', updateAnswer);
 
-
-    //----------
-    //問題の表示
-    //----------
-    //
-    txtInput.addEventListener('keyup', updateText =>{
-	lblQuestion.innerText = '[call updateText] input value -> ' + txtInput.value;
-    });
-    
-    //
-    //正しい答えが入力された場合は次の問題を表示
-    //
-    //間違えた場合は画面に警告を表示
-    //
-    let intervalId = setInterval(mainStart => {
-	//console.log('main');
-    },16)
 }
 
+function updateAnswer(){
+    if(txtInput.value === currentAnswer){
+	setQuestion();
+    }
+    if(currentAnswer === undefined){
+	console.log('call end');
+    }
+}
+function setQuestion(){
+
+    lblQuestion.innerText = question.pop();
+    currentAnswer = answer.pop();
+
+    txtInput.value = '';
+    
+    questionCount += 1;
+}
 window.onload = function () {
     'use strict';
     
@@ -168,6 +165,7 @@ window.onload = function () {
 	if(readyCount < 0){
 	    clearInterval(intervalId);
 	    main();
+	    return;
 	}
 
 	let dot = '';
