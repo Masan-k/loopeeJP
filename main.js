@@ -48,7 +48,7 @@ function getRandom(min, max) {
 
 let mode = null;
 let dataIndex = null;
-
+let timeIntervalId;
 function main(){
     'use strict';
     //--------------------
@@ -110,12 +110,9 @@ function main(){
 	}
 
 	startTime = Date.now();
-	let intervalId = setInterval(showTime => {
+	timeIntervalId = setInterval(showTime => {
 	    lblTime.innerText = (Date.now() - startTime)/1000;
         },16);
-	//console.log('startTime -> ' + startTime);
-	console.log('question -> ' + question);
-	console.log('answer -> ' + answer);
 	questionCount = 0;
 	setQuestion();
 	
@@ -146,6 +143,8 @@ function updateAnswer(){
 	setQuestion();
     }
     if(currentAnswer === undefined){
+	txtInput.value = '!!CLEAR!!';
+	clearInterval(timeIntervalId);
 	saveScore();
     }
 }
@@ -153,9 +152,7 @@ function setQuestion(){
 
     lblQuestion.innerText = question.pop();
     currentAnswer = answer.pop();
-
     txtInput.value = '';
-    
     questionCount += 1;
 }
 window.onload = function () {
