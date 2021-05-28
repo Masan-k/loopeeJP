@@ -143,7 +143,7 @@ function updateAnswer(){
 	setQuestion();
     }
     if(currentAnswer === undefined){
-	txtInput.value = '!!CLEAR!!';
+	lblQuestion.innerText = 'CLEAR!!'
 	clearInterval(timeIntervalId);
 	saveScore();
     }
