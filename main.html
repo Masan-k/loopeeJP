@@ -40,16 +40,6 @@
 	    vertical-align: middle;
 	}
 
-	#inputContainer{
-	    margin: 0 auto;
-	    border: 0px solid;
-
-	    height: 20rem;
-	    
-	    display: table;
-
-	}
-
 	#txtInput{
 	    background-color: #191D21;
 	    width: 45rem;
@@ -68,6 +58,7 @@
 
 	    width: 100%;
 	    height: 10rem;
+
 	}
 
 	#prgTime{
@@ -75,8 +66,24 @@
 	    height: 10rem;
 	}
 
+	#inputContainer{
+	    margin: 0 auto;
+	    border: 0px solid;
+
+	    height: 20rem;
+
+	    width: 90%;
+	    display: table;
+
+	}
+
 	#lblTime{
 	    font-size: 5rem;
+	    float: right;
+	}
+	#lblCount{
+	    font-size: 3rem;
+	    float: left;
 	}
         </style>
         <script type="text/javascript" src="main.js"></script>
@@ -92,6 +99,7 @@
 	<div id='inputContainer'>
 	    <input id='txtInput'></input>
 	    <br><br>
+	    <label id='lblCount'></label>
 	    <label id='lblTime'></label>
 	</div>
    </body>

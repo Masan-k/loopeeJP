@@ -49,6 +49,7 @@ function getRandom(min, max) {
 let mode = null;
 let dataIndex = null;
 let timeIntervalId;
+let workLength;
 function main(){
     'use strict';
     //--------------------
@@ -97,7 +98,7 @@ function main(){
 	}
 	
 	//shuffle
-	let workLength = workQuestion.length
+	workLength = workQuestion.length
 	while(question.length < workLength){
 	    for(let i in workQuestion){
 		let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
@@ -110,6 +111,7 @@ function main(){
 	}
 
 	startTime = Date.now();
+
 	timeIntervalId = setInterval(showTime => {
 	    lblTime.innerText = (Date.now() - startTime)/1000;
         },16);
@@ -120,10 +122,40 @@ function main(){
 
     }
 	
-    txtInput.addEventListener('keyup', updateAnswer);
+    //txtInput.addEventListener('keyup', updateAnswer);
+    /*
+    txtnput.addEventListener('compositionstart', (event) => {
+	console.log('generated characters were: ' + event.data);
+    });
+    */
+    //txtInput.addEventListener('keydown', keydown);
+    txtInput.addEventListener('compositionend', (e) => {
+
+	console.log('call keyup');
+	console.log('e.code -> '+ e.code);
+	console.log('txtInput.value -> ' + txtInput.value);
+	if(e.isComposing){return;}
+
+	if(txtInput.value === currentAnswer){
+	    setQuestion();
+	}
+
+       if(currentAnswer === undefined){
+	    lblQuestion.innerText = 'CLEAR!!'
+	    clearInterval(timeIntervalId);
+	    saveScore();
+	}
+
+    });
 
 }
 
+function keydown(e){
+    console.log('call keydown');
+    console.log('e.key -> ' + e.key);
+    console.log('e.code -> ' + e.code);
+
+}
 function saveScore(){
     'use strict';
 
@@ -138,17 +170,26 @@ function saveScore(){
     localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,nowDate - startTime);
 
 }
-function updateAnswer(){
+function updateAnswer(e){
+
+    console.log('call keyup');
+    console.log('e.code -> '+ e.code);
+    console.log('txtInput.value -> ' + txtInput.value);
+    if(e.isComposing){return;}
+
     if(txtInput.value === currentAnswer){
 	setQuestion();
     }
-    if(currentAnswer === undefined){
+
+   if(currentAnswer === undefined){
 	lblQuestion.innerText = 'CLEAR!!'
 	clearInterval(timeIntervalId);
 	saveScore();
     }
 }
 function setQuestion(){
+
+    lblCount.innerText = questionCount + '/' + workLength;
 
     lblQuestion.innerText = question.pop();
     currentAnswer = answer.pop();
