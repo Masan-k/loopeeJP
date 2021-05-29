@@ -125,7 +125,7 @@ function main(){
 	if(txtInput.value === currentAnswer){
 	    setQuestion();
 	}else{
-	    lblQuestion.innerText += '.NG:' + txtInput.value
+	    lblQuestion.innerText =  lblQuestion.innerText + '.NG:' + txtInput.value
 	}
 
 	if(currentAnswer === undefined){
