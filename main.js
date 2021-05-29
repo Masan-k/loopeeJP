@@ -18,9 +18,6 @@ const ANS_SEC = 20;
 let isOpenFile;
 let jsonFile;
 
-let gameStatus;
-
-let currentIndex;
 let readyCount;
 
 function init(){
@@ -50,6 +47,7 @@ let mode = null;
 let dataIndex = null;
 let timeIntervalId;
 let workLength;
+
 function main(){
     'use strict';
     //--------------------
@@ -122,38 +120,20 @@ function main(){
 
     }
 	
-    //txtInput.addEventListener('keyup', updateAnswer);
-    /*
-    txtnput.addEventListener('compositionstart', (event) => {
-	console.log('generated characters were: ' + event.data);
-    });
-    */
-    //txtInput.addEventListener('keydown', keydown);
     txtInput.addEventListener('compositionend', (e) => {
-
-	console.log('call keyup');
-	console.log('e.code -> '+ e.code);
-	console.log('txtInput.value -> ' + txtInput.value);
-	if(e.isComposing){return;}
 
 	if(txtInput.value === currentAnswer){
 	    setQuestion();
+	}else{
+	    lblQuestion.innerText += '.NG:' + txtInput.value
 	}
 
-       if(currentAnswer === undefined){
+	if(currentAnswer === undefined){
 	    lblQuestion.innerText = 'CLEAR!!'
 	    clearInterval(timeIntervalId);
 	    saveScore();
 	}
-
     });
-
-}
-
-function keydown(e){
-    console.log('call keydown');
-    console.log('e.key -> ' + e.key);
-    console.log('e.code -> ' + e.code);
 
 }
 function saveScore(){
@@ -170,23 +150,7 @@ function saveScore(){
     localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,nowDate - startTime);
 
 }
-function updateAnswer(e){
 
-    console.log('call keyup');
-    console.log('e.code -> '+ e.code);
-    console.log('txtInput.value -> ' + txtInput.value);
-    if(e.isComposing){return;}
-
-    if(txtInput.value === currentAnswer){
-	setQuestion();
-    }
-
-   if(currentAnswer === undefined){
-	lblQuestion.innerText = 'CLEAR!!'
-	clearInterval(timeIntervalId);
-	saveScore();
-    }
-}
 function setQuestion(){
 
     lblCount.innerText = questionCount + '/' + workLength;
@@ -196,6 +160,7 @@ function setQuestion(){
     txtInput.value = '';
     questionCount += 1;
 }
+
 window.onload = function () {
     'use strict';
     
