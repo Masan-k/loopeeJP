@@ -3,37 +3,34 @@
 function init(contents) {
     'use strict';
 
-    /*
+    
     for (let index in contents) {
 	console.log('index -> ' + index);
     }
     for(let value of contents) {
 	console.log('value -> ' + value.rural)
     }
-    */
     
 }
 
-const ANS_SEC = 20;
 let isOpenFile;
 let jsonFile;
-
 let readyCount;
 
 function init(){
-    prgTime.max = 100;
+    prgTime.max = 120;
     prgTime.value = 0;
+    readyCount = 1;
 
     isOpenFile = false;
     lblQuestion.innerText = 'file reading..'
-
-    readyCount = 1;
 }
 
 let question = [];
 let answer = [];
 let questionCount;
 let startTime;
+let scoreTime;
 
 function getRandom(min, max) {
     'use strict';
@@ -47,6 +44,10 @@ let mode = null;
 let dataIndex = null;
 let timeIntervalId;
 let workLength;
+
+const GREAT_SEC = 5;
+const GOOD_SEC = 10;
+const BAD_SEC = 15;
 
 function main(){
     'use strict';
@@ -109,11 +110,24 @@ function main(){
 	}
 
 	startTime = Date.now();
-
 	timeIntervalId = setInterval(showTime => {
-	    lblTime.innerText = (Date.now() - startTime)/1000;
-        },16);
-	questionCount = 0;
+	    
+	    let scoreTime = (Date.now() - answerStartTime) / 1000;
+	    lblTime.innerText = ((Date.now() - startTime) / 1000).toFixed(1);
+
+	    if(scoreTime > BAD_SEC){
+		setQuestion();
+	    }
+	    prgTime.value = prgTime.max - (scoreTime * (prgTime.max / BAD_SEC));
+
+	    if(currentAnswer === undefined){
+		completion();
+		clearInterval(timeIntervalId);
+	    }
+
+        },20);
+
+	questionCount = 0; 
 	setQuestion();
 	
     }else{
@@ -125,17 +139,22 @@ function main(){
 	if(txtInput.value === currentAnswer){
 	    setQuestion();
 	}else{
-	    lblQuestion.innerText =  lblQuestion.innerText + '.NG:' + txtInput.value
+	    lblQuestion.innerText += '.NG:' + txtInput.value
 	}
 
 	if(currentAnswer === undefined){
-	    lblQuestion.innerText = 'CLEAR!!'
-	    clearInterval(timeIntervalId);
-	    saveScore();
+	    completion();
 	}
     });
 
 }
+function completion(){
+    lblQuestion.innerText = 'CLEAR!!'
+    clearInterval(timeIntervalId);
+    saveScore();
+}
+
+
 function saveScore(){
     'use strict';
 
@@ -159,9 +178,11 @@ function setQuestion(){
     currentAnswer = answer.pop();
     txtInput.value = '';
     questionCount += 1;
+
+    answerStartTime = Date.now()
 }
 
-window.onload = function () {
+window.onload = function(){
     'use strict';
     
     init();
@@ -197,8 +218,8 @@ window.onload = function () {
 	lblQuestion.innerText = 'Ready' + dot;
 	readyCount = readyCount - 1;
 
-	prgTime.value += 0.1;
+
+	prgTime.value += 1;
     },1000);
 
- 
-};
+}
