@@ -74,13 +74,15 @@
 	    <input type="radio" name="rdoMode" value="code" id="rdoCode" class="geosize">&nbsp&nbsp REFECTURE -> PREFECTURE CODE 
 
 	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromCode" id="rdoPrefectureFromCode" class="geosize">&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromCode" id="rdoPrefectureFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromMap" id="rdoprefectureFromMap" class="geosize">&nbsp&nbsp BLANK MAP -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromMap" id="rdoprefectureFromMap" class="geosize" disabled>&nbsp&nbsp BLANK MAP -> PREFECTURE
 	    <br>
-	    <input type="radio" name="rdoMode" value="officeFromCode" id="rdoOfficeFromCode" class="geosize">&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
+	    <input type="radio" name="rdoMode" value="officeFromCode" id="rdoOfficeFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
 	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromOffice" id="rdoPrefectureFromOffice" class="geosize">&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromOffice" id="rdoPrefectureFromOffice" class="geosize" disabled>&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
+	    <br>
+	    <button type="button" id="btnData" data-index="data" class='button'>DATA</button>
         </fieldset> 
         <br>
 	
@@ -97,7 +99,9 @@
 		<br>
 		<button type="button" id="btnChugoku" data-index="4" class='button'>Chugoku</button>
 		<br>  
-		<button type="button" id="btnShikoku" data-index="5" class='button'>Shikoku</button> <br> <button type="button" id="btnKyushu" data-index="6" class='button'>Kyushu-Okinawa</button>
+		<button type="button" id="btnShikoku" data-index="5" class='button'>Shikoku</button>
+		<br>
+		<button type="button" id="btnKyushu" data-index="6" class='button'>Kyushu-Okinawa</button>
 		<br>
 		<button type="button" id="btnRandom" data-index="r30" class='button'>Random(30)</button>
             </div>

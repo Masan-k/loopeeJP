@@ -181,19 +181,21 @@ function clickButton() {
     let eRdoMode = document.getElementsByName("rdoMode");
     let selectMode;
 
+    if (dataIndex === 'data'){
+	window.location.href = 'contents.json';
+	return;
+    }
+
     for(let i=0;i<eRdoMode.length;i++){
 	if(eRdoMode[i].checked){
 	    selectMode = eRdoMode[i].value
 	}
     }
-
     if(selectMode === undefined){
 	alert('Select "Mode".');
 	return;
     }
-
-    let jumpUrl = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
-    window.location.href = jumpUrl;
+    window.location.href = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
 
 }
 
@@ -201,6 +203,8 @@ window.onload = function () {
     'use strict';
     
     rdoCode.checked = true;
+    btnData.addEventListener("click", clickButton, false); 
+
     btnTohoku.addEventListener("click", clickButton, false); 
     btnKanto.addEventListener("click", clickButton, false);  
     btnChubu.addEventListener("click", clickButton, false);  
