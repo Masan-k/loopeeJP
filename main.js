@@ -187,7 +187,8 @@ function saveScore(){
     let minute = ('00' + nowDate.getMinutes()).slice(-2);
     let second = ('00' + nowDate.getSeconds()).slice(-2);
 
-    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,nowDate - startTime);
+    let time = lblTime.innerText.split(':')[1]
+    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + time);
 
 }
 

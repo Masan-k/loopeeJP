@@ -16,12 +16,9 @@ function getRecord() {
     let count = [];
 
     for(let key in localStorage) {
-
-	        let keys = key.split(',');
-
-        if(keys.length === 3 && keys[0] === 'MUSCLES') {
-            
-            dateYmd.push(keys[2].slice(0,8));
+	let keys = key.split(',');
+        if(keys[0] === 'geography') {
+            dateYmd.push(keys[3].slice(0,8));
         }
     }
 
