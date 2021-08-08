@@ -122,18 +122,21 @@ function main(){
             gameTime = (Date.now() - answerStartTime) / 1000;
 
 	    if(BAD_SEC < gameTime){
+		lblResult.innerText = 'POOR';
+		lblResult.style.color = '#FF00FF';
 		setQuestion();
 	    }
 	    prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
 
 	    if(currentAnswer === undefined){
+		
+		lblCount.innerText = 'COUNT:' + workLength + '/' + workLength;
 		completion();
 		clearInterval(timeIntervalId);
 	    }
 
         },20);
 
-	//questionCount = 0; 
 	setQuestion();
 	
     }else{
@@ -146,13 +149,21 @@ function main(){
 	    let score;
 
 	    if(GREAT_SEC >= gameTime){
-		score = 5;
+		lblResult.innerText = 'GREAT';
+		lblResult.style.color = '#00FF00';
+		score = 2;
 	    }else if(gameTime <= GOOD_SEC){
-                score = 4;
+		lblResult.innerText = 'GOOD';
+		lblResult.style.color = '#FFFF00';
+                score = 1;
 	    }else if(gameTime <= BAD_SEC){
-		score = 3;
+		lblResult.innerText = 'BAD';
+		lblResult.style.color = '#FF0000';
+		score = 0;
 	    }else{
-		score = 1;
+		lblResult.innerText = 'POOR';
+		lblResult.style.color = '#FF00FF';
+		score = 0;
 	    }
 	    gameScore += score;
 	    lblScore.innerText = 'SCORE:' + gameScore;
@@ -163,9 +174,9 @@ function main(){
 	    lblQuestion.innerText += '.NG:' + txtInput.value
 	}
 
-	if(currentAnswer === undefined){
-	    completion();
-	}
+	//if(currentAnswer === undefined){
+	//    completion();
+	//}
     });
 
 }
@@ -187,13 +198,31 @@ function saveScore(){
     let minute = ('00' + nowDate.getMinutes()).slice(-2);
     let second = ('00' + nowDate.getSeconds()).slice(-2);
 
-    let time = lblTime.innerText.split(':')[1]
-    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + time);
+    let time = lblTime.innerText.split(':')[1];
+    let rank;
+    let maxScore = workLength * 5;
+    if(gameScore >= maxScore * 8/9){
+	rank = 'AAA';
+    }else if(gameScore >= maxScore * 7/9){
+	rank = 'AA';
+    }else if(gameScore >= maxScore * 6/9){
+	rank = 'A';
+    }else if(gameScore >= maxScore * 5/9){
+	rank = 'B';
+    }else if(gameScore >= maxScore * 4/9){
+	rank = 'C';
+    }else if(gameScore >= maxScore * 3/9){
+	rank = 'D';
+    }else if(gameScore >= maxScore * 2/9){
+	rank = 'E';
+    }else{
+	rank = 'F';
+    }
+    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + rank + ',' + time);
 
 }
 
 function setQuestion(){
-
 
     lblQuestion.innerText = question.pop();
     currentAnswer = answer.pop();
