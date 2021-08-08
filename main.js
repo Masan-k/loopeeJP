@@ -16,6 +16,7 @@ function init(contents) {
 let isOpenFile;
 let jsonFile;
 let readyCount;
+let gameScore;
 
 function init(){
     prgTime.max = 120;
@@ -23,14 +24,16 @@ function init(){
     readyCount = 1;
 
     isOpenFile = false;
-    lblQuestion.innerText = 'file reading..'
+    lblQuestion.innerText = 'file loading..';
+    lblScore.innerText = 'SCORE:0';
+    lblTime.innerText = 'TIME:0.00';
+    lblCount.innerText = 'COUNT:0';
 }
 
 let question = [];
 let answer = [];
-let questionCount;
+let questionCount = 0;
 let startTime;
-let scoreTime;
 
 function getRandom(min, max) {
     'use strict';
@@ -49,6 +52,7 @@ const GREAT_SEC = 5;
 const GOOD_SEC = 10;
 const BAD_SEC = 15;
 
+let gameTime;
 function main(){
     'use strict';
     //--------------------
@@ -109,16 +113,18 @@ function main(){
 	    }
 	}
 
+	//game start init
+	gameScore = 0;
 	startTime = Date.now();
 	timeIntervalId = setInterval(showTime => {
 	    
-	    let scoreTime = (Date.now() - answerStartTime) / 1000;
-	    lblTime.innerText = ((Date.now() - startTime) / 1000).toFixed(1);
+	    lblTime.innerText = 'TIME:' + ((Date.now() - startTime) / 1000).toFixed(1);
+            gameTime = (Date.now() - answerStartTime) / 1000;
 
-	    if(scoreTime > BAD_SEC){
+	    if(BAD_SEC < gameTime){
 		setQuestion();
 	    }
-	    prgTime.value = prgTime.max - (scoreTime * (prgTime.max / BAD_SEC));
+	    prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
 
 	    if(currentAnswer === undefined){
 		completion();
@@ -127,7 +133,7 @@ function main(){
 
         },20);
 
-	questionCount = 0; 
+	//questionCount = 0; 
 	setQuestion();
 	
     }else{
@@ -137,7 +143,22 @@ function main(){
     txtInput.addEventListener('compositionend', (e) => {
 
 	if(txtInput.value === currentAnswer){
-	    setQuestion();
+	    let score;
+
+	    if(GREAT_SEC >= gameTime){
+		score = 5;
+	    }else if(gameTime <= GOOD_SEC){
+                score = 4;
+	    }else if(gameTime <= BAD_SEC){
+		score = 3;
+	    }else{
+		score = 1;
+	    }
+	    gameScore += score;
+	    lblScore.innerText = 'SCORE:' + gameScore;
+
+	    setQuestion();	
+
 	}else{
 	    lblQuestion.innerText += '.NG:' + txtInput.value
 	}
@@ -172,14 +193,14 @@ function saveScore(){
 
 function setQuestion(){
 
-    lblCount.innerText = questionCount + '/' + workLength;
 
     lblQuestion.innerText = question.pop();
     currentAnswer = answer.pop();
     txtInput.value = '';
-    questionCount += 1;
 
-    answerStartTime = Date.now()
+    questionCount += 1;
+    lblCount.innerText = 'COUNT:' + questionCount + '/' + workLength;
+    answerStartTime = Date.now();
 }
 
 window.onload = function(){
@@ -217,7 +238,6 @@ window.onload = function(){
 
 	lblQuestion.innerText = 'Ready' + dot;
 	readyCount = readyCount - 1;
-
 
 	prgTime.value += 1;
     },1000);
