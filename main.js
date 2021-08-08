@@ -124,8 +124,11 @@ function main(){
 	    if(BAD_SEC < gameTime){
 		lblResult.innerText = 'POOR';
 		lblResult.style.color = '#FF00FF';
+		lblResult.style.opacity = 1.0;
 		setQuestion();
 	    }
+	    
+	    lblResult.style.opacity = lblResult.style.opacity - 0.01;
 	    prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
 
 	    if(currentAnswer === undefined){
@@ -165,6 +168,8 @@ function main(){
 		lblResult.style.color = '#FF00FF';
 		score = 0;
 	    }
+	    lblResult.style.opacity = 1.0;
+	    
 	    gameScore += score;
 	    lblScore.innerText = 'SCORE:' + gameScore;
 
@@ -174,9 +179,6 @@ function main(){
 	    lblQuestion.innerText += '.NG:' + txtInput.value
 	}
 
-	//if(currentAnswer === undefined){
-	//    completion();
-	//}
     });
 
 }
