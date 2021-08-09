@@ -127,13 +127,10 @@ function main(){
 
 	setQuestion();
 	
-    }else{
-
-    }
-	
+    }	
     txtInput.addEventListener('compositionend', (e) => {
 
-	if(txtInput.value === currentAnswer){
+	if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','')){
 	    let score;
 
 	    if(GREAT_SEC >= gameTime){
