@@ -17,9 +17,9 @@ function getHiScore() {
     let lsSortDataIndex = [];
 
     //Loop for each data index
-    for(let key in localStorage) {
-	let keys = key.split(',');
-	for(let i = 0;i <= 5;i++){
+    for(let i = 0;i <= 5;i++){
+	for(let key in localStorage) {
+	    let keys = key.split(',');
 	    if(keys[0] === 'geography'){
 		if(i.toString() === keys[2]){
 		    lsSort.push(localStorage.getItem(keys));
@@ -27,7 +27,6 @@ function getHiScore() {
 		}
 	    }
 	}   
-	
     }
 
     let bestScore;
@@ -131,7 +130,7 @@ function getRectColor(count){
 
 function getRankColor(rank){
     if(rank === 'AAA' || rank === 'AA' || rank === 'A' || rank === 'B'){
-	return '#00FF00';
+	return '#0000FF';
     }else if(rank === 'C' || rank === 'D'){
 	return '#FFFF00';
     }else if(rank === 'E'){
@@ -139,7 +138,7 @@ function getRankColor(rank){
     }else if(rank === 'F'){
 	return '#FF00FF';
     }else{
-	return '#0000FF';
+	return '#FFFFFF';
     }
 }    
 function drawHiScore(){
@@ -147,21 +146,17 @@ function drawHiScore(){
 
     let record = getHiScore();
     
-    for(let i of record.dataIndex){
-	console.log('rec.score -> ' + record.score[i]);
-	console.log('rec.rank -> ' + record.rank[i]);
-	console.log('rec.sec -> ' + record.sec[i]);
-	console.log('rec.dataIndex -> ' + record.dataIndex[i]);
+    for(let i in record.dataIndex){
 	if(record.dataIndex[i] === 0){
 	    lblTohokuRank.innerText = record.rank[i];
 	    lblTohokuRank.style.color = getRankColor(record.rank[i]);
-
 	    lblTohokuScore.innerText = '[' + record.score[i] + '/12]';
 	    
 	}else if(record.dataIndex[i] === 1){
 	    lblKantoRank.innerText = record.rank[i];
 	    lblKantoRank.style.color = getRankColor(record.rank[i]);
 	    lblKantoScore.innerText = '[' + record.score[i] + '/14]';
+
 	}else if(record.dataIndex[i] === 2){
 	    lblChubuRank.innerText = record.rank[i];
 	    lblChubuRank.style.color = getRankColor(record.rank[i]);
@@ -176,7 +171,8 @@ function drawHiScore(){
 	    lblShikokuRank.innerText = record.rank[i];
 	    lblShikokuRank.style.color = getRankColor(record.rank[i]);
 	    lblShikokuScore.innerText = '[' + record.score[i] + '/16]';
-	}else if(record.dataIndex[i] === 4){
+
+	}else if(record.dataIndex[i] === 5){
 	    lblKyushuRank.innerText = record.rank[i];
 	    lblKyushuRank.style.color = getRankColor(record.rank[i]);
 	    lblKyushuScore.innerText = '[' + record.score[i] + '/14]';

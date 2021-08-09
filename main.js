@@ -1,18 +1,5 @@
 ﻿/*globals window, document, setInterval, event , localStorage */
 
-function init(contents) {
-    'use strict';
-
-    
-    for (let index in contents) {
-	console.log('index -> ' + index);
-    }
-    for(let value of contents) {
-	console.log('value -> ' + value.rural)
-    }
-    
-}
-
 let isOpenFile;
 let jsonFile;
 let readyCount;
@@ -25,9 +12,9 @@ function init(){
 
     isOpenFile = false;
     lblQuestion.innerText = 'file loading..';
-    lblScore.innerText = 'SCORE:0';
-    lblTime.innerText = 'TIME:0.00';
-    lblCount.innerText = 'COUNT:0';
+    lblScore.innerText = 'SCORE:-';
+    lblTime.innerText = 'TIME:-';
+    lblCount.innerText = 'COUNT:-';
 }
 
 let question = [];
@@ -77,12 +64,10 @@ function main(){
 	}else if(dataIndex === '2'){
 	    targetRural = '中部';
 	}else if(dataIndex === '3'){
-	    targetRural = '関西';
+	    targetRural = '近畿';
 	}else if(dataIndex === '4'){
-	    targetRural = '中国';
-	}else if(dataIndex === '5'){
 	    targetRural = '四国';
-	}else if(dataIndex === '6'){
+	}else if(dataIndex === '5'){
 	    targetRural = '九州';
 	}else if(dataIndex === 'r30'){
 	    targetRural = 'none';
@@ -153,7 +138,7 @@ function main(){
 
 	    if(GREAT_SEC >= gameTime){
 		lblResult.innerText = 'GREAT';
-		lblResult.style.color = '#00FF00';
+		lblResult.style.color = '#0000FF';
 		score = 2;
 	    }else if(gameTime <= GOOD_SEC){
 		lblResult.innerText = 'GOOD';
@@ -182,8 +167,8 @@ function main(){
     });
 
 }
+
 function completion(){
-    lblQuestion.innerText = 'CLEAR!!'
     clearInterval(timeIntervalId);
     saveScore();
 }
@@ -221,7 +206,7 @@ function saveScore(){
 	rank = 'F';
     }
     localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + rank + ',' + time);
-
+    lblQuestion.innerText = 'CLEAR!! --> ' + rank 
 }
 
 function setQuestion(){
@@ -255,7 +240,7 @@ window.onload = function(){
     }
     
     let intervalId = setInterval(firstStart => {
-	'use strict';
+
 	if(!isOpenFile){return};
 	if(readyCount < 0){
 	    clearInterval(intervalId);
