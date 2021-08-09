@@ -2,12 +2,82 @@
 
 let eCmbQuestion;
 
-function clickBtnStart() {
-    'use strict';
-    
-   }
 
-function getRecord() {
+function getHiScore() {
+    'use strict';
+
+    let result = new Object();
+
+    let score = [];
+    let rank = [];
+    let sec = [];
+    let dataIndex = [];
+
+    let lsSort = [];
+    let lsSortDataIndex = [];
+
+    //Loop for each data index
+    for(let key in localStorage) {
+	let keys = key.split(',');
+	for(let i = 0;i <= 5;i++){
+	    if(keys[0] === 'geography'){
+		if(i.toString() === keys[2]){
+		    lsSort.push(localStorage.getItem(keys));
+		    lsSortDataIndex.push(i);
+		}
+	    }
+	}   
+	
+    }
+
+    let bestScore;
+    let bestRank; 
+    let bestSec;
+    
+    let beforeDataIndex = -1;
+
+    for(let i in lsSort){
+	let data = lsSort[i].split(',')
+	if(beforeDataIndex === -1){
+	    bestScore = data[0];
+	    bestRank = data[1];
+	    bestSec = data[2];
+
+	    beforeDataIndex = lsSortDataIndex[i];
+
+	}else if(beforeDataIndex !== lsSortDataIndex[i]){
+	    score.push(bestScore);
+	    rank.push(bestRank);
+	    sec.push(bestSec);
+	    dataIndex.push(beforeDataIndex);
+
+	    bestScore = data[0];
+	    bestRank = data[1];
+	    bestSec = data[2];
+
+	    beforeDataIndex = lsSortDataIndex[i];
+	}else{
+	    if(Number(bestScore) < Number(data[0])){
+		bestScore = data[0];
+		bestRank = data[1];
+		bestSec = data[2];
+	    }
+	}
+    }
+    
+    score.push(bestScore);
+    rank.push(bestRank);
+    sec.push(bestSec);
+    dataIndex.push(beforeDataIndex);
+
+    result.score = score;
+    result.rank = rank;
+    result.sec = sec;
+    result.dataIndex = dataIndex;
+    
+    return result;
+}
+function getPerDateCount() {
     'use strict';
 
     let dateYmd = [];    
@@ -57,6 +127,61 @@ function getRectColor(count){
     }else {
         return '#007839';
     }
+}
+
+function getRankColor(rank){
+    if(rank === 'AAA' || rank === 'AA' || rank === 'A' || rank === 'B'){
+	return '#00FF00';
+    }else if(rank === 'C' || rank === 'D'){
+	return '#FFFF00';
+    }else if(rank === 'E'){
+	return '#FF0000';
+    }else if(rank === 'F'){
+	return '#FF00FF';
+    }else{
+	return '#0000FF';
+    }
+}    
+function drawHiScore(){
+    'use strict';
+
+    let record = getHiScore();
+    
+    for(let i of record.dataIndex){
+	console.log('rec.score -> ' + record.score[i]);
+	console.log('rec.rank -> ' + record.rank[i]);
+	console.log('rec.sec -> ' + record.sec[i]);
+	console.log('rec.dataIndex -> ' + record.dataIndex[i]);
+	if(record.dataIndex[i] === 0){
+	    lblTohokuRank.innerText = record.rank[i];
+	    lblTohokuRank.style.color = getRankColor(record.rank[i]);
+
+	    lblTohokuScore.innerText = '[' + record.score[i] + '/12]';
+	    
+	}else if(record.dataIndex[i] === 1){
+	    lblKantoRank.innerText = record.rank[i];
+	    lblKantoRank.style.color = getRankColor(record.rank[i]);
+	    lblKantoScore.innerText = '[' + record.score[i] + '/14]';
+	}else if(record.dataIndex[i] === 2){
+	    lblChubuRank.innerText = record.rank[i];
+	    lblChubuRank.style.color = getRankColor(record.rank[i]);
+	    lblChubuScore.innerText = '[' + record.score[i] + '/20]';
+
+	}else if(record.dataIndex[i] === 3){
+	    lblKansaiRank.innerText = record.rank[i];
+	    lblKansaiRank.style.color = getRankColor(record.rank[i]);
+	    lblKansaiScore.innerText = '[' + record.score[i] + '/10]';
+
+	}else if(record.dataIndex[i] === 4){
+	    lblShikokuRank.innerText = record.rank[i];
+	    lblShikokuRank.style.color = getRankColor(record.rank[i]);
+	    lblShikokuScore.innerText = '[' + record.score[i] + '/16]';
+	}else if(record.dataIndex[i] === 4){
+	    lblKyushuRank.innerText = record.rank[i];
+	    lblKyushuRank.style.color = getRankColor(record.rank[i]);
+	    lblKyushuScore.innerText = '[' + record.score[i] + '/14]';
+	}
+    }	
 }
 
 function drawCtxLastYear() {
@@ -112,9 +237,7 @@ function drawCtxLastYear() {
 
     let nowDate = new Date();
     let dayOfWeek = nowDate.getDay();
-    
-    let record;
-    record = getRecord();
+    let record = getPerDateCount();
 
     let blockCount = (VERTICAL_COUNT * HORIZONTAL_COUNT) + dayOfWeek + 1;
     let targetDate = new Date();
@@ -206,11 +329,9 @@ window.onload = function () {
     btnKanto.addEventListener("click", clickButton, false);  
     btnChubu.addEventListener("click", clickButton, false);  
     btnKansai.addEventListener("click", clickButton, false); 
-    btnChugoku.addEventListener("click", clickButton, false); 
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
-    btnRandom.addEventListener("click", clickButton, false); 
 
+    drawHiScore();
     drawCtxLastYear();
-
 };

@@ -1,0 +1,9 @@
+		<!-- <button type="button" id="btnRandom" data-index="r30" class='button'>Random(30)</button> -->
+
+ <!--
+	    <input type="radio" name="rdoMode" value="prefectureFromCode" id="rdoPrefectureFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="prefectureFromMap" id="rdoprefectureFromMap" class="geosize" disabled>&nbsp&nbsp BLANK MAP -> PREFECTURE
+	    <input type="radio" name="rdoMode" value="officeFromCode" id="rdoOfficeFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
+	    <input type="radio" name="rdoMode" value="prefectureFromOffice" id="rdoPrefectureFromOffice" class="geosize" disabled>&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
+	    -->
+

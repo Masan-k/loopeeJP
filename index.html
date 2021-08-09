@@ -43,12 +43,20 @@
 	    background: #131516;
 	    color: #31A9F3;
 
-	    width: 300px;
+	    width: 500px;
 	    padding: 5px;
 	    margin-left: 2rem;
 	    margin-top: 1.5rem;
 	}
 
+	.labelRank{
+
+	    float: left;
+	    text-align: center;
+	    line-height: 70px;
+	    width: 80px;
+	    height: 50px;
+	}
 	input.geosize {
 	    transform: scale(2.5);
 	    margin-left: 2rem; 
@@ -61,53 +69,41 @@
 	    height:520px;
 	    text-align: left;
 	}
-
         </style>
         <script type="text/javascript" src="index.js"></script>
 
     </head>
     <body>
         <h1>Japanese Geography</h1>
-        
         <fieldset>
 	    <legend>MODE</legend>
 	    <input type="radio" name="rdoMode" value="code" id="rdoCode" class="geosize">&nbsp&nbsp REFECTURE -> PREFECTURE CODE 
-
-	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromCode" id="rdoPrefectureFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> PREFECTURE
-	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromMap" id="rdoprefectureFromMap" class="geosize" disabled>&nbsp&nbsp BLANK MAP -> PREFECTURE
-	    <br>
-	    <input type="radio" name="rdoMode" value="officeFromCode" id="rdoOfficeFromCode" class="geosize" disabled>&nbsp&nbsp PREFECTURE CODE -> OFFICE LOCATION
-	    <br>
-	    <input type="radio" name="rdoMode" value="prefectureFromOffice" id="rdoPrefectureFromOffice" class="geosize" disabled>&nbsp&nbsp  OFFICE LOCATION -> PREFECTURE
-	    <br>
 	    <button type="button" id="btnData" data-index="data" class='button'>DATA</button>
         </fieldset> 
         <br>
-	
         <fieldset>
-        <legend>TARGET</legend>
+	    <legend>TARGET</legend>
 	    <div id='target'>
-		<button type="button" id="btnTohoku" data-index="0" class='button'>Tohoku</button>
-		<br>
-		<button type="button" id="btnKanto" data-index="1" class='button'>Kanto</button>
-		<br>
-		<button type="button" id="btnChubu" data-index="2" class='button'>Chubu</button>
-		<br>
-		<button type="button" id="btnKansai" data-index="3" class='button'>Kansai</button>
-		<br>
-		<button type="button" id="btnChugoku" data-index="4" class='button'>Chugoku</button>
-		<br>  
-		<button type="button" id="btnShikoku" data-index="5" class='button'>Shikoku</button>
-		<br>
-		<button type="button" id="btnKyushu" data-index="6" class='button'>Kyushu-Okinawa</button>
-		<br>
-		<button type="button" id="btnRandom" data-index="r30" class='button'>Random(30)</button>
+		<label id='lblTohokuRank' class='labelRank'>-</label>
+		<button type="button" id="btnTohoku" data-index="0" class='button'>Tohoku(02-07)</button><label id='lblTohokuScore' class='label'></label><br>
+
+		<label id='lblKantoRank' class='labelRank'>-</label>
+		<button type="button" id="btnKanto" data-index="1" class='button'>Kanto(08-14)</button><label id='lblKantoScore' class='label'></label><br>
+
+		<label id='lblChubuRank' class='labelRank'>-</label>
+		<button type="button" id="btnChubu" data-index="2" class='button'>Chubu(15-24)</button><label id='lblChubuScore' class='label'></label><br>
+
+		<label id='lblKansaiRank' class='labelRank'>-</label>
+		<button type="button" id="btnKansai" data-index="3" class='button'>Kinki(25-30)</button><label id='lblKansaiScore' class='label'></label><br>
+
+		<label id='lblShikokuRank' class='labelRank'>-</label>
+		<button type="button" id="btnShikoku" data-index="4" class='button'>Shikoku(31-39)</button><label id='lblShikokuScore' class='label'></label><br>
+
+		<label id='lblKyushuRank' class='labelRank'>-</label>
+		<button type="button" id="btnKyushu" data-index="5" class='button'>Kyushu(40-46)</button><label id='lblKyushuScore' class='label'></label>
             </div>
 	</fieldset> 
         <br>
-
 	<fieldset>
 	    <legend>CATCH UP</legend>
 	    <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>

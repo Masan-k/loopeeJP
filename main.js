@@ -202,7 +202,7 @@ function saveScore(){
 
     let time = lblTime.innerText.split(':')[1];
     let rank;
-    let maxScore = workLength * 5;
+    let maxScore = workLength * 2;
     if(gameScore >= maxScore * 8/9){
 	rank = 'AAA';
     }else if(gameScore >= maxScore * 7/9){
