@@ -130,7 +130,7 @@ function main(){
     }	
     txtInput.addEventListener('compositionend', (e) => {
 
-	if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','')){
+	if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','') || txtInput.value.replace('都','') === currentAnswer.replace('都','')){
 	    let score;
 
 	    if(GREAT_SEC >= gameTime){

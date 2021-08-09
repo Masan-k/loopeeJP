@@ -130,7 +130,7 @@ function getRectColor(count){
 
 function getRankColor(rank){
     if(rank === 'AAA' || rank === 'AA' || rank === 'A' || rank === 'B'){
-	return '#0000FF';
+	return '#00CC00';
     }else if(rank === 'C' || rank === 'D'){
 	return '#FFFF00';
     }else if(rank === 'E'){
