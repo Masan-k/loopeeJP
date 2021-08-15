@@ -165,12 +165,12 @@ function drawHiScore(){
 	}else if(record.dataIndex[i] === 3){
 	    lblKansaiRank.innerText = record.rank[i];
 	    lblKansaiRank.style.color = getRankColor(record.rank[i]);
-	    lblKansaiScore.innerText = '[' + record.score[i] + '/10]';
+	    lblKansaiScore.innerText = '[' + record.score[i] + '/14]';
 
 	}else if(record.dataIndex[i] === 4){
 	    lblShikokuRank.innerText = record.rank[i];
 	    lblShikokuRank.style.color = getRankColor(record.rank[i]);
-	    lblShikokuScore.innerText = '[' + record.score[i] + '/16]';
+	    lblShikokuScore.innerText = '[' + record.score[i] + '/18]';
 
 	}else if(record.dataIndex[i] === 5){
 	    lblKyushuRank.innerText = record.rank[i];

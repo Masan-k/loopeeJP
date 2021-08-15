@@ -22,7 +22,7 @@
 	{"code":"21",	"prefectures":"岐阜県",		"rural":"中部",		"prefectural-office-location":"岐阜市",		"prefectures-en":"Gifu"},
 	{"code":"22",	"prefectures":"静岡県",		"rural":"中部",		"prefectural-office-location":"静岡市",		"prefectures-en":"Shizuoka"},
 	{"code":"23",	"prefectures":"愛知県",		"rural":"中部",		"prefectural-office-location":"名古屋市",	"prefectures-en":"Aichi"},
-	{"code":"24",	"prefectures":"三重県",		"rural":"中部",		"prefectural-office-location":"津市",		"prefectures-en":"Mie"},
+	{"code":"24",	"prefectures":"三重県",		"rural":"近畿",		"prefectural-office-location":"津市",		"prefectures-en":"Mie"},
 	{"code":"25",	"prefectures":"滋賀県",		"rural":"近畿",		"prefectural-office-location":"大津市",		"prefectures-en":"Shiga"},
 	{"code":"26",	"prefectures":"京都府",		"rural":"近畿",		"prefectural-office-location":"京都市",		"prefectures-en":"Kyoto"},
 	{"code":"27",	"prefectures":"大阪府",		"rural":"近畿",		"prefectural-office-location":"大阪市",		"prefectures-en":"Osaka"},
