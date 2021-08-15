@@ -298,7 +298,7 @@ function clickButton() {
     let selectMode;
 
     if (dataIndex === 'data'){
-	window.location.href = 'contents.json';
+	window.location.href = 'note.html';
 	return;
     }
 
