@@ -13,11 +13,13 @@ function getHiScore() {
     let sec = [];
     let dataIndex = [];
 
+    let dataIndexCount = 6;
+
     let lsSort = [];
     let lsSortDataIndex = [];
 
     //Loop for each data index
-    for(let i = 0;i <= 5;i++){
+    for(let i = 0;i <= dataIndexCount;i++){
 	for(let key in localStorage) {
 	    let keys = key.split(',');
 	    if(keys[0] === 'geography'){
@@ -176,7 +178,13 @@ function drawHiScore(){
 	    lblKyushuRank.innerText = record.rank[i];
 	    lblKyushuRank.style.color = getRankColor(record.rank[i]);
 	    lblKyushuScore.innerText = '[' + record.score[i] + '/14]';
+
+	}else if(record.dataIndex[i] === 6){
+	    lblAllRank.innerText = record.rank[i];
+	    lblAllRank.style.color = getRankColor(record.rank[i]);
+	    lblAllScore.innerText = '[' + record.score[i] + '/94]';
 	}
+
     }	
 }
 
@@ -327,6 +335,7 @@ window.onload = function () {
     btnKansai.addEventListener("click", clickButton, false); 
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
+    btnAll.addEventListener("click", clickButton, false); 
 
     drawHiScore();
     drawCtxLastYear();

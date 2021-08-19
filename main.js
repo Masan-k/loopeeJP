@@ -69,6 +69,8 @@ function main(){
 	    targetRural = '四国';
 	}else if(dataIndex === '5'){
 	    targetRural = '九州';
+	}else if(dataIndex === '6'){
+	    targetRural = 'ALL';
 	}else if(dataIndex === 'r30'){
 	    targetRural = 'none';
 	}else{
@@ -79,7 +81,8 @@ function main(){
 	let workQuestion = [];
 	let workAnswer = [];
 	for(let rec of jsonFile){
-	    if(rec.rural === targetRural){
+
+	    if(rec.rural === targetRural || targetRural === 'ALL'){
 		workQuestion.push(rec.code);
 		workAnswer.push(rec.prefectures);
 	    }
