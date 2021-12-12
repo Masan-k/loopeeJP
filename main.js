@@ -53,84 +53,93 @@ function main(){
 	alert('The parameters at the time of calling are not set.\n(url:' + location.href + ')\n\nPlease start from the menu screen.');
 	return;
     }
+    
+    //
+    //mode 
+    //
+    if(mode === 'easy'){
+	document.getElementById("imgMap").style.display ="block";
+    }else if(mode ==='normal'){
+    	document.getElementById("imgMap").style.display ="none";
+    }else{
+	alert('The parameters are over');
+	return;
+    }
 
-    if(mode === 'code'){
-	let targetRural;
+    let targetRural;
 
-	if(dataIndex === '0'){
-	    targetRural = '東北';
-	}else if(dataIndex === '1'){
-	    targetRural = '関東';
-	}else if(dataIndex === '2'){
-	    targetRural = '中部';
-	}else if(dataIndex === '3'){
-	    targetRural = '近畿';
-	}else if(dataIndex === '4'){
-	    targetRural = '四国';
-	}else if(dataIndex === '5'){
-	    targetRural = '九州';
-	}else if(dataIndex === '6'){
-	    targetRural = 'ALL';
-	}else if(dataIndex === 'r30'){
-	    targetRural = 'none';
-	}else{
-	    alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
-	    return;
+    if(dataIndex === '0'){
+	targetRural = '東北';
+    }else if(dataIndex === '1'){
+	targetRural = '関東';
+    }else if(dataIndex === '2'){
+	targetRural = '中部';
+    }else if(dataIndex === '3'){
+	targetRural = '近畿';
+    }else if(dataIndex === '4'){
+	targetRural = '四国';
+    }else if(dataIndex === '5'){
+	targetRural = '九州';
+    }else if(dataIndex === '6'){
+	targetRural = 'ALL';
+    }else if(dataIndex === 'r30'){
+	targetRural = 'none';
+    }else{
+	alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
+    }
+	
+    let workQuestion = [];
+    let workAnswer = [];
+    for(let rec of jsonFile){
+
+	if(rec.rural === targetRural || targetRural === 'ALL'){
+	    workQuestion.push(rec.code);
+	    workAnswer.push(rec.prefectures);
+	}
+    }
+    
+    //shuffle
+    workLength = workQuestion.length
+    while(question.length < workLength){
+	for(let i in workQuestion){
+	    let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
+	    question.push(workQuestion[trgIndex]);
+	    answer.push(workAnswer[trgIndex]);
+
+	    workQuestion.splice(trgIndex, 1);
+	    workAnswer.splice(trgIndex, 1);
+	}
+    }
+
+    //game start init
+    gameScore = 0;
+    startTime = Date.now();
+    timeIntervalId = setInterval(showTime => {
+	
+	lblTime.innerText = 'TIME:' + ((Date.now() - startTime) / 1000).toFixed(1);
+	gameTime = (Date.now() - answerStartTime) / 1000;
+
+	if(BAD_SEC < gameTime){
+	    lblResult.innerText = 'POOR';
+	    lblResult.style.color = '#FF00FF';
+	    lblResult.style.opacity = 1.0;
+	    setQuestion();
 	}
 	
-	let workQuestion = [];
-	let workAnswer = [];
-	for(let rec of jsonFile){
+	lblResult.style.opacity = lblResult.style.opacity - 0.01;
+	prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
 
-	    if(rec.rural === targetRural || targetRural === 'ALL'){
-		workQuestion.push(rec.code);
-		workAnswer.push(rec.prefectures);
-	    }
-	}
-	
-	//shuffle
-	workLength = workQuestion.length
-	while(question.length < workLength){
-	    for(let i in workQuestion){
-		let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
-		question.push(workQuestion[trgIndex]);
-		answer.push(workAnswer[trgIndex]);
-
-		workQuestion.splice(trgIndex, 1);
-		workAnswer.splice(trgIndex, 1);
-	    }
-	}
-
-	//game start init
-	gameScore = 0;
-	startTime = Date.now();
-	timeIntervalId = setInterval(showTime => {
+	if(currentAnswer === undefined){
 	    
-	    lblTime.innerText = 'TIME:' + ((Date.now() - startTime) / 1000).toFixed(1);
-            gameTime = (Date.now() - answerStartTime) / 1000;
+	    lblCount.innerText = 'COUNT:' + workLength + '/' + workLength;
+	    completion();
+	    clearInterval(timeIntervalId);
+	}
 
-	    if(BAD_SEC < gameTime){
-		lblResult.innerText = 'POOR';
-		lblResult.style.color = '#FF00FF';
-		lblResult.style.opacity = 1.0;
-		setQuestion();
-	    }
-	    
-	    lblResult.style.opacity = lblResult.style.opacity - 0.01;
-	    prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
+    },20);
 
-	    if(currentAnswer === undefined){
-		
-		lblCount.innerText = 'COUNT:' + workLength + '/' + workLength;
-		completion();
-		clearInterval(timeIntervalId);
-	    }
-
-        },20);
-
-	setQuestion();
-	
-    }	
+    setQuestion();
+    
     txtInput.addEventListener('compositionend', (e) => {
 
 	if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','') || txtInput.value.replace('都','') === currentAnswer.replace('都','')){
@@ -222,6 +231,8 @@ function setQuestion(){
 
 window.onload = function(){
     'use strict';
+
+    imgMap.style.display ="none";
     
     init();
     txtInput.focus();

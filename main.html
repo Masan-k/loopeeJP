@@ -21,17 +21,49 @@
             margin: 0 auto;
             padding: 100px;
 	    line-height: 4rem;
-
 	    text-align: center;
-	
+	}
+	#allContainer{
+	    width: 800px;
+	    position: relative; 
+
 	}
 	#qContainer{
-	    margin: 0 auto;
+	    margin: 10px auto;
 	    border: 2px solid;
-
-	    width: 90%;
-	    height: 10rem;
+	    
+	    width: 400px;
+	    height: 80px;
 	    display: table;
+
+	    position: absolute;
+	}
+
+	#pContainer{
+	    margin-top: 120px;
+	    width: 400px;
+	    height: 80px;
+
+	    position: absolute;
+	}
+	#inputContainer{
+	    margin-top: 100px;
+	    border: 0px solid;
+	    
+	    width: 400px;
+	    height: 120px;
+
+	    position: absolute;
+	}
+
+	#infomation{
+	    margin-top: 300px;
+	    width: 400px;
+	    position: absolute;
+	    /* width: 500px; */
+	    float: left;
+	    font-size: 3rem;
+	    text-align: left;
 	}
 
 	#lblQuestion{
@@ -42,8 +74,8 @@
 
 	#txtInput{
 	    background-color: #191D21;
-	    width: 45rem;
-	    font-size:  8rem;
+	    width: 400px;
+	    font-size:  7rem;
 
 	    display: table-cell;
 	    border-radius: 5rem;
@@ -53,75 +85,42 @@
 	    color: #888;
 	}
 	#lblResult{
-	    width: 45rem;
+	    width: 400px;
 	    font-size:  4rem;
 
 	    color: #888;
 	}
 
 
-	#pContainer{
-	    margin: 0 auto;
-	    width: 100%;
-	    height: 8rem;
-
-	}
-
 	#prgTime{
-	    width: 90%;
-	    height: 5rem;
+	    width: 400px;
+	    height: 60px;
 	}
 
-	#inputContainer{
-	    margin: 0 auto;
-	    border: 0px solid;
-
-	    height: 20rem;
-
-	    width: 90%;
-	    display: table;
-
-	}
-
-	#infomation{
-	    /* width: 500px; */
-	}
-	#lblTime{
-	    font-size: 5rem;
-	    float: right;
-	}
-	#lblScore{
-	    font-size: 5rem;
-	    float: right;
-	}
-
-	#lblCount{
-	    font-size: 5rem;
-	    float: right;
-	}
-	
         </style>
         <script type="text/javascript" src="main.js"></script>
 
     </head>
     <body>
-	<div id='qContainer'>
-	    <label id='lblQuestion'>00</label>
-	</div>
-	<div id='pContainer'>
-	    <progress id="prgTime"></progress><br>
-
-	</div>
-	<div id='inputContainer'>
-	    <label id='lblResult'></label><br><br>
-	    <input id='txtInput'></input>
-	</div>
-	<div id='infomation'>
-	    <br><label id='lblTime'></label><br><br>
-	    <label id='lblScore'></label><br><br>
-	    <label id='lblCount'></label><br><br>
-	    <img src="img/map_num.png" alt="blankmap" width='800px'><br>
+	<div id='allContainer'>
+	    
+	    <div id='qContainer'>
+		<label id='lblQuestion'>00</label>
+	    </div>
+	    <div id='pContainer'>
+		<progress id="prgTime"></progress><br>
+	    </div>
+	    <div id='inputContainer'>
+		<label id='lblResult'></label><br><br>
+		<input id='txtInput'></input>
+	    </div>
+	    <div id='infomation'>
+		<label id='lblTime'></label><br>
+		<label id='lblScore'></label><br>
+		<label id='lblCount'></label><br>
+	    </div>
+	    <img id='imgMap' src="img/map_num.png" alt="blankmap" width='800px'><br>
 	</div>
    </body>
-   
+
 </html>

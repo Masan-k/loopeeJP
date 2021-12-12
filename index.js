@@ -2,6 +2,15 @@
 
 let eCmbQuestion;
 
+function getSelectMode(){
+    let eRdoMode = document.getElementsByName("rdoMode");
+    for(let i=0;i<eRdoMode.length;i++){
+	if(eRdoMode[i].checked){
+	    return eRdoMode[i].value;
+	}
+    }
+    return undefined;
+}
 
 function getHiScore() {
     'use strict';
@@ -18,15 +27,16 @@ function getHiScore() {
     let lsSort = [];
     let lsSortDataIndex = [];
 
+    let selectMode = getSelectMode();
+
     //Loop for each data index
     for(let i = 0;i <= dataIndexCount;i++){
 	for(let key in localStorage) {
 	    let keys = key.split(',');
-	    if(keys[0] === 'geography'){
-		if(i.toString() === keys[2]){
-		    lsSort.push(localStorage.getItem(keys));
-		    lsSortDataIndex.push(i);
-		}
+
+	    if(keys[0] === 'geography' &&  keys[1] === selectMode && keys[2] === i.toString()){
+		lsSort.push(localStorage.getItem(keys));
+		lsSortDataIndex.push(i);
 	    }
 	}   
     }
@@ -303,19 +313,14 @@ function clickButton() {
     'use strict';
     let dataIndex = event.currentTarget.dataset['index'];
     let eRdoMode = document.getElementsByName("rdoMode");
-    let selectMode;
+    let selectMode = getSelectMode();
 
     if (dataIndex === 'data'){
 	window.location.href = 'note.html';
 	return;
     }
-
-    for(let i=0;i<eRdoMode.length;i++){
-	if(eRdoMode[i].checked){
-	    selectMode = eRdoMode[i].value
-	}
-    }
-    if(selectMode === undefined){
+   
+   if(selectMode === undefined){
 	alert('Select "Mode".');
 	return;
     }
@@ -326,7 +331,9 @@ function clickButton() {
 window.onload = function () {
     'use strict';
     
-    rdoCode.checked = true;
+    rdoEasy.checked = true;
+    drawHiScore();
+
     btnData.addEventListener("click", clickButton, false); 
 
     btnTohoku.addEventListener("click", clickButton, false); 
@@ -336,7 +343,12 @@ window.onload = function () {
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
     btnAll.addEventListener("click", clickButton, false); 
-
-    drawHiScore();
+    
+    let checkOption = document.getElementsByName('rdoMode');
+    checkOption.forEach(function(e) {
+        e.addEventListener("click", function() {           
+	    drawHiScore();
+        });
+    });
     drawCtxLastYear();
 };
