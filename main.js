@@ -224,6 +224,7 @@ window.onload = function(){
     'use strict';
     
     init();
+    txtInput.focus();
 
     //------------
     // JSON Read..
