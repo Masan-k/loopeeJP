@@ -331,7 +331,7 @@ function clickButton() {
 window.onload = function () {
     'use strict';
     
-    rdoEasy.checked = true;
+    rdoNormal.checked = true;
     drawHiScore();
 
     btnData.addEventListener("click", clickButton, false); 
