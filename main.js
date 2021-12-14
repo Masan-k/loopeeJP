@@ -42,30 +42,7 @@ const BAD_SEC = 15;
 let gameTime;
 function main(){
     'use strict';
-    //--------------------
-    // SET MODE(GET PRAM)
-    //--------------------
-    let param = location.search.split('&')
-   if(param.length === 2){
-	mode = param[0].split('=')[1];
-	dataIndex = param[1].split('=')[1];
-    }else{
-	alert('The parameters at the time of calling are not set.\n(url:' + location.href + ')\n\nPlease start from the menu screen.');
-	return;
-    }
-    
-    //
-    //mode 
-    //
-    if(mode === 'easy'){
-	document.getElementById("imgMap").style.display ="block";
-    }else if(mode ==='normal'){
-    	document.getElementById("imgMap").style.display ="none";
-    }else{
-	alert('The parameters are over');
-	return;
-    }
-
+   
     let targetRural;
 
     if(dataIndex === '0'){
@@ -170,7 +147,7 @@ function main(){
 	    setQuestion();	
 
 	}else{
-	    lblQuestion.innerText += '.NG:' + txtInput.value
+	    lblQuestion.innerText = 'NG:' + txtInput.value
 	}
 
     });
@@ -232,11 +209,30 @@ function setQuestion(){
 window.onload = function(){
     'use strict';
 
-    imgMap.style.display ="none";
-    
     init();
     txtInput.focus();
-
+  
+    //------------
+    // SET PARAM
+    //------------
+    let param = location.search.split('&')
+   if(param.length === 2){
+	mode = param[0].split('=')[1];
+	dataIndex = param[1].split('=')[1];
+    }else{
+	alert('The parameters at the time of calling are not set.\n(url:' + location.href + ')\n\nPlease start from the menu screen.');
+	return;
+    }
+ 
+   if(mode === 'easy'){
+	document.getElementById("imgMap").style.display ="block";
+    }else if(mode ==='normal'){
+    	document.getElementById("imgMap").style.display ="none";
+    }else{
+	alert('The parameters are over');
+	return;
+    }
+ 
     //------------
     // JSON Read..
     //------------
