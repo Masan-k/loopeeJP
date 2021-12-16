@@ -12,9 +12,11 @@ function init(){
 
     isOpenFile = false;
     lblQuestion.innerText = 'file loading..';
-    lblScore.innerText = 'SCORE:-';
-    lblTime.innerText = 'TIME:-';
-    lblCount.innerText = 'COUNT:-';
+
+    lblAnswer.innerText = 'HINT:';
+    lblScore.innerText = 'SCORE:';
+    lblTime.innerText = 'TIME:';
+    lblCount.innerText = 'COUNT:';
 }
 
 let question = [];
@@ -74,7 +76,12 @@ function main(){
 	    workAnswer.push(rec.prefectures);
 	}
     }
-    
+   //HINT
+    if(mode === 'easy'){
+	for(let ans of workAnswer){
+	    lblAnswer.innerText += ans + "/";
+	}
+    } 
     //shuffle
     workLength = workQuestion.length
     while(question.length < workLength){
@@ -87,6 +94,8 @@ function main(){
 	    workAnswer.splice(trgIndex, 1);
 	}
     }
+
+    
 
     //game start init
     gameScore = 0;
@@ -224,9 +233,9 @@ window.onload = function(){
 	return;
     }
  
-   if(mode === 'easy'){
+   if(mode === 'easy' || mode === 'normal'){
 	document.getElementById("imgMap").style.display ="block";
-    }else if(mode ==='normal'){
+    }else if(mode ==='hard'){
     	document.getElementById("imgMap").style.display ="none";
     }else{
 	alert('The parameters are over');
