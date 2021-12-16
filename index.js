@@ -315,12 +315,29 @@ function clickButton() {
     let eRdoMode = document.getElementsByName("rdoMode");
     let selectMode = getSelectMode();
 
+    //SHOW DATA
     if (dataIndex === 'data'){
 	window.location.href = 'note.html';
 	return;
-    }
-   
-   if(selectMode === undefined){
+
+    //SCORE RESET
+    }else if(dataIndex === 'reset'){
+	let check = window.confirm("Deletes the score of the selected MODE. Is it OK?");
+
+	if (check){
+	    for(let key in localStorage) {
+		let keys = key.split(',');
+		if(keys[0] === 'geography' &&  keys[1] === selectMode){
+		    localStorage.removeItem(key);
+		    drawHiScore();
+		}
+	    }
+	}
+	return;
+    }   
+
+    // MAIN
+    if(selectMode === undefined){
 	alert('Select "Mode".');
 	return;
     }
@@ -343,6 +360,8 @@ window.onload = function () {
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
     btnAll.addEventListener("click", clickButton, false); 
+	
+    btnScoreReset.addEventListener("click", clickButton, false); 
     
     let checkOption = document.getElementsByName('rdoMode');
     checkOption.forEach(function(e) {
