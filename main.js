@@ -67,37 +67,48 @@ function main(){
 	alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
     }
 	
-    let workQuestion = [];
-    let workAnswer = [];
+    let ascQuestion = [];
+    let ascAnswer = [];
     for(let rec of jsonFile){
 
 	if(rec.rural === targetRural || targetRural === 'ALL'){
-	    workQuestion.push(rec.code);
-	    workAnswer.push(rec.prefectures);
+	    ascQuestion.push(rec.code);
+	    ascAnswer.push(rec.prefectures);
 	}
     }
-   //HINT
-    if(mode === 'easy'){
-	for(let ans of workAnswer){
-	    lblAnswer.innerText += ans + "/";
-	}
-    } 
-    //shuffle
+
+    let workQuestion = ascQuestion.slice();
+    let workAnswer = ascAnswer.slice();
+
+    //SHUFFLE
+    let randomQuestion = [];
+    let randomAnswer = [];
     workLength = workQuestion.length
-    while(question.length < workLength){
+    while(randomQuestion.length < workLength){
 	for(let i in workQuestion){
 	    let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
-	    question.push(workQuestion[trgIndex]);
-	    answer.push(workAnswer[trgIndex]);
+	    randomQuestion.push(workQuestion[trgIndex]);
+	    randomAnswer.push(workAnswer[trgIndex]);
 
 	    workQuestion.splice(trgIndex, 1);
 	    workAnswer.splice(trgIndex, 1);
 	}
     }
 
-    
+    if(mode === 'easy'){
+	question = ascQuestion;
+	answer = ascAnswer;
+	
+	for(let ans of randomAnswer){
+	    lblAnswer.innerText += ans + "/";
+	}
 
-    //game start init
+    }else{
+	question = randomQuestion;
+	answer = randomAnswer;
+    } 
+
+   //game start init
     gameScore = 0;
     startTime = Date.now();
     timeIntervalId = setInterval(showTime => {
@@ -206,8 +217,8 @@ function saveScore(){
 
 function setQuestion(){
 
-    lblQuestion.innerText = question.pop();
-    currentAnswer = answer.pop();
+    lblQuestion.innerText = question.shift();
+    currentAnswer = answer.shift();
     txtInput.value = '';
 
     questionCount += 1;
