@@ -226,11 +226,17 @@ function setQuestion(){
     answerStartTime = Date.now();
 }
 
+function clickMenu(){
+    window.location.href = 'index.html?mode='+ mode;
+}
+
 window.onload = function(){
     'use strict';
 
     init();
     txtInput.focus();
+
+    btnMenu.addEventListener("click", clickMenu, false); 
   
     //------------
     // SET PARAM

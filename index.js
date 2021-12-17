@@ -348,8 +348,6 @@ function clickButton() {
 window.onload = function () {
     'use strict';
     
-    rdoNormal.checked = true;
-    drawHiScore();
 
     btnData.addEventListener("click", clickButton, false); 
 
@@ -363,6 +361,23 @@ window.onload = function () {
 	
     btnScoreReset.addEventListener("click", clickButton, false); 
     
+   let param = location.search.split('&')
+   let mode;
+   if(param.length === 1){
+	mode = param[0].split('=')[1];
+    }
+
+   if(mode === 'easy'){
+	rdoEasy.checked = true;
+   }else if(mode === 'normal'){
+	rdoNormal.checked = true;
+   }else if(mode === 'hard'){
+	rdoHard.checked = true;
+   }else{
+        rdoEasy.checked = true;
+   }
+   drawHiScore();
+
     let checkOption = document.getElementsByName('rdoMode');
     checkOption.forEach(function(e) {
         e.addEventListener("click", function() {           
