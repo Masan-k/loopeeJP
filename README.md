@@ -10,14 +10,15 @@
 
 
 ## 使い方
-1. https://masan-k.github.io/japanese-geography/　にアクセスしてモードと対象を選択します。<br>
+1. [japanese-geography](https://masan-k.github.io/japanese-geography/)　にアクセスしてモードと対象を選択します。
 2. 画面に表示される都道府県コードの都道府県を入力します。正解するか制限時間になると次の問題が表示されます。
 3. 出題が終わるまで2をくり返します。
 
-* easyとnormlモードは、都道府県コードが書かれた白地図が表示されます。
-* easyモードは、回答入力フォームの下に解答候補が表示されます。
-* パソコンで使う場合は、回答入力後にEnterが必要です。
-* "県"の入力は不要です。
+
+* easyとnormlモードは、都道府県コードが書かれた白地図が表示される
+* easyモードは、回答入力フォームの下に解答候補が表示される
+* パソコンで使う場合は、回答入力後にEnterが必要
+* "県"の入力は不要
 
 ## その他
 
@@ -59,15 +60,15 @@ The problems are displayed randomly so that you don't get tired of "repeating". 
 
 
 ## How to use
-1. Access the following page and select the mode and target. <br>
-https://masan-k.github.io/japanese-geography/ <br>
-2. Enter the state of the state code displayed on the screen. <br>
+1. Access [japanese-geography] (https://masan-k.github.io/japanese-geography/) and select the mode and target.
+2. Enter the state of the state code displayed on the screen. If you answer correctly or the time limit is reached, the following questions will be displayed.
+3. Repeat 2 until the question is finished.
 
 
 * In easy and norml modes, a blank map with the prefecture code is displayed.
 * In easy mode, answer candidates are displayed below the answer input form.
-* When using on a personal computer, Enter is required after entering the answer.
-* You do not need to enter "prefecture".
+* When using on a computer, Enter is required after entering the answer.
+* No need to enter "prefecture"
 
 ## others
 
