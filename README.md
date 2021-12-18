@@ -1,10 +1,10 @@
 # 都道府県　暗記スクリプト
 
 ## 概要
-日本のすべての都道府県を暗記するために作成しました。
+都道府県を暗記するために作成しました。
 
 ## 特徴
-何事も暗記するためには、"素早く" "繰り返す"ことが重要です。  
+暗記には"素早く" "繰り返す"が重要です。  
 "素早く" を意識できるように、回答時間でスコアが決まるようにしました。  
 "繰り返す" ことが飽きないように、normalとhardモードでは問題がランダムに表示されます。
 
@@ -13,8 +13,8 @@
 下記ページにアクセスしてモードと対象を選択します。  
 https://masan-k.github.io/japanese-geography/
 
-- パソコンで場合は入力後にEnterが必要です。
-- 県の入力は不要です。（県をつけても正解になります）
+- パソコンで使う場合は、回答入力後にEnterが必要です。
+- "県"の入力は必要ありません。
 
 ## その他
 
@@ -50,38 +50,38 @@ https://twitter.com
 #Prefecture memorization script
 
 ## Overview
-Created to memorize all prefectures of Japan.
+Created to memorize prefectures.
 
 ## Features
-In order to memorize everything, it is important to "quickly" and "repeat".
-The score is determined by the response time so that you can be aware of "quickly".
+"Quick" and "repeat" are important for memorization.  
+The score is determined by the response time so that you can be aware of "quickly".  
 Problems are displayed randomly in normal and hard modes so you don't get tired of "repeating".
 
 
 ## How to use
-Access the page below and select the mode and target.
+Access the page below and select the mode and target.  
 https://masan-k.github.io/japanese-geography/
 
---If you are using a computer, you need to press Enter after inputting.
---You do not need to enter the prefecture. (The answer will be correct even if you add a prefecture)
+- When using on a personal computer, you need to press Enter after entering the answer.
+- You do not need to enter "prefecture".
 
 ## others
 
 ### criterion
---GREAT: Within 5 seconds: 2 points
---GOOD: Within 10 seconds: 1 point
---BAD: Within 15 seconds: 0 points
---POOR: Over 15 seconds: 0 points
+- GREAT: Within 5 seconds: 2 points
+- GOOD: Within 10 seconds: 1 point
+- BAD: Within 15 seconds: 0 points
+- POOR: Over 15 seconds: 0 points
 
 ### Score rank criteria
---AAA 8/9 and above
---AA 7/9 or above
---A 6/9 or above
---B 5/9 or above
---C 4/9 or above
---D 3/9 or above
---E 2/9 or above
---F less than 2/9
+- AAA 8/9 and above
+- AA 7/9 or above
+- A 6/9 or above
+- B 5/9 or above
+- C 4/9 or above
+- D 3/9 or above
+- E 2/9 or above
+- F less than 2/9
 
 ### Reference
 The gameplay (judgment criteria, score rank concept, etc.) is based on KONAMI's "beatmania IIDX" music game. If you are interested, please try playing the head family.  
