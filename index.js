@@ -156,8 +156,35 @@ function getRankColor(rank){
 function drawHiScore(){
     'use strict';
 
+    lblTohokuRank.innerText = '';
+    lblTohokuRank.style.color = '#7A756D';
+    lblTohokuScore.innerText = '';
+
+    lblKantoRank.innerText = '';
+    lblKantoRank.style.color = '#7A756D';
+    lblKantoScore.innerText = '';
+
+    lblChubuRank.innerText = '';
+    lblChubuRank.style.color =  '#7A756D';
+    lblChubuScore.innerText = '';
+
+    lblKansaiRank.innerText =  '';
+    lblKansaiRank.style.color = '#7A756D';
+    lblKansaiScore.innerText = '';
+
+    lblShikokuRank.innerText = '';
+    lblShikokuRank.style.color = '#7A756D';
+    lblShikokuScore.innerText = '';
+
+    lblKyushuRank.innerText = '';
+    lblKyushuRank.style.color = '#7A756D';
+    lblKyushuScore.innerText = '';
+
+    lblAllRank.innerText = ''; 
+    lblAllRank.style.color = '#7A756D';
+    lblAllScore.innerText = '';
+
     let record = getHiScore();
-    
     for(let i in record.dataIndex){
 	if(record.dataIndex[i] === 0){
 	    lblTohokuRank.innerText = record.rank[i];
@@ -362,16 +389,16 @@ window.onload = function () {
     btnScoreReset.addEventListener("click", clickButton, false); 
     
    let param = location.search.split('&')
-   let mode;
+   let prmMode;
    if(param.length === 1){
-	mode = param[0].split('=')[1];
+	prmMode = param[0].split('=')[1];
     }
 
-   if(mode === 'easy'){
+   if(prmMode === 'easy'){
 	rdoEasy.checked = true;
-   }else if(mode === 'normal'){
+   }else if(prmMode === 'normal'){
 	rdoNormal.checked = true;
-   }else if(mode === 'hard'){
+   }else if(prmMode === 'hard'){
 	rdoHard.checked = true;
    }else{
         rdoEasy.checked = true;
@@ -381,6 +408,7 @@ window.onload = function () {
     let checkOption = document.getElementsByName('rdoMode');
     checkOption.forEach(function(e) {
         e.addEventListener("click", function() {           
+
 	    drawHiScore();
         });
     });
