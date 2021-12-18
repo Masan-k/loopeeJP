@@ -1,12 +1,16 @@
+![menu](https://masan-k.github.io/japanese-geography/img/demo_menu.png "menu")
+![main](https://masan-k.github.io/japanese-geography/img/demo_main.png "main")
+![clear](https://masan-k.github.io/japanese-geography/img/demo_clear.png "clear")
+
 # 都道府県　暗記スクリプト
 
 ## 概要
 都道府県を暗記するために作成しました。
 
 ## 特徴
-暗記には"素早く" "繰り返す"が重要です。<br>
+暗記は"素早く" "繰り返す"が重要です。<br>
 "素早く" を意識できるように、回答時間でスコアが決まるようにしました。<br>
-"繰り返す" ことが飽きないように、問題がランダムに表示されます。<br>
+"繰り返す" ことが飽きないように、問題をランダムに表示します。<br>
 
 
 ## 使い方
