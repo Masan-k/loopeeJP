@@ -43,7 +43,9 @@
 	    background: #131516;
 	    color: #31A9F3;
 
-	    width: 500px;
+		height: 100px;
+		width: 70%;
+	    /* width: 500px;*/
 	    padding: 5px;
 	    margin-left: 2rem;
 	    margin-top: 1.5rem;
@@ -66,7 +68,7 @@
 	}
 
 	#target {
-	    height:520px;
+	    /* height:520px;*/
 	    text-align: left;
 	}
         </style>
@@ -135,11 +137,17 @@
 
             </div>
 	</fieldset> 
-	<button type="button" id="btnScoreReset" data-index="reset" class='button' width='40p'>SCORE RESET</button><br>
-	<button type="button" id="btnData" data-index="data" class='button' width='80px'>DATA</button>
-	<fieldset>
-	    <legend>CONTRIBUTIONS IN THE LAST YEAR</legend>
-	    <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>
-	</fieldset> 
+
+	<table style="width: 100%;">
+		<tr>
+			<td style="width: 50%;text-align:center">
+				<button type="button" id="btnScoreReset" data-index="reset" class='button'>SCORE RESET</button><br>
+			</td>
+			<td style="width: 50%;text-align:center">
+				<button type="button" id="btnData" data-index="data" class='button'>DATA</button>
+			</td>
+		</tr>
+	</table>
+
     </body>
 </html>
