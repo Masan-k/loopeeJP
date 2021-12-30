@@ -39,7 +39,12 @@
 	    width: 100%;
 	    height: 60px;
 	}
-
+      #fixed {
+        position: fixed;	/* 要素の位置を固定する */
+        bottom: 0; /* 基準の位置を画面の一番下に指定する */
+        width: 800px; /* 幅を指定する */
+        border-top: 3px solid #7A756D; /* ボーダーを指定する */
+     }
         </style>
         <script type="text/javascript" src="main.js"></script>
     </head>
@@ -53,18 +58,17 @@
 		</table>
 
 		<progress id="prgTime"></progress><br>
-		
 		<a style="font-size:4rem;">Question : <label id='lblQuestion'>00</label></a>
 
-		<img id='imgMap' src="img/map_num.png" alt="blankmap" width='100%' style="display:none"><br>
+		<img id='imgMap' src="img/map_num.png" alt="blankmap" width='100%' style="display:none">
 		<label id='lblHint'></label>
                 <br>
-
-		<a style="font-size: 3rem; text-align:left;">Answer</a>
-		<input id='txtInput'></input>
-		<label id='lblResult'></label>
-		<button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
-
+                <div id='fixed'>
+                  <a id='lblResult'></a><br>
+                  <a style="font-size: 3rem; text-align:left;">Answer</a>
+                  <input id='txtInput'></input>
+                  <button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
+                </div>
 	</body>
 
 </html>
