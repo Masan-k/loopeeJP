@@ -13,7 +13,7 @@ function init(){
     isOpenFile = false;
     lblQuestion.innerText = 'file loading..';
 
-    lblAnswer.innerText = 'HINT:';
+    lblHint.innerText = 'HINT:';
     lblScore.innerText = 'SCORE:';
     lblTime.innerText = 'TIME:';
     lblCount.innerText = 'COUNT:';
@@ -100,7 +100,7 @@ function main(){
 	answer = ascAnswer;
 	
 	for(let ans of randomAnswer){
-	    lblAnswer.innerText += ans + "/";
+	    lblHint.innerText += ans + "/";
 	}
 
     }else{

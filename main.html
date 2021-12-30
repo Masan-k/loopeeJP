@@ -17,79 +17,23 @@
 	    width: 800px;
 	   
             margin: 30px;
-            /* padding: 50px; */
 	    line-height: 4rem;
 	    text-align: center;
 	}
-	#allContainer{
-	    width: 800px;
-	    position: relative; 
-
-	}
-	#qContainer{
-	    margin: 10px auto;
-	    border: 2px solid;
-	    
-	    width: 400px;
-	    height: 80px;
-	    display: table;
-
-	    position: absolute;
-	}
-
-	#pContainer{
-	    margin-top: 120px;
-	    width: 400px;
-	    height: 80px;
-
-	    position: absolute;
-	}
-	#inputContainer{
-	    margin-top: 100px;
-	    border: 0px solid;
-	    
-	    width: 400px;
-	    height: 120px;
-
-	    position: absolute;
-	}
-
-	#information{
-	    margin-top: 300px;
-	    width: 400px;
-	    position: absolute;
-	    /* width: 500px; */
-	    float: left;
-	    font-size: 2rem;
-	    text-align: left;
-	    line-height: 2.5rem;
-	}
-
-	#lblQuestion{
-	    font-size: 4rem;
-	    display: table-cell;
-	    vertical-align: middle;
-	}
-
 	#txtInput{
 	    background-color: #191D21;
 	    width: 100%;
 	    font-size:  7rem;
 
-	    display: table-cell;
 	    border-radius: 5rem;
 	    border: 1px solid;
 	    border-color: #7A756D; 
-
 	    color: #888;
 	}
 	#lblResult{
-	    width: 400px;
 	    font-size:  4rem;
-
 	    color: #888;
 	}
-
 
 	#prgTime{
 	    width: 100%;
@@ -98,7 +42,6 @@
 
         </style>
         <script type="text/javascript" src="main.js"></script>
-
     </head>
     <body>
 		<table style="width: 100%;">
@@ -114,15 +57,12 @@
 		<a style="font-size:4rem;">Question : <label id='lblQuestion'>00</label></a>
 
 		<img id='imgMap' src="img/map_num.png" alt="blankmap" width='100%' style="display:none"><br>
+		<label id='lblHint'></label>
+                <br>
 
-		<label id='lblResult'></label>
-
-		<label style="font-size: 4rem;">Answer</label>
+		<a style="font-size: 3rem; text-align:left;">Answer</a>
 		<input id='txtInput'></input>
-		<br>
-		<br>
-		<label id='lblAnswer'></label>
-		<br>
+		<label id='lblResult'></label>
 		<button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
 
 	</body>
