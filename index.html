@@ -43,7 +43,9 @@
 	    background: #131516;
 	    color: #31A9F3;
 
-	    width: 500px;
+		height: 100px;
+		width: 70%;
+	    /* width: 500px;*/
 	    padding: 5px;
 	    margin-left: 2rem;
 	    margin-top: 1.5rem;
@@ -66,7 +68,7 @@
 	}
 
 	#target {
-	    height:520px;
+	    /* height:520px;*/
 	    text-align: left;
 	}
         </style>
@@ -74,15 +76,40 @@
 
     </head>
     <body>
-        <h1>Japanese Geography</h1>
-        <fieldset>
-	    <legend>MODE</legend>
+        <h1 style="text-align: center;">Japanese Geography</h1>
+        <!-- <fieldset> -->
+	    <!-- <legend>MODE</legend> -->
+		<table style="width: 100%;">
+			<tr>
+				<td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
+					<input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="geosize">&nbsp&nbsp EASY
+				</td>
+				<td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
+					<input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="geosize">&nbsp&nbsp NORMAL
+				</td>
+				<td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
+					<input type="radio" name="rdoMode" value="hard" id="rdoHard" class="geosize">&nbsp&nbsp HARD 
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+					+MAP +HINT
+				</td>
+				<td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+					+MAP
+				</td>
+				<td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+
+				</td>
+
+			</tr>
+		</table>
+		<!--
 	    <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="geosize">&nbsp&nbsp EASY  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp [+MAP +HINT] 
-	    <br>
 	    <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="geosize">&nbsp&nbsp NORMAL [+MAP]
-	    <br>
 	    <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="geosize">&nbsp&nbsp HARD 
-       </fieldset> 
+		-->
+       <!-- </fieldset>  -->
         <br>
         <fieldset>
 	    <legend>TARGET</legend>
@@ -110,11 +137,17 @@
 
             </div>
 	</fieldset> 
-	<button type="button" id="btnScoreReset" data-index="reset" class='button' width='40p'>SCORE RESET</button><br>
-	<button type="button" id="btnData" data-index="data" class='button' width='80px'>DATA</button>
-	<fieldset>
-	    <legend>CONTRIBUTIONS IN THE LAST YEAR</legend>
-	    <canvas id="cvsCatchUp" width="800px" height="150px"></canvas>
-	</fieldset> 
+
+	<table style="width: 100%;">
+		<tr>
+			<td style="width: 50%;text-align:center">
+				<button type="button" id="btnScoreReset" data-index="reset" class='button'>SCORE RESET</button><br>
+			</td>
+			<td style="width: 50%;text-align:center">
+				<button type="button" id="btnData" data-index="data" class='button'>DATA</button>
+			</td>
+		</tr>
+	</table>
+
     </body>
 </html>
