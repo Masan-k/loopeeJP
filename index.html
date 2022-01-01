@@ -56,22 +56,38 @@
 	}
 
 	.labelRank{
-
 	    float: left;
 	    text-align: center;
 	    line-height: 70px;
 	    width: 80px;
 	    height: 50px;
 	}
-	.modeButton:hover {
+	.trgButton:hover {
 	    background: #152832;
 	}
-        .clsMode{
-          display: none;
-        }
-        </style>
-        <script type="text/javascript" src="index.js"></script>
 
+       .clsRdoMode{
+         display:none;
+       }
+       .clsTdMode{
+         /* background: #F00;*/
+         padding: 5px;
+         width: 33%;
+         text-align: center;
+       }
+       .clsLblMode{
+         display:block; /* labelのwidthを設定するために必要*/
+         width:100%;
+         height:100%;
+         border-radius: 1rem;
+         font-size: 3rem; 
+         border: 1.5px solid #FFF;
+         /* background: #00F;
+         color: #FFF; */
+       }
+      </style>
+      <script type="text/javascript" src="index.js"></script>
+      
     </head>
     <body>
         <h1 style="text-align: center;">Japanese Geography</h1>
@@ -105,17 +121,23 @@
 
         <table style="width: 100%;">
                 <tr>
-                        <td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
-                                <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsMode">
-                                <button type="button" id="btnEasy" class="modeButton">EASY</button>
+                        <td class="clsTdMode">
+                          <label  class="clsLblMode" id='lblEasy'>
+                            <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsRdoMode" onclick="clickRadio()">
+                            EASY
+                          </label>
                         </td>
-                        <td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
-                                <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsMode">
-                                <button type="button" id="btnNormal" class="modeButton">NORMAL</button>
-                        </td>
-                        <td style="width: 33%;text-align: center;border-style: dashed;font-size: 3rem;">
-                                <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsMode">
-                                <button type="button" id="btnHard" class="modeButton">HARD</button>
+                        <td class="clsTdMode" >
+                          <label class="clsLblMode" id='lblNormal'>
+                            <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsRdoMode" onclick="clickRadio()">
+                            NORMAL
+                          </label>
+                       </td>
+                        <td class="clsTdMode">
+                          <label class="clsLblMode" id='lblHard'>
+                            <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsRdoMode" onclick="clickRadio()">
+                            HARD
+                          </label>
                         </td>
                 </tr>
                 <tr>
@@ -125,7 +147,7 @@
                         <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
                                 +MAP
                         </td>
-                        <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+                        <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem">
 
                         </td>
 
@@ -133,10 +155,10 @@
         </table>
     <table style="width: 100%;">
               <tr>
-                      <td style="width: 50%;text-align:center">
+                      <td style="width: 50%;text-align:center;">
                               <button type="button" id="btnScoreReset" data-index="reset" class='button'>SCORE RESET</button><br>
                       </td>
-                      <td style="width: 50%;text-align:center">
+                      <td style="width: 50%;text-align:center;">
                               <button type="button" id="btnData" data-index="data" class='button'>DATA</button>
                       </td>
               </tr>
