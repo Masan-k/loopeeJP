@@ -1,73 +1,77 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Japanese Geography</title>
-        <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <style>
+  <head>
+      <meta charset="utf-8" />
+      <title>Japanese Geography</title>
+      <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <style>
 
-        html{
-	    background-color: #131516;
-	    color: #7A756D;
-	}
+      html{
+          background-color: #131516;
+          color: #7A756D;
+      }
 
-        body{
-	    width: 800px;
-	   
-            margin: 30px;
-	    line-height: 4rem;
-	    text-align: center;
-	}
-	#txtInput{
-	    background-color: #191D21;
-	    width: 780px;
-	    font-size:  7rem;
+      body{
+          width: 800px;
+         
+          margin: 30px auto;
+          line-height: 4rem;
+          text-align: center;
+          
+      }
+      #lblResult{
+          font-size:  4rem;
+          color: #888;
+      }
 
-	    border-radius: 5rem;
-	    border: 1px solid;
-	    border-color: #7A756D; 
-	    color: #888;
-	}
-	#lblResult{
-	    font-size:  4rem;
-	    color: #888;
-	}
+      #prgTime{
+          width: 100%;
+          height: 60px;
+      }
+    #fixed {
+      position: fixed;	/* 要素の位置を固定する */
+      bottom: 0; /* 基準の位置を画面の一番下に指定する */
+      width: 800px; /* 幅を指定する 
+   }
+      </style>
+      <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body>
+    <table style="width: 100%;">
+      <tr>
+        <td style="width: 33%;"><a id='lblScore' style="font-size: 2rem;"></a></td>
+        <td style="width: 33%;"><a id='lblCount' style="font-size: 2rem;"></a></td>
+        <td style="width: 33%;"><a id='lblTime' style="font-size: 2rem;"></a></td>
+      </tr>
+    </table>
 
-	#prgTime{
-	    width: 100%;
-	    height: 60px;
-	}
-      #fixed {
-        position: fixed;	/* 要素の位置を固定する */
-        bottom: 0; /* 基準の位置を画面の一番下に指定する */
-        width: 800px; /* 幅を指定する */
-     }
-        </style>
-        <script type="text/javascript" src="main.js"></script>
-    </head>
-    <body>
-		<table style="width: 100%;">
-			<tr>
-				<td style="width: 33%;"><label id='lblScore' style="font-size: 2rem;"></label></td>
-				<td style="width: 33%;"><label id='lblCount' style="font-size: 2rem;"></label></td>
-				<td style="width: 33%;"><label id='lblTime' style="font-size: 2rem;"></label></td>
-			</tr>
-		</table>
+    <progress id="prgTime"></progress><br>
+    <table style="width: 100%;">
+      <tr>
+        <td style="width:10%;"></td>
+        <td style="width:80%; font-size:4rem; border: 1px solid; padding:10px;"><a id='lblQuestion'></a></td>
+        <td style="width:10%;"></td>
+      </tr>
+    </table>
 
-		<progress id="prgTime"></progress><br>
-		<a style="font-size:4rem;">Question : <label id='lblQuestion'>00</label></a>
+    <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none">
+    <label id='lblHint'></label>
+    <br>
+    <div id='fixed'>
+      <a id='lblResult'></a>
+      <br>
+      <table style="width: 100%; border-top:3px solid; border-color: #7A756D; background-color: #152832;opacity:0.7;">
+        <tr height="100px;">
+          <td style="width: 20%; font-size: 2rem; text-align:right; opacity:1">A.</td>
+          <td style="width: 80%; opacity:1 ">
+            <input type="text" id="txtInput" name="name" maxlength="8" size="10" style="font:3rem Helvetica Arial sans-serif;">
+          </td>
+        </tr>
+      </table>
+      <button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
+  </div>
+  </body>
 
-		<img id='imgMap' src="img/map_num.png" alt="blankmap" width='100%' style="display:none">
-		<label id='lblHint'></label>
-                <br>
-                <div id='fixed'>
-                  <a id='lblResult'></a><br>
-                  <a style="font-size: 3rem; text-align:left;">Answer</a>
-                  <input id='txtInput'></input>
-                  <button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
-                </div>
-	</body>
-
-</html>
+  </html>
