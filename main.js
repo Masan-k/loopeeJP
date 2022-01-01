@@ -43,254 +43,251 @@ const BAD_SEC = 15;
 
 let gameTime;
 function main(){
-    'use strict';
-   
-    let targetRural;
+  'use strict';
+  let targetRural;
 
-    if(dataIndex === '0'){
-	targetRural = '東北';
-    }else if(dataIndex === '1'){
-	targetRural = '関東';
-    }else if(dataIndex === '2'){
-	targetRural = '中部';
-    }else if(dataIndex === '3'){
-	targetRural = '近畿';
-    }else if(dataIndex === '4'){
-	targetRural = '四国';
-    }else if(dataIndex === '5'){
-	targetRural = '九州';
-    }else if(dataIndex === '6'){
-	targetRural = 'ALL';
-    }else if(dataIndex === 'r30'){
-	targetRural = 'none';
-    }else{
-	alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
+  if(dataIndex === '0'){
+    targetRural = '東北';
+  }else if(dataIndex === '1'){
+    targetRural = '関東';
+  }else if(dataIndex === '2'){
+    targetRural = '中部';
+  }else if(dataIndex === '3'){
+    targetRural = '近畿';
+  }else if(dataIndex === '4'){
+    targetRural = '四国';
+  }else if(dataIndex === '5'){
+    targetRural = '九州';
+  }else if(dataIndex === '6'){
+    targetRural = 'ALL';
+  }else if(dataIndex === 'r30'){
+    targetRural = 'none';
+  }else{
+    alert('The dataIndex parameter is not set correctly.\n(param:' + dataIndex + ')')
+  }
+  let ascQuestion = [];
+  let ascAnswer = [];
+  for(let rec of jsonFile){
+
+    if(rec.rural === targetRural || targetRural === 'ALL'){
+      ascQuestion.push(rec.code);
+      ascAnswer.push(rec.prefectures);
     }
-	
-    let ascQuestion = [];
-    let ascAnswer = [];
-    for(let rec of jsonFile){
+  }
 
-	if(rec.rural === targetRural || targetRural === 'ALL'){
-	    ascQuestion.push(rec.code);
-	    ascAnswer.push(rec.prefectures);
-	}
+  let workQuestion = ascQuestion.slice();
+  let workAnswer = ascAnswer.slice();
+
+  //SHUFFLE
+  let randomQuestion = [];
+  let randomAnswer = [];
+  workLength = workQuestion.length
+  while(randomQuestion.length < workLength){
+    for(let i in workQuestion){
+      let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
+      randomQuestion.push(workQuestion[trgIndex]);
+      randomAnswer.push(workAnswer[trgIndex]);
+
+      workQuestion.splice(trgIndex, 1);
+      workAnswer.splice(trgIndex, 1);
     }
+  }
 
-    let workQuestion = ascQuestion.slice();
-    let workAnswer = ascAnswer.slice();
-
-    //SHUFFLE
-    let randomQuestion = [];
-    let randomAnswer = [];
-    workLength = workQuestion.length
-    while(randomQuestion.length < workLength){
-	for(let i in workQuestion){
-	    let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
-	    randomQuestion.push(workQuestion[trgIndex]);
-	    randomAnswer.push(workAnswer[trgIndex]);
-
-	    workQuestion.splice(trgIndex, 1);
-	    workAnswer.splice(trgIndex, 1);
-	}
-    }
-
-    if(mode === 'easy'){
-	question = ascQuestion;
-	answer = ascAnswer;
-	
-	for(let ans of randomAnswer){
-	    lblHint.innerText += ans + "/";
-	}
-
-    }else{
-	question = randomQuestion;
-	answer = randomAnswer;
-    } 
-
-   //game start init
-    gameScore = 0;
-    startTime = Date.now();
-    timeIntervalId = setInterval(showTime => {
-	
-	lblTime.innerText = 'TIME:' + ((Date.now() - startTime) / 1000).toFixed(1);
-	gameTime = (Date.now() - answerStartTime) / 1000;
-
-	if(BAD_SEC < gameTime){
-	    lblResult.innerText = 'POOR';
-	    lblResult.style.color = '#FF00FF';
-	    lblResult.style.opacity = 1.0;
-	    setQuestion();
-	}
-	
-	lblResult.style.opacity = lblResult.style.opacity - 0.01;
-	prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
-
-	if(currentAnswer === undefined){
-	    
-	    lblCount.innerText = 'COUNT:' + workLength + '/' + workLength;
-	    completion();
-	    clearInterval(timeIntervalId);
-	}
-
-    },20);
-
-    setQuestion();
+  if(mode === 'easy'){
+    question = ascQuestion;
+    answer = ascAnswer;
     
-    txtInput.addEventListener('compositionend', (e) => {
+    for(let ans of randomAnswer){
+      lblHint.innerText += ans + "/";
+    }
 
-	if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','') || txtInput.value.replace('都','') === currentAnswer.replace('都','')){
-	    let score;
+  }else{
+    question = randomQuestion;
+    answer = randomAnswer;
+  } 
 
-	    if(GREAT_SEC >= gameTime){
-		lblResult.innerText = 'GREAT';
-		lblResult.style.color = '#0000FF';
-		score = 2;
-	    }else if(gameTime <= GOOD_SEC){
-		lblResult.innerText = 'GOOD';
-		lblResult.style.color = '#FFFF00';
-                score = 1;
-	    }else if(gameTime <= BAD_SEC){
-		lblResult.innerText = 'BAD';
-		lblResult.style.color = '#FF0000';
-		score = 0;
-	    }else{
-		lblResult.innerText = 'POOR';
-		lblResult.style.color = '#FF00FF';
-		score = 0;
-	    }
-	    lblResult.style.opacity = 1.0;
-	    
-	    gameScore += score;
-	    lblScore.innerText = 'SCORE:' + gameScore;
+ //game start init
+  gameScore = 0;
+  startTime = Date.now();
+  timeIntervalId = setInterval(showTime => {
 
-	    setQuestion();	
+    lblTime.innerText = 'TIME:' + ((Date.now() - startTime) / 1000).toFixed(1);
+    gameTime = (Date.now() - answerStartTime) / 1000;
 
-	}else{
-	    lblQuestion.innerText = 'NG:' + txtInput.value
-	}
+    if(BAD_SEC < gameTime){
+      lblResult.innerText = 'POOR';
+      lblResult.style.color = '#FF00FF';
+      lblResult.style.opacity = 1.0;
+      setQuestion();
+    }
+    lblResult.style.opacity = lblResult.style.opacity - 0.01;
+    prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
 
-    });
+    if(currentAnswer === undefined){
+      lblCount.innerText = 'COUNT:' + workLength + '/' + workLength;
+      completion();
+      clearInterval(timeIntervalId);
+    }
+
+  },20);
+
+  setQuestion();
+  
+  txtInput.addEventListener('compositionend', (e) => {
+
+    if(txtInput.value === currentAnswer || txtInput.value.replace('県','') === currentAnswer.replace('県','') || txtInput.value.replace('府','') === currentAnswer.replace('府','') || txtInput.value.replace('都','') === currentAnswer.replace('都','')){
+      let score;
+
+      if(GREAT_SEC >= gameTime){
+        lblResult.innerText = 'GREAT';
+        lblResult.style.color = '#0000FF';
+        score = 2;
+      }else if(gameTime <= GOOD_SEC){
+        lblResult.innerText = 'GOOD';
+        lblResult.style.color = '#FFFF00';
+        score = 1;
+      }else if(gameTime <= BAD_SEC){
+        lblResult.innerText = 'BAD';
+        lblResult.style.color = '#FF0000';
+        score = 0;
+      }else{
+        lblResult.innerText = 'POOR';
+        lblResult.style.color = '#FF00FF';
+        score = 0;
+      }
+
+      lblResult.style.opacity = 1.0;
+      gameScore += score;
+      lblScore.innerText = 'SCORE:' + gameScore;
+
+      setQuestion();
+
+    }else{
+      lblQuestion.innerText = currentQuestion + ':NG:' + txtInput.value
+    }
+  });
 
 }
 
 function completion(){
-    clearInterval(timeIntervalId);
-    saveScore();
+  clearInterval(timeIntervalId);
+  saveScore();
 }
 
 
 function saveScore(){
-    'use strict';
+  'use strict';
 
-    let nowDate = new Date();
-    let year = nowDate.getFullYear();
-    let month = ('00' + (nowDate.getMonth()+1)).slice(-2);
-    let day = ('00' + nowDate.getDate()).slice(-2);
-    let hour = ('00' + nowDate.getHours()).slice(-2);
-    let minute = ('00' + nowDate.getMinutes()).slice(-2);
-    let second = ('00' + nowDate.getSeconds()).slice(-2);
+  let nowDate = new Date();
+  let year = nowDate.getFullYear();
+  let month = ('00' + (nowDate.getMonth()+1)).slice(-2);
+  let day = ('00' + nowDate.getDate()).slice(-2);
+  let hour = ('00' + nowDate.getHours()).slice(-2);
+  let minute = ('00' + nowDate.getMinutes()).slice(-2);
+  let second = ('00' + nowDate.getSeconds()).slice(-2);
 
-    let time = lblTime.innerText.split(':')[1];
-    let rank;
-    let maxScore = workLength * 2;
-    if(gameScore >= maxScore * 8/9){
-	rank = 'AAA';
-    }else if(gameScore >= maxScore * 7/9){
-	rank = 'AA';
-    }else if(gameScore >= maxScore * 6/9){
-	rank = 'A';
-    }else if(gameScore >= maxScore * 5/9){
-	rank = 'B';
-    }else if(gameScore >= maxScore * 4/9){
-	rank = 'C';
-    }else if(gameScore >= maxScore * 3/9){
-	rank = 'D';
-    }else if(gameScore >= maxScore * 2/9){
-	rank = 'E';
-    }else{
-	rank = 'F';
-    }
-    localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + rank + ',' + time);
-    lblQuestion.innerText = 'CLEAR!! --> ' + rank 
+  let time = lblTime.innerText.split(':')[1];
+  let rank;
+  let maxScore = workLength * 2;
+  if(gameScore >= maxScore * 8/9){
+    rank = 'AAA';
+  }else if(gameScore >= maxScore * 7/9){
+    rank = 'AA';
+  }else if(gameScore >= maxScore * 6/9){
+    rank = 'A';
+  }else if(gameScore >= maxScore * 5/9){
+    rank = 'B';
+  }else if(gameScore >= maxScore * 4/9){
+    rank = 'C';
+  }else if(gameScore >= maxScore * 3/9){
+    rank = 'D';
+  }else if(gameScore >= maxScore * 2/9){
+    rank = 'E';
+  }else{
+    rank = 'F';
+  }
+  localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + rank + ',' + time);
+  lblQuestion.innerText = 'CLEAR!! --> ' + rank 
 }
 
+let currentQuestion;
 function setQuestion(){
 
-    lblQuestion.innerText = question.shift();
-    currentAnswer = answer.shift();
-    txtInput.value = '';
+  currentQuestion = question.shift();
+  lblQuestion.innerText = currentQuestion;
+  currentAnswer = answer.shift();
+  txtInput.value = '';
 
-    questionCount += 1;
-    lblCount.innerText = 'COUNT:' + questionCount + '/' + workLength;
-    answerStartTime = Date.now();
+  questionCount += 1;
+  lblCount.innerText = 'COUNT:' + questionCount + '/' + workLength;
+  answerStartTime = Date.now();
 }
 
 function clickMenu(){
-    window.location.href = 'index.html?mode='+ mode;
+  window.location.href = 'index.html?mode='+ mode;
 }
 
 window.onload = function(){
-    'use strict';
+  'use strict';
 
-    init();
-    txtInput.focus();
+  init();
+  txtInput.focus();
 
-    btnMenu.addEventListener("click", clickMenu, false); 
+  btnMenu.addEventListener("click", clickMenu, false); 
+
+  //------------
+  // SET PARAM
+  //------------
+  let param = location.search.split('&')
+ if(param.length === 2){
+    mode = param[0].split('=')[1];
+    dataIndex = param[1].split('=')[1];
+  }else{
+    alert('The parameters at the time of calling are not set.\n(url:' + location.href + ')\n\nPlease start from the menu screen.');
+    return;
+  }
+
+ if(mode === 'easy' || mode === 'normal'){
+    document.getElementById("imgMap").style.display ="block";
+  }else if(mode ==='hard'){
+    document.getElementById("imgMap").style.display ="none";
+  }else{
+    alert('The parameters are over');
+    return;
+  }
+
+  //------------
+  // JSON Read..
+  //------------
+  let requestURL = 'https://masan-k.github.io/japanese-geography/contents.json';
+  let request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
   
-    //------------
-    // SET PARAM
-    //------------
-    let param = location.search.split('&')
-   if(param.length === 2){
-	mode = param[0].split('=')[1];
-	dataIndex = param[1].split('=')[1];
-    }else{
-	alert('The parameters at the time of calling are not set.\n(url:' + location.href + ')\n\nPlease start from the menu screen.');
-	return;
+  request.onload = function () {
+    jsonFile = request.response;
+    isOpenFile = true;
+  }
+  
+  let intervalId = setInterval(firstStart => {
+
+    if(!isOpenFile){return};
+    if(readyCount < 0){
+      clearInterval(intervalId);
+      main();
+      return;
     }
- 
-   if(mode === 'easy' || mode === 'normal'){
-	document.getElementById("imgMap").style.display ="block";
-    }else if(mode ==='hard'){
-    	document.getElementById("imgMap").style.display ="none";
-    }else{
-	alert('The parameters are over');
-	return;
+
+    let dot = '';
+    for(let i=0;i<readyCount;i++){
+      dot += '.'; 
     }
- 
-    //------------
-    // JSON Read..
-    //------------
-    let requestURL = 'https://masan-k.github.io/japanese-geography/contents.json';
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    
-    request.onload = function () {
-	jsonFile = request.response;
-	isOpenFile = true;
-    }
-    
-    let intervalId = setInterval(firstStart => {
 
-	if(!isOpenFile){return};
-	if(readyCount < 0){
-	    clearInterval(intervalId);
-	    main();
-	    return;
-	}
+    lblQuestion.innerText = 'Ready' + dot;
+    readyCount = readyCount - 1;
 
-	let dot = '';
-	for(let i=0;i<readyCount;i++){
-	    dot += '.'; 
-	}
-
-	lblQuestion.innerText = 'Ready' + dot;
-	readyCount = readyCount - 1;
-
-	prgTime.value += 1;
-    },1000);
+    prgTime.value += 1;
+  },1000);
 
 }
