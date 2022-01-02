@@ -7,13 +7,13 @@ let gameScore;
 
 function init(){
     prgTime.max = 120;
-    prgTime.value = 0;
-    readyCount = 1;
+    prgTime.value = 120;
+    readyCount = 2;
 
     isOpenFile = false;
     lblQuestion.innerText = 'file loading..';
 
-    lblHint.innerText = 'HINT:';
+    //lblHint.innerText = 'HINT:';
     lblScore.innerText = 'SCORE:';
     lblTime.innerText = 'TIME:';
     lblCount.innerText = 'COUNT:';
@@ -21,6 +21,7 @@ function init(){
 
 let question = [];
 let answer = [];
+let pos =[];
 let questionCount = 0;
 let startTime;
 
@@ -67,35 +68,43 @@ function main(){
   }
   let ascQuestion = [];
   let ascAnswer = [];
+  let ascPos = [];
   for(let rec of jsonFile){
 
     if(rec.rural === targetRural || targetRural === 'ALL'){
       ascQuestion.push(rec.code);
       ascAnswer.push(rec.prefectures);
+      ascPos.push(rec.pos);
     }
   }
 
   let workQuestion = ascQuestion.slice();
   let workAnswer = ascAnswer.slice();
+  let workPos = ascPos.slice();
 
   //SHUFFLE
   let randomQuestion = [];
   let randomAnswer = [];
+  let randomPos = [];
   workLength = workQuestion.length
   while(randomQuestion.length < workLength){
     for(let i in workQuestion){
       let trgIndex = getRandom(0 ,workQuestion.length - i - 1);
       randomQuestion.push(workQuestion[trgIndex]);
       randomAnswer.push(workAnswer[trgIndex]);
+      randomPos.push(workPos[trgIndex]);
+
 
       workQuestion.splice(trgIndex, 1);
       workAnswer.splice(trgIndex, 1);
+      workPos.splice(trgIndex, 1);
     }
   }
 
   if(mode === 'easy'){
     question = ascQuestion;
     answer = ascAnswer;
+    pos = ascPos;
     
     for(let ans of randomAnswer){
       lblHint.innerText += ans + "/";
@@ -104,9 +113,10 @@ function main(){
   }else{
     question = randomQuestion;
     answer = randomAnswer;
+    pos = randomPos;
   } 
 
- //game start init
+  //game start init
   gameScore = 0;
   startTime = Date.now();
   timeIntervalId = setInterval(showTime => {
@@ -115,10 +125,10 @@ function main(){
     gameTime = (Date.now() - answerStartTime) / 1000;
 
     if(BAD_SEC < gameTime){
-      lblResult.innerText = 'POOR';
-      lblResult.style.color = '#FF00FF';
-      lblResult.style.opacity = 1.0;
-      setQuestion();
+        lblResult.innerText = 'POOR';
+        lblResult.style.color = '#FF00FF';
+        lblResult.style.opacity = 1.0;
+        setQuestion();
     }
     lblResult.style.opacity = lblResult.style.opacity - 0.01;
     prgTime.value = prgTime.max - (gameTime * (prgTime.max / BAD_SEC));
@@ -168,7 +178,56 @@ function main(){
   });
 
 }
+function drawMarker(pos){
 
+  const SVG_ID="svgMarker";
+  const MAX_HEIGHT = 755;
+  
+  if(pos === undefined){return}
+  const svgDiv = document.getElementById(SVG_ID);
+  if(svgDiv != null){svgDiv.remove();}
+
+  let posX = pos[0];
+  let posY = MAX_HEIGHT - pos[1];
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute("id", "svgMarker");
+  svg.setAttribute("width", "680");
+  svg.setAttribute("height", "520");
+
+  const circle= document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.setAttribute('cx','10');
+  circle.setAttribute('cy','10');
+  circle.setAttribute('r','10');
+  circle.setAttribute('fill','#EA4335');
+
+  const circleMini= document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circleMini.setAttribute('cx','10');
+  circleMini.setAttribute('cy','10');
+  circleMini.setAttribute('r','5');
+  circleMini.setAttribute('fill','#811411');
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d',"M 0 10 C 3 23, 7 18, 10 30 T 10 30 C 12 18, 17 23, 20 10 Z");
+  path.setAttribute('fill',"#EA4335");
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute("transform", "translate("+(posX-10)+","+(posY-30)+")");
+
+  g.appendChild(path);
+  g.appendChild(circle);
+  g.appendChild(circleMini);
+
+  svg.appendChild(g);
+
+  map = document.getElementById("mapContainer");
+  map.appendChild(svg);
+  
+  svgMarker.style.position="absolute";
+  svgMarker.style.top = 0;
+  svgMarker.style.left = 0;
+
+}
 function completion(){
   clearInterval(timeIntervalId);
   saveScore();
@@ -189,35 +248,32 @@ function saveScore(){
   let time = lblTime.innerText.split(':')[1];
   let rank;
   let maxScore = workLength * 2;
-  if(gameScore >= maxScore * 8/9){
-    rank = 'AAA';
-  }else if(gameScore >= maxScore * 7/9){
-    rank = 'AA';
-  }else if(gameScore >= maxScore * 6/9){
-    rank = 'A';
-  }else if(gameScore >= maxScore * 5/9){
-    rank = 'B';
-  }else if(gameScore >= maxScore * 4/9){
-    rank = 'C';
-  }else if(gameScore >= maxScore * 3/9){
-    rank = 'D';
-  }else if(gameScore >= maxScore * 2/9){
-    rank = 'E';
-  }else{
-    rank = 'F';
-  }
+  if(gameScore >= maxScore * 8/9){rank = 'AAA';}
+  else if(gameScore >= maxScore * 7/9){rank = 'AA';}
+  else if(gameScore >= maxScore * 6/9){rank = 'A';}
+  else if(gameScore >= maxScore * 5/9){rank = 'B';}
+  else if(gameScore >= maxScore * 4/9){rank = 'C';}
+  else if(gameScore >= maxScore * 3/9){rank = 'D';}
+  else if(gameScore >= maxScore * 2/9){rank = 'E';}
+  else{rank = 'F';}
+
   localStorage.setItem('geography' + ',' + mode + ',' + dataIndex + ',' + year + month + day + hour + minute + second,gameScore + ',' + rank + ',' + time);
   lblQuestion.innerText = 'CLEAR!! --> ' + rank 
 }
 
 let currentQuestion;
+let currentPos;
 function setQuestion(){
-
   currentQuestion = question.shift();
   lblQuestion.innerText = currentQuestion;
+
   currentAnswer = answer.shift();
   txtInput.value = '';
 
+  currentPos = pos.shift();
+  if(mode === 'easy' || mode === 'normal'){
+    drawMarker(currentPos);
+  }
   questionCount += 1;
   lblCount.innerText = 'COUNT:' + questionCount + '/' + workLength;
   answerStartTime = Date.now();
