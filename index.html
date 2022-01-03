@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="google-site-verification" content="P-WFUA5M3kCxri1ZiT1Q0rtMzKd-lnSiah8GEn620AE" />
         <title>Japanese Geography</title>
         <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,44 +22,44 @@
 	}
   
 	fieldset{
-	    font-size: 3rem;
-	    border: 1.5px dashed;
+          text-align: center;
+          font-size: 2rem;
+          border: 1.5px dashed;
+          padding-top: 30px;
+          padding-bottom: 300px; /*fixedのheigntと同じ */
+
 	}
 	   
 
 	.trgButton{
-	    border-radius: 2rem;
-	    font-size: 3rem; 
-	    border: 1.5px solid #31A9F3;
-	    background: #131516;
-	    color: #31A9F3;
+          border-radius: 2rem;
+          font-size: 3rem; 
+          /*
+          水色
+          border: 1.5px solid #31A9F3;
+          background: #131516;
+          color: #31A9F3;
+          */
+        
+        /* display:block;  labelのwidthを設定するために必要*/
 
-            height: 100px;
-            width: 70%;
-	    /* width: 500px;*/
-	    padding: 5px;
-	    margin-left: 2rem;
-	    margin-top: 1.5rem;
-	}
+         border: 1.5px solid #FFF;
+         color: #FFF;
+         background: #000;
 
-	.modeButton{
-	    border-radius: 1rem;
-	    font-size: 2rem; 
-	    border: 1.5px solid #FFF;
-	    background: #000;
-	    color: #FFF;
-
-            width: 100%;
-            height: 100%;
+          height: 100px;
+          width: 95%;
+          padding: 5px;
+          margin: 5px;
 	}
 
 	.labelRank{
-	    /*float: left;*/
 	    text-align: center;
 	    line-height: 70px;
 	    width: 80px;
 	    height: 50px;
 	}
+
 	.trgButton:hover {
 	    background: #152832;
 	}
@@ -67,19 +68,16 @@
          display:none;
        }
        .clsTdMode{
-         /* background: #F00;*/
          padding: 5px;
          width: 33%;
          text-align: center;
        }
       .clsTdRank{
-         /* background: #F00;*/
          padding: 5px;
          width: 20%;
          text-align: center;
        }
       .clsTdTarget{
-         background: #F00;
          width: 80%;
          text-align: center;
        }
@@ -88,11 +86,10 @@
          display:block; /* labelのwidthを設定するために必要*/
          width:100%;
          height:100%;
+
          border-radius: 1rem;
          font-size: 3rem; 
          border: 1.5px solid #FFF;
-         /* background: #00F;
-         color: #FFF; */
        }
        #fixed{
          margin: 0 auto;
@@ -112,7 +109,7 @@
       
   </head>
   <body>
-    <h1 style="text-align: center;font-size: 5rem;">Japanese Geography</h1>
+    <h1 style="text-align: center;font-size: 4rem;">Japanese Geography</h1>
     <br>
     <fieldset>
       <legend>TARGET</legend>
