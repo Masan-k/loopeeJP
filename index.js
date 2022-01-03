@@ -181,83 +181,57 @@ function drawHiScore(){
 
     lblTohokuRank.innerText = '';
     lblTohokuRank.style.color = '#7A756D';
-    lblTohokuScore.innerText = '';
 
     lblKantoRank.innerText = '';
     lblKantoRank.style.color = '#7A756D';
-    lblKantoScore.innerText = '';
 
     lblChubuRank.innerText = '';
     lblChubuRank.style.color =  '#7A756D';
-    lblChubuScore.innerText = '';
 
     lblKansaiRank.innerText =  '';
     lblKansaiRank.style.color = '#7A756D';
-    lblKansaiScore.innerText = '';
 
     lblShikokuRank.innerText = '';
     lblShikokuRank.style.color = '#7A756D';
-    lblShikokuScore.innerText = '';
 
     lblKyushuRank.innerText = '';
     lblKyushuRank.style.color = '#7A756D';
-    lblKyushuScore.innerText = '';
 
     lblAllRank.innerText = ''; 
     lblAllRank.style.color = '#7A756D';
-    lblAllScore.innerText = '';
 
     let record = getHiScore();
     for(let i in record.dataIndex){
 	if(record.dataIndex[i] === 0){
 	    lblTohokuRank.innerText = record.rank[i];
 	    lblTohokuRank.style.color = getRankColor(record.rank[i]);
-	    lblTohokuScore.innerText = '[' + record.score[i] + '/12]';
 	    
 	}else if(record.dataIndex[i] === 1){
 	    lblKantoRank.innerText = record.rank[i];
 	    lblKantoRank.style.color = getRankColor(record.rank[i]);
-	    lblKantoScore.innerText = '[' + record.score[i] + '/14]';
 
 	}else if(record.dataIndex[i] === 2){
 	    lblChubuRank.innerText = record.rank[i];
 	    lblChubuRank.style.color = getRankColor(record.rank[i]);
-	    lblChubuScore.innerText = '[' + record.score[i] + '/20]';
 
 	}else if(record.dataIndex[i] === 3){
 	    lblKansaiRank.innerText = record.rank[i];
 	    lblKansaiRank.style.color = getRankColor(record.rank[i]);
-	    lblKansaiScore.innerText = '[' + record.score[i] + '/14]';
 
 	}else if(record.dataIndex[i] === 4){
 	    lblShikokuRank.innerText = record.rank[i];
 	    lblShikokuRank.style.color = getRankColor(record.rank[i]);
-	    lblShikokuScore.innerText = '[' + record.score[i] + '/18]';
 
 	}else if(record.dataIndex[i] === 5){
 	    lblKyushuRank.innerText = record.rank[i];
 	    lblKyushuRank.style.color = getRankColor(record.rank[i]);
-	    lblKyushuScore.innerText = '[' + record.score[i] + '/14]';
 
 	}else if(record.dataIndex[i] === 6){
 	    lblAllRank.innerText = record.rank[i];
 	    lblAllRank.style.color = getRankColor(record.rank[i]);
-	    lblAllScore.innerText = '[' + record.score[i] + '/94]';
 	}
 
     }	
-}
-
-function init(contents) {
-    'use strict';
-
-    for (let key in contents) {
-        let option_add = document.createElement("option");
-        option_add.value = key;
-        option_add.text = key;
-        eCmbQuestion.appendChild(option_add);
-    }
-    
 }
 
 function clickButton() {
@@ -265,27 +239,6 @@ function clickButton() {
     let dataIndex = event.currentTarget.dataset['index'];
     let eRdoMode = document.getElementsByName("rdoMode");
     let selectMode = getSelectMode();
-
-    //SHOW DATA
-    if (dataIndex === 'data'){
-	window.location.href = 'note.html';
-	return;
-
-    //SCORE RESET
-    }else if(dataIndex === 'reset'){
-	let check = window.confirm("Deletes the score of the selected MODE. Is it OK?");
-
-	if (check){
-	    for(let key in localStorage) {
-		let keys = key.split(',');
-		if(keys[0] === 'geography' &&  keys[1] === selectMode){
-		    localStorage.removeItem(key);
-		    drawHiScore();
-		}
-	    }
-	}
-	return;
-    }   
 
     // MAIN
     if(selectMode === undefined){
@@ -295,11 +248,30 @@ function clickButton() {
     window.location.href = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
 
 }
+function clickData(){
+  console.log('CALL clickData');
+  window.location.href = 'note.html';
+}
+
+function clickScoreReset() {
+  console.log('CALL clickscorereset');
+  let check = window.confirm("Deletes the score of the selected MODE. Is it OK?");
+
+  if (check){
+    let selectMode = getSelectMode();
+    for(let key in localStorage) {
+      let keys = key.split(',');
+      if(keys[0] === 'geography' &&  keys[1] === selectMode){
+        localStorage.removeItem(key);
+        drawHiScore();
+      }
+    }
+  }
+}
+
 
 window.onload = function () {
     'use strict';
-
-    btnData.addEventListener("click", clickButton, false); 
 
     btnTohoku.addEventListener("click", clickButton, false); 
     btnKanto.addEventListener("click", clickButton, false);  
@@ -308,9 +280,10 @@ window.onload = function () {
     btnShikoku.addEventListener("click", clickButton, false); 
     btnKyushu.addEventListener("click", clickButton, false); 
     btnAll.addEventListener("click", clickButton, false); 
-	
-    btnScoreReset.addEventListener("click", clickButton, false); 
-    
+
+    btnScoreReset.addEventListener("click", clickScoreReset, false); 
+    btnData.addEventListener("click", clickData, false); 
+
    let param = location.search.split('&')
    let prmMode;
    if(param.length === 1){

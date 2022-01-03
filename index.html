@@ -14,19 +14,11 @@
 	    background-color: #131516;
 	    color: #7A756D;
 	}
-	h1{
-	    font-size: 5rem;
-	}
-        body{
-            margin: 20px;
+       body{
+            margin: 20px auto;
             padding: 10px;
-	    line-height: 5rem;
+            width:800px;
 	}
-         #svgMarker{
-          position: absolute; 
-          top: 0;
-          left: 0; 
-        }
   
 	fieldset{
 	    font-size: 3rem;
@@ -61,7 +53,7 @@
 	}
 
 	.labelRank{
-	    float: left;
+	    /*float: left;*/
 	    text-align: center;
 	    line-height: 70px;
 	    width: 80px;
@@ -80,6 +72,18 @@
          width: 33%;
          text-align: center;
        }
+      .clsTdRank{
+         /* background: #F00;*/
+         padding: 5px;
+         width: 20%;
+         text-align: center;
+       }
+      .clsTdTarget{
+         background: #F00;
+         width: 80%;
+         text-align: center;
+       }
+
        .clsLblMode{
          display:block; /* labelのwidthを設定するために必要*/
          width:100%;
@@ -90,84 +94,139 @@
          /* background: #00F;
          color: #FFF; */
        }
+       #fixed{
+         margin: 0 auto;
+         position: fixed; 
+         bottom: 10px;
+         width: 800px;
+         padding:5px;
+         background-color: #131516;
+         border-top:3px solid;
+         border-color:#7A756D;
+         background-color:#152832;
+         text-align:center;
+       }
+
       </style>
-      <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="index.js"></script>
       
-    </head>
-    <body>
-        <h1 style="text-align: center;">Japanese Geography</h1>
-       <br>
-        <fieldset>
-	    <legend>TARGET</legend>
-	    <div id='target'>
-		<label id='lblTohokuRank' class='labelRank'>-</label>
-		<button type="button" id="btnTohoku" data-index="0" class='trgButton'>Tohoku(02-07)</button><label id='lblTohokuScore' class='label'></label><br>
-
-		<label id='lblKantoRank' class='labelRank'>-</label>
-		<button type="button" id="btnKanto" data-index="1" class='trgButton'>Kanto(08-14)</button><label id='lblKantoScore' class='label'></label><br>
-
-		<label id='lblChubuRank' class='labelRank'>-</label>
-		<button type="button" id="btnChubu" data-index="2" class='trgButton'>Chubu(15-24)</button><label id='lblChubuScore' class='label'></label><br>
-
-		<label id='lblKansaiRank' class='labelRank'>-</label>
-		<button type="button" id="btnKansai" data-index="3" class='trgButton'>Kinki(25-30)</button><label id='lblKansaiScore' class='label'></label><br>
-
-		<label id='lblShikokuRank' class='labelRank'>-</label>
-		<button type="button" id="btnShikoku" data-index="4" class='trgButton'>Shikoku(31-39)</button><label id='lblShikokuScore' class='label'></label><br>
-
-		<label id='lblKyushuRank' class='labelRank'>-</label>
-		<button type="button" id="btnKyushu" data-index="5" class='trgButton'>Kyushu(40-47)</button><label id='lblKyushuScore' class='label'></label><br>
-
-		<label id='lblAllRank' class='labelRank'>-</label>
-		<button type="button" id="btnAll" data-index="6" class='trgButton'>ALL(01-47)</button><label id='lblAllScore' class='label'></label>
-
-            </div>
-	</fieldset> 
-
+  </head>
+  <body>
+    <h1 style="text-align: center;font-size: 5rem;">Japanese Geography</h1>
+    <br>
+    <fieldset>
+      <legend>TARGET</legend>
+      <div id='target'>
         <table style="width: 100%;">
-                <tr>
-                        <td class="clsTdMode">
-                          <label  class="clsLblMode" id='lblEasy'>
-                            <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsRdoMode" onclick="clickRadio()">
-                            EASY
-                          </label>
-                        </td>
-                        <td class="clsTdMode" >
-                          <label class="clsLblMode" id='lblNormal'>
-                            <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsRdoMode" onclick="clickRadio()">
-                            NORMAL
-                          </label>
-                       </td>
-                        <td class="clsTdMode">
-                          <label class="clsLblMode" id='lblHard'>
-                            <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsRdoMode" onclick="clickRadio()">
-                            HARD
-                          </label>
-                        </td>
-                </tr>
-                <tr>
-                        <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
-                                +MAP +HINT
-                        </td>
-                        <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
-                                +MAP
-                        </td>
-                        <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem">
+          <tr >
+            <td class='clsTdRank'>
+              <label id='lblTohokuRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnTohoku" data-index="0" class='trgButton'>Tohoku(02-07)</button>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblKantoRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnKanto" data-index="1" class='trgButton'>Kanto(08-14)</button><br>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblChubuRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnChubu" data-index="2" class='trgButton'>Chubu(15-24)</button><br>
+            </td>
+          </tr>
 
-                        </td>
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblKansaiRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnKansai" data-index="3" class='trgButton'>Kinki(25-30)</button><br>
+            </td>
+          </tr>
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblShikokuRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnShikoku" data-index="4" class='trgButton'>Shikoku(31-39)</button><br>
+            </td>
+          </tr>
 
-                </tr>
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblKyushuRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnKyushu" data-index="5" class='trgButton'>Kyushu(40-47)</button><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='clsTdRank'>
+              <label id='lblAllRank' class='labelRank'>-</label>
+            </td>
+            <td class='clsTdTarget'>
+              <button type="button" id="btnAll" data-index="6" class='trgButton'>ALL(01-47)</button></label>
+            </td>
+          </tr>
+
         </table>
-    <table style="width: 100%;">
-              <tr>
-                      <td style="width: 50%;text-align:center;">
-                              <button type="button" id="btnScoreReset" data-index="reset" class='button'>SCORE RESET</button><br>
-                      </td>
-                      <td style="width: 50%;text-align:center;">
-                              <button type="button" id="btnData" data-index="data" class='button'>DATA</button>
-                      </td>
-              </tr>
-      </table>
+    </div>
+  </fieldset> 
 
-    </body>
+  <div id='fixed'>
+  <table style="width: 100%;">
+    <tr>
+      <td class="clsTdMode">
+        <label  class="clsLblMode" id='lblEasy'>
+          <input type="radio" name="rdoMode" value="easy" id="rdoEasy" class="clsRdoMode" onclick="clickRadio()">
+          EASY
+        </label>
+      </td>
+      <td class="clsTdMode" >
+        <label class="clsLblMode" id='lblNormal'>
+          <input type="radio" name="rdoMode" value="normal" id="rdoNormal" class="clsRdoMode" onclick="clickRadio()">
+          NORMAL
+        </label>
+     </td>
+      <td class="clsTdMode">
+        <label class="clsLblMode" id='lblHard'>
+          <input type="radio" name="rdoMode" value="hard" id="rdoHard" class="clsRdoMode" onclick="clickRadio()">
+          HARD
+        </label>
+      </td>
+    </tr>
+    <tr>
+    <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+                +MAP +HINT
+    </td>
+    <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem;">
+                +MAP
+    </td>
+    <td style="width: 33%;text-align: center;border-style: none;font-size: 2rem">
+    </td>
+  </tr>
+</table>
+
+<table style="width: 100%;">
+      <tr>
+              <td style="width: 50%;text-align:center;">
+                      <button type="button" id="btnScoreReset" data-index="reset" class='button'>SCORE RESET</button><br>
+              </td>
+              <td style="width: 50%;text-align:center;">
+                      <button type="button" id="btnData" data-index="data" class='button'>DATA</button>
+              </td>
+      </tr>
+</table>
+
+</div>
+</body>
 </html>
