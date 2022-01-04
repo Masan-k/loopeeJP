@@ -1,9 +1,42 @@
 ﻿/*globals window, document, setInterval, event , localStorage */
 
 let eCmbQuestion;
+let record;
 
-function clickRadio(){
+function changeMode(){
+  drawHiScore();
+  changeModeColor();
+  updateSelectScore();
+}
+
+function changeTarget(){
+  changeTargetColor();
+  updateSelectScore();
+}
+
+function updateSelectScore(){
+  let selectMode = getSelectMode();
+  let selectTarget = getSelectTarget();
+
+  for(let i in record.dataIndex){
+    if(record.dataIndex[i].toString() === selectTarget){
+      lblScore.innerText = record.score[i];
+      lblTime.innerText = record.sec[i];
+      lblSelectDataRank.innerText = record.rank[i];
+      lblSelectDataRank.style.color = getRankColor(record.rank[i]);
+
+      return 0;
+    }
+  }
+  lblScore.innerText = '-';
+  lblTime.innerText = '-';
+  lblSelectDataRank.innerText = '-';
+  lblSelectDataRank.style.color = '#7A756D';
+}
+
+function changeModeColor(){
   if(rdoEasy.checked){
+     lblSelectDataMode.innerText = "EASY"
      lblEasy.style.background = "#FFF";
      lblEasy.style.color  = "#000";
   }else{
@@ -11,6 +44,7 @@ function clickRadio(){
      lblEasy.style.color = "#FFF";
   }
   if(rdoNormal.checked){
+     lblSelectDataMode.innerText = "NORMAL"
      lblNormal.style.background = "#FFF";
      lblNormal.style.color  = "#000";
   }else{
@@ -18,6 +52,7 @@ function clickRadio(){
      lblNormal.style.color = "#FFF";
   }
   if(rdoHard.checked){
+     lblSelectDataMode.innerText = "HARD"
      lblHard.style.background = "#FFF";
      lblHard.style.color  = "#000";
   }else{
@@ -25,6 +60,74 @@ function clickRadio(){
      lblHard.style.color = "#FFF";
   }
 }
+function changeTargetColor(){
+  if(rdoTohoku.checked){
+     lblSelectDataTrg.innerText = "Tohoku"
+     lblTohoku.style.background = "#FFF";
+     lblTohoku.style.color  = "#000";
+  }else{
+     lblTohoku.style.background = "#000";
+     lblTohoku.style.color = "#FFF";
+  }
+  if(rdoKanto.checked){
+     lblSelectDataTrg.innerText = "Kanto"
+     lblKanto.style.background = "#FFF";
+     lblKanto.style.color  = "#000";
+  }else{
+     lblKanto.style.background = "#000";
+     lblKanto.style.color = "#FFF";
+  }
+  if(rdoChubu.checked){
+     lblSelectDataTrg.innerText = "Chubu"
+     lblChubu.style.background = "#FFF";
+     lblChubu.style.color  = "#000";
+  }else{
+     lblChubu.style.background = "#000";
+     lblChubu.style.color = "#FFF";
+  }
+  if(rdoKinki.checked){
+     lblSelectDataTrg.innerText = "Kinki"
+     lblKinki.style.background = "#FFF";
+     lblKinki.style.color  = "#000";
+  }else{
+     lblKinki.style.background = "#000";
+     lblKinki.style.color = "#FFF";
+  }
+  if(rdoShikoku.checked){
+     lblSelectDataTrg.innerText = "Shikoku"
+     lblShikoku.style.background = "#FFF";
+     lblShikoku.style.color  = "#000";
+  }else{
+     lblShikoku.style.background = "#000";
+     lblShikoku.style.color = "#FFF";
+  }
+  if(rdoKyushu.checked){
+     lblSelectDataTrg.innerText = "Kyushu"
+     lblKyushu.style.background = "#FFF";
+     lblKyushu.style.color  = "#000";
+  }else{
+     lblKyushu.style.background = "#000";
+     lblKyushu.style.color = "#FFF";
+  }
+  if(rdoAll.checked){
+     lblSelectDataTrg.innerText = "All"
+     lblAll.style.background = "#FFF";
+     lblAll.style.color  = "#000";
+  }else{
+     lblAll.style.background = "#000";
+     lblAll.style.color = "#FFF";
+  }
+}
+function getSelectTarget(){
+    let eRdoTrg = document.getElementsByName("rdoTrg");
+    for(let i=0;i<eRdoTrg.length;i++){
+	if(eRdoTrg[i].checked){
+	    return eRdoTrg[i].value;
+	}
+    }
+    return undefined;
+}
+
 function getSelectMode(){
     let eRdoMode = document.getElementsByName("rdoMode");
     for(let i=0;i<eRdoMode.length;i++){
@@ -44,6 +147,7 @@ function getHiScore() {
     let rank = [];
     let sec = [];
     let dataIndex = [];
+    let mode = [];
 
     let dataIndexCount = 6;
 
@@ -111,57 +215,6 @@ function getHiScore() {
     
     return result;
 }
-function getPerDateCount() {
-    'use strict';
-
-    let dateYmd = [];    
-    let record = new Object();
-    let date = [];
-    let count = [];
-
-    for(let key in localStorage) {
-	let keys = key.split(',');
-        if(keys[0] === 'geography') {
-            dateYmd.push(keys[3].slice(0,8));
-        }
-    }
-
-　　dateYmd.sort();
-    
-    let wDate;
-    for(let d in dateYmd){
-        
-        if(wDate !== dateYmd[d]) {
-            wDate = dateYmd[d];
-            count.push(1);
-            date.push(wDate);
-        }else{
-            count[count.length - 1] += 1;
-        }
-    }
-
-　　record.count = count;
-    record.dateYmd = date;
-    
-    return record;
-}
-
-
-function getRectColor(count){
-    'use strict';
-
-    if(count === 0){
-        return '#191D21';
-    }else if(count <= 2){
-        return '#6BF8A3';
-    }else if(count <= 4){
-        return '#00D65D';
-    }else if(count <= 6){
-        return '#00AF4A';
-    }else {
-        return '#007839';
-    }
-}
 
 function getRankColor(rank){
     if(rank === 'AAA' || rank === 'AA' || rank === 'A' || rank === 'B'){
@@ -200,7 +253,7 @@ function drawHiScore(){
     lblAllRank.innerText = ''; 
     lblAllRank.style.color = '#7A756D';
 
-    let record = getHiScore();
+    record = getHiScore();
     for(let i in record.dataIndex){
 	if(record.dataIndex[i] === 0){
 	    lblTohokuRank.innerText = record.rank[i];
@@ -234,10 +287,9 @@ function drawHiScore(){
     }	
 }
 
-function clickButton() {
+function clickPlay() {
     'use strict';
-    let dataIndex = event.currentTarget.dataset['index'];
-    let eRdoMode = document.getElementsByName("rdoMode");
+    let selectDataIndex = getSelectTarget();
     let selectMode = getSelectMode();
 
     // MAIN
@@ -245,16 +297,18 @@ function clickButton() {
 	alert('Select "Mode".');
 	return;
     }
-    window.location.href = 'main.html?mode='+ selectMode + '&index=' + dataIndex;
+    if(selectDataIndex === undefined){
+	alert('Select "Target".');
+	return;
+    }
+    window.location.href = 'main.html?mode='+ selectMode + '&index=' + selectDataIndex;
 
 }
 function clickData(){
-  console.log('CALL clickData');
   window.location.href = 'note.html';
 }
 
 function clickScoreReset() {
-  console.log('CALL clickscorereset');
   let check = window.confirm("Deletes the score of the selected MODE. Is it OK?");
 
   if (check){
@@ -273,23 +327,30 @@ function clickScoreReset() {
 window.onload = function () {
     'use strict';
 
-    btnTohoku.addEventListener("click", clickButton, false); 
-    btnKanto.addEventListener("click", clickButton, false);  
-    btnChubu.addEventListener("click", clickButton, false);  
-    btnKansai.addEventListener("click", clickButton, false); 
-    btnShikoku.addEventListener("click", clickButton, false); 
-    btnKyushu.addEventListener("click", clickButton, false); 
-    btnAll.addEventListener("click", clickButton, false); 
+    rdoTohoku.addEventListener("click", changeTarget, false); 
+    rdoKanto.addEventListener("click", changeTarget, false);  
+    rdoChubu.addEventListener("click", changeTarget, false);  
+    rdoKinki.addEventListener("click", changeTarget, false); 
+    rdoShikoku.addEventListener("click", changeTarget, false); 
+    rdoKyushu.addEventListener("click", changeTarget, false); 
+    rdoAll.addEventListener("click", changeTarget, false); 
 
     btnScoreReset.addEventListener("click", clickScoreReset, false); 
     btnData.addEventListener("click", clickData, false); 
+    btnPlay.addEventListener("click", clickPlay, false); 
+
+    rdoEasy.addEventListener("click", changeMode, false); 
+    rdoNormal.addEventListener("click", changeMode, false); 
+    rdoHard.addEventListener("click", changeMode, false); 
 
    let param = location.search.split('&')
    let prmMode;
-   if(param.length === 1){
+   let prmDataIndex;
+   if(param.length === 2){
 	prmMode = param[0].split('=')[1];
+	prmDataIndex = param[1].split('=')[1];
     }
-
+   console.log('prmDataIndex -> '+prmDataIndex);
    if(prmMode === 'easy'){
 	rdoEasy.checked = true;
    }else if(prmMode === 'normal'){
@@ -299,14 +360,23 @@ window.onload = function () {
    }else{
         rdoEasy.checked = true;
    }
-   clickRadio();
+   if(prmDataIndex === '0'){rdoTohoku.checked=true;}
+   else if(prmDataIndex === '1'){rdoKanto.checked=true;}
+   else if(prmDataIndex === '2'){rdoChubu.checked=true;}
+   else if(prmDataIndex === '3'){rdoKinki.checked=true;}
+   else if(prmDataIndex === '4'){rdoShikoku.checked=true;}
+   else if(prmDataIndex === '5'){rdoKyushu.checked=true;}
+   else if(prmDataIndex === '6'){rdoAll.checked=true;}
+   else{rdoTohoku.checked=true;}
+
    drawHiScore();
+   changeMode();
+   changeTarget();
 
     let checkOption = document.getElementsByName('rdoMode');
     checkOption.forEach(function(e) {
         e.addEventListener("click", function() {           
 
-	    drawHiScore();
         });
     });
 };

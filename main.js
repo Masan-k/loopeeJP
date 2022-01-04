@@ -280,7 +280,7 @@ function setQuestion(){
 }
 
 function clickMenu(){
-  window.location.href = 'index.html?mode='+ mode;
+  window.location.href = 'index.html?mode='+ mode + '&index=' + dataIndex;
 }
 
 window.onload = function(){
