@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-      <meta charset="utf-8" />
-      <title>Japanese Geography</title>
-      <!--[if IE]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
-      <style>
+    <meta charset="utf-8" />
+    <title>Japanese Geography</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
 
       html{
           background-color: #131516;
@@ -15,20 +15,16 @@
 
       body{
           width: 800px;
-         
           margin: 30px auto;
           line-height: 1.5rem;
           text-align: center;
-          
       }
-      
-    #fixed {
-      position: fixed;	/* 要素の位置を固定する */
-      bottom: 0; /* 基準の位置を画面の一番下に指定する */
-      width: 800px; /* 幅を指定する 
-   }
-      </style>
-      <script type="text/javascript" src="main.js"></script>
+      #fixed {
+        position: fixed; /* 要素の位置を固定する */
+        bottom: 0;       /* 基準の位置を画面の一番下に指定する */
+        width: 800px;
+      }
+    </style>
   </head>
   <body>
     <table style="width: 100%;">
@@ -38,8 +34,7 @@
         <td style="width: 33%;"><a id='lblTime' style="font-size: 2rem;"></a></td>
       </tr>
     </table>
-    
-   <div id="mapContainer" style="position: relative";>
+    <div id="mapContainer" style="position: relative";>
       <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none; potision:absolute; top:0; left:0;">
     </div>
     <label id='lblHint'></label>
@@ -63,7 +58,7 @@
         </tr>
       </table>
       <button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
-  </div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
   </body>
-
-  </html>
+</html>
