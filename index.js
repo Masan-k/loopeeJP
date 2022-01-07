@@ -4,14 +4,24 @@ let eCmbQuestion;
 let record;
 
 function changeMode(){
+  const startTime = performance.now(); // 開始時間
+
   drawHiScore();
   changeModeColor();
   updateSelectScore();
+
+  const endTime = performance.now(); // 終了時間
+  console.log('changeMode -> ' + (endTime - startTime)); // 何ミリ秒かかったかを表示する
 }
 
 function changeTarget(){
+  const startTime = performance.now(); // 開始時間
+
   changeTargetColor();
   updateSelectScore();
+
+  const endTime = performance.now(); // 終了時間
+  console.log('changeTarget -> ' + (endTime - startTime)); // 何ミリ秒かかったかを表示する
 }
 
 function updateSelectScore(){
@@ -350,7 +360,6 @@ window.onload = function () {
 	prmMode = param[0].split('=')[1];
 	prmDataIndex = param[1].split('=')[1];
     }
-   console.log('prmDataIndex -> '+prmDataIndex);
    if(prmMode === 'easy'){
 	rdoEasy.checked = true;
    }else if(prmMode === 'normal'){
