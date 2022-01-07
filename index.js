@@ -4,14 +4,26 @@ let eCmbQuestion;
 let record;
 
 function changeMode(){
-  const startTime = performance.now(); // 開始時間
+  const startTime1 = performance.now(); // 開始時間
 
+  const startTimeHiScore = performance.now(); // 開始時間
   drawHiScore();
-  changeModeColor();
-  updateSelectScore();
+  const endTimeHiScore = performance.now(); // 終了時間
+  
+  console.log('changeMode(Hiscore) -> ' + (endTimeHiScore - startTimeHiScore)); // 何ミリ秒かかったかを表示する
 
-  const endTime = performance.now(); // 終了時間
-  console.log('changeMode -> ' + (endTime - startTime)); // 何ミリ秒かかったかを表示する
+  const startTimeColor = performance.now(); // 開始時間
+  changeModeColor();
+  const endTimeColor = performance.now(); // 終了時間
+  console.log('changeMode(Color) -> ' + (endTimeColor - startTimeColor)); // 何ミリ秒かかったかを表示する
+
+  const startTimeSelectscore = performance.now(); // 開始時間
+  updateSelectScore();
+  const endTimeSelectscore = performance.now(); // 終了時間
+  console.log('changeMode(updateSelectScore) -> ' + (endTimeSelectscore - startTimeSelectscore)); // 何ミリ秒かかったかを表示する
+
+  const endTime1 = performance.now(); // 終了時間
+  console.log('changeMode -> ' + (endTime1 - startTime1)); // 何ミリ秒かかったかを表示する
 }
 
 function changeTarget(){
