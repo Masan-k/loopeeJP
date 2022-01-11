@@ -34,11 +34,15 @@
         <td style="width: 33%;"><a id='lblTime' style="font-size: 2rem;"></a></td>
       </tr>
     </table>
+    <!--  width="570px" height="755px"  -->
     <div id='fixed'>
-      <div id="mapContainer" style="position: relative;";>
-        <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none; potision:absolute;">
-      </div>   <label id='lblHint'></label>
-      <a id='lblResult' style="font-size:  4rem;color: #888;line-height:1rem"></a>
+      <div id="mapContainer" style="position: relative;">
+        <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none; potision:absolute;margin:0 auto;">
+      </div>
+      <div id="subContainer" style='position: relative;height:50px;' >
+        <a id='lblHint'></a>
+        <a id='lblResult' style="font-size:4rem;color: #888;line-height:1rem;position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);">&nbsp</a>
+      </div>
       <table style="width: 100%;">
         <tr style="height:70px;">
           <td style="width:15%; font-size:2rem;">Q.</td>

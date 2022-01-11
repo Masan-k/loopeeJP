@@ -192,8 +192,8 @@ function drawMarker(pos){
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute("id", "svgMarker");
-  svg.setAttribute("width", "680");
-  svg.setAttribute("height", "520");
+  svg.setAttribute("width", "570");
+  svg.setAttribute("height", "755");
 
   const circle= document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circle.setAttribute('cx','10');
@@ -224,9 +224,11 @@ function drawMarker(pos){
   map.appendChild(svg);
   
   svgMarker.style.position="absolute";
+  //中央寄せ
   svgMarker.style.top = 0;
   svgMarker.style.left = 0;
-
+  svgMarker.style.right = 0;
+  svgMarker.style.margin = 'auto';
 }
 function completion(){
   clearInterval(timeIntervalId);
@@ -315,7 +317,7 @@ window.onload = function(){
   //------------
   // JSON Read..
   //------------
-  let requestURL = 'https://masan-k.github.io/japanese-geography/contents.json';
+  let requestURL = 'https://masan-k.github.io/sandbox/contents.json';
   let request = new XMLHttpRequest();
   request.open('GET', requestURL);
   request.responseType = 'json';
