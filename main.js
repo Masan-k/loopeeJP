@@ -317,7 +317,7 @@ window.onload = function(){
   //------------
   // JSON Read..
   //------------
-  let requestURL = 'https://masan-k.github.io/sandbox/contents.json';
+  let requestURL = './contents.json'; //CROSSエラーコード
   let request = new XMLHttpRequest();
   request.open('GET', requestURL);
   request.responseType = 'json';
