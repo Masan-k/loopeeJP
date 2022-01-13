@@ -1,7 +1,3 @@
-![menu](https://masan-k.github.io/japanese-geography/img/demo_menu.png "menu")
-![main](https://masan-k.github.io/japanese-geography/img/demo_main.png "main")
-![clear](https://masan-k.github.io/japanese-geography/img/demo_clear.png "clear")
-
 # 都道府県　暗記スクリプト
 
 ## 概要
@@ -14,7 +10,7 @@
 
 
 ## 使い方
-1. [japanese-geography](https://masan-k.github.io/japanese-geography/)　にアクセスしてモードと対象を選択します。
+1. 「japanese-geography」にアクセスしてモードと対象を選択します。
 2. 都道府県コードが表示されるので、その都道府県名を入力します。正解するか制限時間になると次の問題が表示されます。
 3. 出題が終わるまで2をくり返します。
 
