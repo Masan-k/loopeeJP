@@ -19,49 +19,56 @@
           line-height: 1.5rem;
           text-align: center;
       }
-      #fixed {
-        position: fixed; /* 要素の位置を固定する */
-        bottom: 30px;       /* 基準の位置を画面の一番下に指定する */
-        width: 800px;
-      }
-    </style>
+      .backButton{
+          display:block; /* labelのwidthを設定するために必要*/
+          border-radius: 0.5rem;
+          font-size: 2rem; 
+          border: 1.5px solid #FFF;
+          color: #FFF;
+          background:#000;
+          width: 150px;
+          margin:0 auto;
+	}
+
+
+   </style>
+  <script type="text/javascript" src="main.js"></script>
   </head>
   <body>
-    <table style="width: 100%;">
-      <tr>
-        <td style="width: 33%;"><a id='lblScore' style="font-size: 2rem;"></a></td>
-        <td style="width: 33%;"><a id='lblCount' style="font-size: 2rem;"></a></td>
-        <td style="width: 33%;"><a id='lblTime' style="font-size: 2rem;"></a></td>
-      </tr>
-    </table>
-    <!--  width="570px" height="755px"  -->
-    <div id='fixed'>
-      <div id="mapContainer" style="position: relative;">
-        <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none; potision:absolute;margin:0 auto;">
-      </div>
-      <div id="subContainer" style='position: relative;height:50px;' >
-        <a id='lblHint'></a>
-        <a id='lblResult' style="font-size:4rem;color: #888;line-height:1rem;position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);">&nbsp</a>
-      </div>
+    <div id="mapContainer" style="position: relative;">
+      <img id='imgMap' src="img/map.svg" alt="blankmap" style="display:none; position:absolute;top:0;left:0;right:0;margin:auto;">
       <table style="width: 100%;">
+        <tr>
+          <td style="width: 33%;"><a id='lblScore' style="font-size: 2rem;"></a></td>
+          <td style="width: 33%;"><a id='lblCount' style="font-size: 2rem;"></a></td>
+          <td style="width: 33%;"><a id='lblTime' style="font-size: 2rem;"></a></td>
+        </tr>
+      </table>
+     <table style="width: 100%;">
         <tr style="height:70px;">
-          <td style="width:15%; font-size:2rem;">Q.</td>
-          <td style="width:70%; font-size:4rem; border: 1px solid; padding:10px;"><a id='lblQuestion'></a></td>
+          <td style="width:15%; font-size:3rem;text-align:left;">Q.</td>
+          <td style="width:70%; font-size:4rem; border: 1px solid; padding:10px;position:relative;z-index:10;"><a id='lblQuestion'></a></td>
           <td style="width:15%;"></td>
         </tr>
       </table>
-      <progress id="prgTime" style="width: 100%; height: 60px";></progress><br>
-      <table style="width: 100%; border-top:3px solid; border-color: #7A756D; background-color: #152832;opacity:0.7;">
+      <table style="width: 100%;">
         <tr height="100px;">
-          <td style="width: 15%; font-size: 2rem; text-align:right; opacity:1">A.</td>
-          <td style="width: 70%; opacity:1 ">
-            <input type="text" id="txtInput" maxlength="10" size="10" style="font:3rem Meiryo;">
+          <td style="width: 15%;font-size: 3rem; text-align:left;">A.</td>
+          <td style="width: 70%;">
+            <input type="text" id="txtInput" maxlength="10" size="10" style="font:3rem Meiryo;text-align:center;position:relative;z-index:10;background:#555;color:white;opacity:80%;">
             <td style="width: 15%">
           </td>
         </tr>
       </table>
-      <button type="button" id="btnMenu" class='button' width='40p'>BACK</button>
+      <!--  width="570px" height="755px"  -->
+     <progress id="prgTime" style="width: 100%; height: 60px";></progress><br>
     </div>
-    <script type="text/javascript" src="main.js"></script>
+    <div id="subContainer" style='position: relative;height:50px;'>
+      <a id='lblHint' style='float:left;width:50%;' ></a>
+      <a id='lblResult' style="font-size:4rem;color: #888;line-height:1rem;position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);">&nbsp</a>
+    </div>
+   <div id='bottomFixed' style='width:800px;position:fixed; bottom:0px;'>
+     <button type="button" id="btnMenu" class='backButton'>BACK</button>
+   </div>
   </body>
 </html>
