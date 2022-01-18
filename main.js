@@ -285,6 +285,10 @@ function clickMenu(){
   window.location.href = 'index.html?mode='+ mode + '&index=' + dataIndex;
 }
 
+function clickRetry(){
+  location.reload() 
+}
+
 window.onload = function(){
   'use strict';
 
@@ -292,6 +296,7 @@ window.onload = function(){
   txtInput.focus();
 
   btnMenu.addEventListener("click", clickMenu, false); 
+  btnRetry.addEventListener("click", clickRetry, false);
 
   //------------
   // SET PARAM
