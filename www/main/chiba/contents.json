@@ -19,7 +19,7 @@
   {"code":"inba-03","name":"四街道市", "pos":[177,208],"group":"3","kana":""},
   {"code":"inba-04","name":"八街市",   "pos":[220,220],"group":"3","kana":""},
   {"code":"inba-05","name":"印西市",   "pos":[181,152],"group":"3","kana":""},
-  {"code":"inba-06","name":"白井市",   "pos":[132,149],"group":"3","kana":""},
+  {"code":"inba-06","name":"白井市",   "pos":[132,149],"group":"3","kana":"しろいまち"},
   {"code":"inba-07","name":"富里市",   "pos":[234,186],"group":"3","kana":""},
   {"code":"inba-08","name":"酒々井町", "pos":[211,180],"group":"3","kana":""},
   {"code":"inba-09","name":"栄町",     "pos":[203,131],"group":"3","kana":"さかえまち"},
@@ -58,5 +58,5 @@
   {"code":"kimitsu-01","name":"木更津市",  "pos":[90,340], "group":"7","kana":""},
   {"code":"kimitsu-02","name":"君津市",    "pos":[126,390],"group":"7","kana":""},
   {"code":"kimitsu-03","name":"富津市",    "pos":[81,418],"group":"7","kana":""},
-  {"code":"kimitsu-04","name":"袖ケ浦市",  "pos":[112,316],"group":"7","kana":""}
+  {"code":"kimitsu-04","name":"袖ヶ浦市",  "pos":[112,316],"group":"7","kana":""}
 ]

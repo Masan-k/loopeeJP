@@ -334,8 +334,7 @@ function main(){
   txtInput.addEventListener('compositionend', (e) => {
 
     let score;
-    if(txtInput.value === m_currentAnswer.getData()
-      || txtInput.value.replace("ヶ","ケ") === m_currentAnswer.getData()){
+    if(txtInput.value.replace("ヶ","ケ") === m_currentAnswer.getData().replace("ヶ","ケ")){
 
       if(GREAT_SEC >= gameTime){
         lblResult.innerText = 'GREAT';
