@@ -2,13 +2,13 @@
 <html data-bs-theme="dark">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRS28R1KSN"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5S8WBQQKX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-ZRS28R1KSN');
+      gtag('config', 'G-N5S8WBQQKX');
     </script>
 
     <meta charset="utf-8" />
@@ -52,20 +52,14 @@
 
       <div class="mt-2 mb-2">
         <div class="btn-group" role="group">
-          <input type="checkbox" class="btn-check btn-success" id="checkCode1" name="selectCode">
-          <label class="btn btn-outline-success" for="checkCode1">1</label>
-          <input type="checkbox" class="btn-check btn-success" id="checkCode2" name="selectCode">
-          <label class="btn btn-outline-success" for="checkCode2">2</label>
-          <input type="checkbox" class="btn-check btn-success" id="checkCode3" name="selectCode">
-          <label class="btn btn-outline-success" for="checkCode3">3</label>
-        </div>
-        <div class="btn-group" role="group">
+          <input type="checkbox" class="btn-check" id="checkCode1" name="selectCode">
+          <label class="btn btn-outline-primary" for="checkCode1">1</label>
+          <input type="checkbox" class="btn-check" id="checkCode2" name="selectCode">
+          <label class="btn btn-outline-primary" for="checkCode2">2</label>
+          <input type="checkbox" class="btn-check" id="checkCode3" name="selectCode">
+          <label class="btn btn-outline-primary" for="checkCode3">3</label>
           <input type="checkbox" class="btn-check" id="checkCode4" name="selectCode">
           <label class="btn btn-outline-primary" for="checkCode4">4</label>
-          <input type="checkbox" class="btn-check" id="checkCode5" name="selectCode">
-          <label class="btn btn-outline-primary" for="checkCode5">5</label>
-          <input type="checkbox" class="btn-check" id="checkCode6" name="selectCode">
-          <label class="btn btn-outline-primary" for="checkCode6">6</label>
         </div>
       </div>
     </div>
@@ -286,8 +280,6 @@
             }   
           },100);
         }else if(gameStatus === 'mainCheck'){
-          console.log('call main check');
-
           const eleNext = document.getElementById('buttonNext');
           const elePrevious = document.getElementById('buttonPrevious');
           const eleAnswer = document.getElementById('entryAnswer');
@@ -297,7 +289,12 @@
           elePrevious.classList.remove('d-none');
           eleSubmit.style.display = "none";
 
-          eleAnswer.value = question.answer[m_clickCount-1];
+          console.log(question.kana[m_clickCount-1]);
+          if(question.kana[m_clickCount-1].length == 0){
+            eleAnswer.value = question.answer[m_clickCount-1];
+          }else{
+            eleAnswer.value = question.answer[m_clickCount-1] + "/" + question.kana[m_clickCount-1];
+          }
         }
       }
       function getSelectedMode(){
@@ -338,7 +335,11 @@
       function drawQuestionData(){
         const eleAnswer = document.getElementById('entryAnswer');
         const eleCode = document.getElementById('questionCode');
-        eleAnswer.value = question.answer[m_clickCount-1];
+        if(question.kana[m_clickCount-1].length == 0){
+          eleAnswer.value = question.answer[m_clickCount-1];
+        }else{
+          eleAnswer.value = question.answer[m_clickCount-1] + "/" +  question.kana[m_clickCount-1] ;
+        }
         eleCode.textContent = question.code[m_clickCount-1];
         svg.draw(question.pos[m_clickCount-1][0],question.pos[m_clickCount-1][1]);
       }

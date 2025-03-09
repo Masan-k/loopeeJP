@@ -8,11 +8,12 @@ let m_observer;
 const mainContainer = document.getElementById('main-container');
 const subContainer = document.getElementById('sub-container');
 const SVG_MAP_FILE_PATH = 'img/map.svg'
+
+// -----------------------------------------------------------------------
+// svgを追加されたタイミングでマークをクリア・描画するのにobserverを利用
+// observer用に対象座標をsetPoint設定している
+// -----------------------------------------------------------------------
 export function draw(x,y){
-  // -----------------------------------------------------------------------
-  // svgを追加されたタイミングでマークをクリア・描画するのにobserverを利用
-  // observer用に対象座標をsetPoint設定している
-  // -----------------------------------------------------------------------
   m_observer.setPointX(x);
   m_observer.setPointY(y);
   drawMap(x,y);
@@ -68,14 +69,17 @@ function clearMark(container){
     marks.forEach(marks => marks.remove());
   }
 }
-  
+
 function drawMark(x,y,ele,zoomLevel = 1){
-  let svgEle = ele.querySelector('svg');
+  //console.log(`x:${x}  y:${y}`);
+  const radius = MAP_WIDTH / 50;
+  const svgEle = ele.querySelector('svg');
+
   const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circle.setAttribute('cx', x);
   circle.setAttribute('cy', y);
-  circle.setAttribute('r', 4*zoomLevel);
-  circle.setAttribute('stroke-width', 0.2*zoomLevel);
+  circle.setAttribute('r', radius * zoomLevel);
+  circle.setAttribute('stroke-width', 1*zoomLevel);
   circle.setAttribute('fill', 'none');
   circle.setAttribute('stroke', 'red');
   circle.classList.add('mark');
@@ -83,7 +87,7 @@ function drawMark(x,y,ele,zoomLevel = 1){
   const circleSmall = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circleSmall.setAttribute('cx', x);
   circleSmall.setAttribute('cy', y);
-  circleSmall.setAttribute('r', 1*zoomLevel);
+  circleSmall.setAttribute('r', radius/4 * zoomLevel);
   circleSmall.setAttribute('fill', 'red');
   circleSmall.classList.add('mark');
 
@@ -105,6 +109,7 @@ function drawMapAll(x,y,mapId){
       const svgElement = document.getElementById(mapId).querySelector('svg');
       // viewBoxを設定してトリミング（x, y, width, height）
       svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
+      //console.log(`map_width:${MAP_WIDTH} map_height:${MAP_HEIGHT}`);
       if(mapId === 'sub-container'){
         svgElement.setAttribute('width', `100%`);
         svgElement.setAttribute('height', `100%`);
@@ -132,7 +137,7 @@ function drawMap(pointX,pointY){
   _drawMapZoom(pointX,pointY);
   drawMapAll(pointX,pointY,'sub-container');
 
- function _drawMapZoom(x,y){
+  function _drawMapZoom(x,y){
     fetch(SVG_MAP_FILE_PATH)
       .then(response => response.text())
       .then(svg => {
@@ -145,7 +150,7 @@ function drawMap(pointX,pointY){
           const [x, y, width, height] = viewBox.split(' ').map(Number);
           //console.log(`viewBox - 幅: ${width}, 高さ: ${height}`);
         } else {
-          console.log('viewBox属性がありません');
+          //console.log('viewBox属性がありません');
         }
 
         if(x <= CAMERA_WIDTH/2){
