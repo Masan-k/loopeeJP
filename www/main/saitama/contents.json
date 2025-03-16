@@ -1,0 +1,72 @@
+[
+   {"code":"n-1","name":"新座市","pos":[442,320],"group":"1","kana":"にいざし"}
+  ,{"code":"n-2","name":"朝霞市","pos":[459,308],"group":"1","kana":"あさかし"}
+  ,{"code":"n-3","name":"和光市","pos":[473,323],"group":"1","kana":""}
+  ,{"code":"n-4","name":"戸田市","pos":[491,306],"group":"1","kana":""}
+  ,{"code":"n-5","name":"蕨市","pos":[504,299],"group":"1","kana":""}
+  ,{"code":"n-6","name":"川口市","pos":[524,292],"group":"1","kana":""}
+  
+  ,{"code":"n-8","name":"草加市","pos":[563,290],"group":"2","kana":""}
+  ,{"code":"n-9","name":"八潮市","pos":[581,304],"group":"2","kana":""}
+  ,{"code":"n-10","name":"三郷市","pos":[601,297],"group":"2","kana":""}
+  ,{"code":"n-11","name":"吉川市","pos":[593,258],"group":"2","kana":""}
+  ,{"code":"n-12","name":"越谷市","pos":[557,253],"group":"2","kana":""}
+  ,{"code":"n-13","name":"松伏町","pos":[574,227],"group":"2","kana":"まつぶしまち"}
+
+  ,{"code":"w-1","name":"蓮田市","pos":[492,197],"group":"3","kana":"はすだし"}
+  ,{"code":"w-2","name":"白岡市","pos":[497,178],"group":"3","kana":"しらおかし"}
+  ,{"code":"w-3","name":"宮代町","pos":[519,177],"group":"3","kana":""}
+  ,{"code":"w-4","name":"春日部市","pos":[550,202],"group":"3","kana":""}
+  ,{"code":"w-5","name":"杉戸町","pos":[538,172],"group":"3","kana":""}
+  ,{"code":"w-6","name":"幸手市","pos":[531,146],"group":"3","kana":"さってし"}
+  ,{"code":"w-7","name":"久喜市","pos":[486,149],"group":"3","kana":""}
+  ,{"code":"w-8","name":"加須市","pos":[472,110],"group":"3","kana":"かぞし"}
+
+  ,{"code":"c-1","name":"さいたま市","pos":[490,253],"group":"4","kana":""}
+  ,{"code":"c-2","name":"上尾市","pos":[451,209],"group":"4","kana":"あげおし"}
+  ,{"code":"c-3","name":"伊奈町","pos":[470,191],"group":"4","kana":""}
+  ,{"code":"c-4","name":"桶川市","pos":[425,193],"group":"4","kana":"おけがわし"}
+  ,{"code":"c-5","name":"北本市","pos":[426,174],"group":"4","kana":""}
+  ,{"code":"c-6","name":"鴻巣市","pos":[413,146],"group":"4","kana":"こうのすし"}
+
+  ,{"code":"s-1","name":"川越市","pos":[401,245],"group":"5","kana":""}
+  ,{"code":"s-2","name":"ふじみ野市","pos":[417,272],"group":"5","kana":""}
+  ,{"code":"s-3","name":"富士見市","pos":[438,281],"group":"5","kana":""}
+  ,{"code":"s-4","name":"三芳町","pos":[418,295],"group":"5","kana":"みよしまち"}
+  ,{"code":"s-5","name":"所沢市","pos":[391,315],"group":"5","kana":""}
+  ,{"code":"s-6","name":"狭山市","pos":[372,277],"group":"5","kana":"さやまし"}
+  ,{"code":"s-7","name":"入間市","pos":[344,303],"group":"5","kana":""}
+
+  ,{"code":"s-8","name":"坂戸市","pos":[364,210],"group":"6","kana":""}
+  ,{"code":"s-9","name":"鶴ヶ島市","pos":[357,231],"group":"6","kana":"つるがしまし"}
+  ,{"code":"s-10","name":"日高市","pos":[330,254],"group":"6","kana":""}
+  ,{"code":"s-11","name":"飯能市","pos":[288,274],"group":"6","kana":""}
+  ,{"code":"s-12","name":"毛呂山町","pos":[306,235],"group":"6","kana":"もろやままち"}
+  ,{"code":"s-13","name":"越生町","pos":[294,214],"group":"6","kana":"おごせまち"}
+
+  ,{"code":"h-1","name":"川島町","pos":[403,199],"group":"7","kana":""}
+  ,{"code":"h-2","name":"吉見町","pos":[388,165],"group":"7","kana":""}
+  ,{"code":"h-3","name":"東松山市","pos":[358,181],"group":"7","kana":""}
+  ,{"code":"h-4","name":"滑川町","pos":[339,149],"group":"7","kana":"なめがわまち"}
+  ,{"code":"h-5","name":"嵐山町","pos":[317,156],"group":"7","kana":"らんざんまち"}
+  ,{"code":"h-6","name":"小川町","pos":[290,154],"group":"7","kana":""}
+  ,{"code":"h-7","name":"ときがわ町","pos":[281,192],"group":"7","kana":""}
+  ,{"code":"h-8","name":"鳩山町","pos":[326,198],"group":"7","kana":""}
+
+  ,{"code":"t-6","name":"横瀬町","pos":[226,211],"group":"8","kana":"よこぜまち"}
+  ,{"code":"t-4","name":"秩父市","pos":[194,197],"group":"8","kana":""}
+  ,{"code":"t-5","name":"小鹿野町","pos":[120,180],"group":"8","kana":"おがのまち"}
+  ,{"code":"t-2","name":"皆野町","pos":[206,142],"group":"8","kana":""}
+  ,{"code":"t-1","name":"長瀞町","pos":[217,117],"group":"8","kana":"ながとろまち"}
+  ,{"code":"t-7","name":"寄居町","pos":[257,123],"group":"8","kana":""}
+  ,{"code":"t-3","name":"東秩父村","pos":[252,162],"group":"8","kana":""}
+
+  ,{"code":"n-1","name":"羽生市","pos":[434,87],"group":"9","kana":""}
+  ,{"code":"n-2","name":"行田市","pos":[398,101],"group":"9","kana":"ぎょうだし"}
+  ,{"code":"n-3","name":"熊谷市","pos":[346,88],"group":"9","kana":""}
+  ,{"code":"n-4","name":"深谷市","pos":[292,78],"group":"9","kana":"ふかやし"}
+  ,{"code":"n-5","name":"美里町","pos":[246,87],"group":"9","kana":""}
+  ,{"code":"n-6","name":"本庄市","pos":[216,83],"group":"9","kana":""}
+  ,{"code":"n-7","name":"神川町","pos":[192,94],"group":"9","kana":""}
+  ,{"code":"n-8","name":"上里町","pos":[228,35],"group":"9","kana":"かみさとまち"}
+]

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5S8WBQQKX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N5S8WBQQKX');
+    </script>
+    <!-- ------------------- -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>loopeeSaitama</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/index.js"></script>
+  </head>
+  
+  <body>
+    <div class="mx-auto d-block" style="width:90%;">
+      <h1 class="text-center mt-2" id="gameStatus">gameStatus</h1>
+      <div class="input-group">
+        <span class="input-group-text" id="questionCode" style="width:15%;">XX</span>
+        <input id="entryAnswer" type="text" class="form-control" placeholder="Enter the answer" autocomplete="off">
+        <input type="button" class="btn btn-primary" value="START" id="buttonStart">
+        <input type="button" class="btn btn-primary" value="SUBMIT" id="buttonSubmit">
+        <input type="button" class="btn btn-secondary" value="MENU" id="buttonMenu">
+      </div>  
+    </div>
+
+    <div class="position-relative d-inline-block w-100">
+      <div id="progress-container" class='mt-3 mb-3 progress mx-auto inline-block' role='progressbar' aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
+        <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%;transition:width 0.5s ease;">20sec</div>
+      </div>
+      <span id="resultLabel" class="position-absolute translate-middle top-50 start-50 px-2 py-1 rounded alert" role="alert"></span>
+    </div>
+
+    <div class="container d-flex flex-column align-items-center" id="select-container">
+      <div class="d-flex justify-content-center gap-3">
+        <div class="btn-group" role="group">
+          <input type="radio" class="btn-check"  name="btnradio" id="radioCheck" data-index="check">
+          <label class="btn btn-outline-primary" for="radioCheck">CHECK</label>
+          <input type="radio" class="btn-check" name="btnradio" id="radioNormal" data-index="normal">
+          <label class="btn btn-outline-primary" for="radioNormal">TEST</label>
+        </div>
+        <div class="btn-group" role="group">
+          <input type="checkbox" class="btn-check" id="checkColor">
+          <label class="btn btn-outline-secondary" for="checkColor">COLOR</label>
+          <input type="checkbox" class="btn-check" id="checkBorder">
+          <label class="btn btn-outline-secondary" for="checkBorder">BORDER</label>
+        </div>
+      </div>
+
+      <div class="btn-group mt-3 mb-3" role="group">
+        <input type="checkbox" class="btn-check" id="checkCode1" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode1"> 1</label>
+        <input type="checkbox" class="btn-check" id="checkCode2" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode2"> 2</label>
+        <input type="checkbox" class="btn-check" id="checkCode3" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode3"> 3</label>
+        <input type="checkbox" class="btn-check" id="checkCode4" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode4"> 4</label>
+        <input type="checkbox" class="btn-check" id="checkCode5" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode5"> 5</label>
+        <input type="checkbox" class="btn-check" id="checkCode6" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode6"> 6</label>
+        <input type="checkbox" class="btn-check" id="checkCode7" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode7"> 7</label>
+        <input type="checkbox" class="btn-check" id="checkCode8" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode8"> 8</label>
+        <input type="checkbox" class="btn-check" id="checkCode9" name="selectCode">
+        <label class="btn btn-outline-success" for="checkCode9"> 9</label>
+      </div>
+    </div>
+
+    <div id="main-container"></div>
+    <div class="container mt-2">
+      <div class="row">
+        <div id='left-container' class="col-6 p-0">
+          <div class="container d-flex align-items-start justify-content-center p-2" id="sub-container"></div>
+        </div>
+        <div id='right-container' class="col-6 p-2">
+          <input type="button" class="btn btn-primary" value="PREV" id="buttonPrevious">
+          <input type="button" class="btn btn-primary float-end" value="NEXT" id="buttonNext">  
+          <input type="button" class="btn btn-primary float-center" value="PASS" id="buttonPass">  
+          <label id="hint"></label>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
