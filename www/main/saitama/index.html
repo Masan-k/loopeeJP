@@ -40,8 +40,9 @@
       <span id="resultLabel" class="position-absolute translate-middle top-50 start-50 px-2 py-1 rounded alert" role="alert"></span>
     </div>
 
-    <div class="container d-flex flex-column align-items-center" id="select-container">
-      <div class="d-flex justify-content-center gap-3">
+    <div class="container d-flex flex-column flex-md-row flex-md-nowrap" id="select-container">
+      
+      <div class="flex-md-row flex-md-nowrap d-flex justify-content-center gap-2 mb-2 me-2">
         <div class="btn-group" role="group">
           <input type="radio" class="btn-check"  name="btnradio" id="radioCheck" data-index="check">
           <label class="btn btn-outline-primary" for="radioCheck">CHECK</label>
@@ -56,7 +57,7 @@
         </div>
       </div>
 
-      <div class="btn-group mt-3 mb-3" role="group">
+      <div class="btn-group flex-md-row flex-md-nowrap mb-2" role="group">
         <input type="checkbox" class="btn-check" id="checkCode1" name="selectCode">
         <label class="btn btn-outline-success" for="checkCode1"> 1</label>
         <input type="checkbox" class="btn-check" id="checkCode2" name="selectCode">
@@ -78,19 +79,21 @@
       </div>
     </div>
 
-    <div id="main-container"></div>
-    <div class="container mt-2">
-      <div class="row">
-        <div id='left-container' class="col-6 p-0">
-          <div class="container d-flex align-items-start justify-content-center p-2" id="sub-container"></div>
-        </div>
-        <div id='right-container' class="col-6 p-2">
-          <input type="button" class="btn btn-primary" value="PREV" id="buttonPrevious">
-          <input type="button" class="btn btn-primary float-end" value="NEXT" id="buttonNext">  
-          <input type="button" class="btn btn-primary float-center" value="PASS" id="buttonPass">  
-          <label id="hint"></label>
-        </div>
+  <div class="container mt-2">
+    <div class="row">
+      <div id="main-container" style="width:100%;"></div>
+    </div>
+    <div class="row">
+      <div id='left-container' class="col-6 p-0">
+      <div class="container d-flex align-items-start justify-content-center p-2" id="sub-container"></div>
+      </div>
+      <div id='right-container' class="col-6 p-2">
+        <input type="button" class="btn btn-primary" value="PREV" id="buttonPrevious">
+        <input type="button" class="btn btn-primary float-end" value="NEXT" id="buttonNext">  
+        <input type="button" class="btn btn-primary float-center" value="PASS" id="buttonPass">  
+        <label id="hint"></label>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

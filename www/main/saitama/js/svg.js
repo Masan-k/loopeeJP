@@ -113,6 +113,9 @@ export function drawMapFullMainContainer(_isColor,_isBorder){
   let mapPath = getMapPath(_isColor,_isBorder)
   drawMapAll(0,0,'main-container',mapPath);
 }
+function isMobile() {
+  return window.innerWidth <= 768; // 768px 以下ならスマホと判定
+}
 function drawMapAll(x,y,mapId,mapPath){
   fetch(mapPath)
     .then(response => response.text())
@@ -124,11 +127,11 @@ function drawMapAll(x,y,mapId,mapPath){
       svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
       //console.log(`map_width:${MAP_WIDTH} map_height:${MAP_HEIGHT}`);
       if(mapId === 'sub-container'){
-        svgElement.setAttribute('width', `100%`);
-        svgElement.setAttribute('height', `100%`);
+          svgElement.setAttribute('width', `100%`);
+          svgElement.setAttribute('height', `100%`);
       }else if(mapId === 'main-container'){
-        svgElement.setAttribute('width', `100%`);
-        svgElement.setAttribute('height', `100%`);
+          svgElement.setAttribute('width', '100%');
+          svgElement.setAttribute('height', '100%');
       }
       svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
 
