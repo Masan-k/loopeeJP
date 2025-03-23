@@ -11,6 +11,40 @@ let m_cameraX;
 let m_cameraY;
 let m_observer;
 
+function setSvgCss(){
+  const eleMainSvg = document.getElementById("mainSvg");  
+  const rect = document.getElementById("main-container").getBoundingClientRect();
+  let containerHeight = window.innerHeight - rect.top;
+  let containerWidth = rect.width;
+  let svgHeight = containerWidth * (MAP_HEIGHT / MAP_WIDTH);
+  // console.log(`svgHeight:${Math.floor(svgHeight)},containerHeight:${Math.floor(containerHeight)}`);
+
+  if (!eleMainSvg) {
+    console.warn("SVG 要素が見つかりません");
+    return;
+  }
+
+  if(svgHeight >= containerHeight){
+    console.log("height base");
+    eleMainSvg.style.height = containerHeight-20;
+    eleMainSvg.style.width = "100%";
+    
+    // eleMainSvg.style.width = eleMainSvg.style.height * (MAP_WIDTH/MAP_HEIGHT);
+
+  }else{
+    console.log("width base");
+    eleMainSvg.style.height = "100%";
+    eleMainSvg.style.width = "100%";
+  }
+
+  // eleMainSvg.setAttribute("display","flex");
+  // eleMainSvg.setAttribute("justify-content","center");       
+
+}
+window.addEventListener('resize', function () {
+  setSvgCss();
+});
+
 function getMapPath(isColor,isBorder){
   let filePath = "img/map"
   if(!isColor){
@@ -124,13 +158,16 @@ function drawMapAll(x,y,mapId,mapPath){
       svgElement.setAttribute('viewBox', `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`);
       //console.log(`map_width:${MAP_WIDTH} map_height:${MAP_HEIGHT}`);
       if(mapId === 'sub-container'){
-        svgElement.setAttribute('width', `100%`);
-        svgElement.setAttribute('height', `100%`);
-      }else if(mapId === 'main-container'){
-        svgElement.setAttribute('width', `100%`);
-        svgElement.setAttribute('height', `100%`);
-      }
-      svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+          svgElement.setAttribute('width', `100%`);
+          svgElement.setAttribute('height', `auto`);
+
+        }else if(mapId === 'main-container'){
+          svgElement.setAttribute("id", "mainSvg");
+          // svgElement.setAttribute('width', `100%`);
+          setSvgCss();
+        }
+        svgElement.setAttribute('preserveAspectRatio', "xMidYMid meet"); // アスペクト比を維持
+        // svgElement.setAttribute('preserveAspectRatio', "xMinYMin meet"); // アスペクト比を維持
 
       if(mapId === 'sub-container'){
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -184,9 +221,13 @@ function drawMap(pointX,pointY,mapPath){
 
         // viewBoxを設定してトリミング（x, y, width, height）
         svgElement.setAttribute('viewBox', `${m_cameraX} ${m_cameraY} ${CAMERA_WIDTH} ${CAMERA_HEIGHT}`);
-        svgElement.setAttribute('width', '100%');
-        svgElement.setAttribute('height', '100%');
-        svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+        svgElement.setAttribute("id", "mainSvg");
+        // svgElement.setAttribute('width', `100%`);
+        setSvgCss();
+        
+        svgElement.setAttribute('preserveAspectRatio', 'xMinYMin meet'); // アスペクト比を維持
+        // svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet'); // アスペクト比を維持
+        // svgElement.setAttribute('preserveAspectRatio', 'none'); // アスペクト比を維持
       });
   }
 }

@@ -138,6 +138,9 @@ function setStatus(gameStatus){
     const eleColor = document.getElementById("checkColor");
     const eleBorder = document.getElementById("checkBorder");
 
+    const eleSideCon = document.getElementById("side-container");
+    const eleProgress = document.getElementById("progress-container");
+
     resetResultLabel()
     svg.drawMapFullMainContainer(eleColor.checked, eleBorder.checked);
     setTimeout(function(){
@@ -161,6 +164,8 @@ function setStatus(gameStatus){
     eleNext.classList.add('d-none');
     elePass.classList.add('d-none');
     elePrevious.classList.add('d-none');
+    eleSideCon.classList.add("d-none");
+    eleProgress.classList.add("d-none");
 
     eleLeft.classList.remove('border');
     eleRight.classList.remove('border');
@@ -181,7 +186,9 @@ function setStatus(gameStatus){
     const eleColor = document.getElementById("checkColor");
     const eleBorder = document.getElementById("checkBorder");
  
-    
+    const eleSideCon = document.getElementById("side-container");
+    const eleProgress = document.getElementById("progress-container");
+
     resetResultLabel()
     m_clickCount = 0;
     m_gameScore = 0;
@@ -199,6 +206,9 @@ function setStatus(gameStatus){
     eleEntryAnswer.focus();
     eleSub.classList.remove('d-none');
     eleMenu.classList.remove('d-none');
+    eleSideCon.classList.remove("d-none");
+    eleProgress.classList.remove("d-none");
+
     eleGameStatus.textContent =  '...';
     eleCode.innerText = question.code[m_clickCount];
     eleSubmit.style.display = "inline-block";
