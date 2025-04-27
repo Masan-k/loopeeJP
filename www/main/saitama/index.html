@@ -53,10 +53,9 @@
     </div>
     <span id="resultLabel" class="position-absolute translate-middle top-50 start-50 px-2 py-1 rounded alert" role="alert"></span>
   </div>
-
-  <div class="container d-flex flex-column flex-md-row justify-content-center" id="select-container">
+  <div class="container d-flex flex-column flex-md-row flex-md-nowrap" id="select-container">
     
-    <div class="d-flex justify-content-center flex-md-row gap-2 mb-2 me-2">
+    <div class="flex-md-row flex-md-nowrap d-flex justify-content-center gap-2 mb-2 me-2">
       <div class="btn-group" role="group">
         <input type="radio" class="btn-check"  name="btnradio" id="radioCheck" data-index="check">
         <label class="btn btn-outline-primary" for="radioCheck">CHECK</label>
@@ -70,54 +69,51 @@
         <label class="btn btn-outline-secondary" for="checkBorder">BORDER</label>
       </div>
     </div>
-    <div class="d-flex justify-content-center flex-md-row mb-2">
-      <div class="btn-group" role="group">
-        <input type="checkbox" class="btn-check" id="checkCode1" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode1"> 1</label>
-        <input type="checkbox" class="btn-check" id="checkCode2" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode2"> 2</label>
-        <input type="checkbox" class="btn-check" id="checkCode3" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode3"> 3</label>
-        <input type="checkbox" class="btn-check" id="checkCode4" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode4"> 4</label>
-        <input type="checkbox" class="btn-check" id="checkCode5" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode5"> 5</label>
-        <input type="checkbox" class="btn-check" id="checkCode6" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode6"> 6</label>
-        <input type="checkbox" class="btn-check" id="checkCode7" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode7"> 7</label>
-        <input type="checkbox" class="btn-check" id="checkCode8" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode8"> 8</label>
-        <input type="checkbox" class="btn-check" id="checkCode9" name="selectCode">
-        <label class="btn btn-outline-success" for="checkCode9"> 9</label>
+
+    <div class="btn-group flex-md-row flex-md-nowrap mb-2" role="group">
+      <input type="checkbox" class="btn-check" id="checkCode1" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode1"> 1</label>
+      <input type="checkbox" class="btn-check" id="checkCode2" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode2"> 2</label>
+      <input type="checkbox" class="btn-check" id="checkCode3" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode3"> 3</label>
+      <input type="checkbox" class="btn-check" id="checkCode4" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode4"> 4</label>
+      <input type="checkbox" class="btn-check" id="checkCode5" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode5"> 5</label>
+      <input type="checkbox" class="btn-check" id="checkCode6" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode6"> 6</label>
+      <input type="checkbox" class="btn-check" id="checkCode7" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode7"> 7</label>
+      <input type="checkbox" class="btn-check" id="checkCode8" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode8"> 8</label>
+      <input type="checkbox" class="btn-check" id="checkCode9" name="selectCode">
+      <label class="btn btn-outline-success" for="checkCode9"> 9</label>
+    </div>
+  </div>
+</div>
+
+<div id="map-container" class="container-fluid">
+  <div class="d-flex flex-column flex-md-row w-100 justify-content-center">
+    <div id="main-container" class="d-flex flex-column justify-content-center align-items-center w-100">
+    </div>
+
+    <div id="side-container" class="d-flex flex-row flex-md-column w-100 custom-side">
+      <div id='left-container' class="p-0 w-100">
+        <div id="sub-container" class="d-flex align-items-start justify-content-center p-2">
+        </div>  
+      </div>
+
+      <div id='right-container' class="p-2 w-100">
+        <input type="button" class="btn btn-primary" value="PREV" id="buttonPrevious">
+        <input type="button" class="btn btn-primary float-end" value="NEXT" id="buttonNext">  
+        <input type="button" class="btn btn-primary" value="PASS" id="buttonPass">  
+        <label id="hint"></label>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- <div id="map-container" class="container-fluid d-flex justify-content-center" style="background: blue ; width:100%"> -->
-  <div id="map-container" class="container-fluid">
-    
-    <div class="d-flex flex-column flex-md-row w-100 justify-content-center">
-
-      <div id="main-container" class="d-flex flex-column justify-content-center align-items-center w-100">
-      </div>
-
-      <div id="side-container" class="d-flex flex-row flex-md-column w-100 custom-side">
-        <div id='left-container' class="p-0 w-100">
-          <div id="sub-container" class="d-flex align-items-start justify-content-center p-2">
-          </div>  
-        </div>
-
-        <div id='right-container' class="p-2 w-100">
-          <input type="button" class="btn btn-primary" value="PREV" id="buttonPrevious">
-          <input type="button" class="btn btn-primary float-end" value="NEXT" id="buttonNext">  
-          <input type="button" class="btn btn-primary" value="PASS" id="buttonPass">  
-          <label id="hint"></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- </div> -->
 </body>
 </html>
+

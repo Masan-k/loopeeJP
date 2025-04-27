@@ -162,14 +162,15 @@ function setStatus(gameStatus){
     eleSelect.classList.remove('d-none');
     eleMenu.classList.add('d-none');
     eleNext.classList.add('d-none');
-    elePass.classList.add('d-none');
     elePrevious.classList.add('d-none');
+    elePass.classList.add('d-none');
     eleSideCon.classList.add("d-none");
     eleProgress.classList.add("d-none");
 
     eleLeft.classList.remove('border');
     eleRight.classList.remove('border');
-    
+
+     
   }else if(gameStatus === 'mainInit'){
     m_gameStatus.setData("mainInit");
     const eleEntryAnswer = document.getElementById('entryAnswer');
